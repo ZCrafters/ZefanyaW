@@ -7,13 +7,10 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             background: #ffffff;
             z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             opacity: 1;
             transition: opacity 0.5s ease-out;
         }
@@ -24,21 +21,26 @@
         }
 
         #loading-video {
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
 
         .loading-text {
-            position: absolute;
+            position: fixed;
             bottom: 50px;
             left: 50%;
             transform: translateX(-50%);
-            color: #000000;
+            color: #ffffff;
             font-size: 1.2rem;
             font-weight: 600;
             text-align: center;
             animation: pulse 2s infinite;
+            z-index: 10000;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
         }
 
         @keyframes pulse {
@@ -744,17 +746,42 @@
             const loadingScreen = document.getElementById('loading-screen');
             const loadingVideo = document.getElementById('loading-video');
 
-            // Hide loading screen when video ends
-            loadingVideo.addEventListener('ended', () => {
+            // Function to hide loading screen
+            const hideLoadingScreen = () => {
                 loadingScreen.classList.add('hidden');
+            };
+
+            // Hide loading screen when video ends
+            loadingVideo.addEventListener('ended', hideLoadingScreen);
+
+            // Handle video load errors
+            loadingVideo.addEventListener('error', () => {
+                console.warn('Video failed to load, hiding loading screen');
+                setTimeout(hideLoadingScreen, 2000);
             });
 
-            // Fallback: hide after 10 seconds if video doesn't end
+            // Ensure video plays (fallback for autoplay restrictions)
+            const playVideo = async () => {
+                try {
+                    await loadingVideo.play();
+                } catch (error) {
+                    console.warn('Autoplay failed, video will play on user interaction');
+                    // Add click to play functionality
+                    loadingScreen.addEventListener('click', () => {
+                        loadingVideo.play();
+                    }, { once: true });
+                }
+            };
+
+            // Start playing video
+            playVideo();
+
+            // Fallback: hide after 15 seconds if video doesn't end
             setTimeout(() => {
                 if (!loadingScreen.classList.contains('hidden')) {
-                    loadingScreen.classList.add('hidden');
+                    hideLoadingScreen();
                 }
-            }, 10000);
+            }, 15000);
 
             // Create floating particles
             const particleBg = document.getElementById('particle-bg');
