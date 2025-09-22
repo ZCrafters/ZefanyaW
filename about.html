@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Zefanya Williams</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#ffffff',
+                        primary: '#e50000',
+                        secondary: '#f5f5f5',
+                        accent: '#000000'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            overflow-x: hidden;
+        }
+
+        .animated-gradient {
+            background: linear-gradient(270deg, #e50000, #000000, #e50000);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradient-animation 4s ease infinite;
+        }
+
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50% }
+            50% { background-position: 100% 50% }
+            100% { background-position: 0% 50% }
+        }
+
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .glowing-button {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(229, 0, 0, 0.3);
+        }
+
+        .glowing-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(229, 0, 0, 0.5);
+        }
+
+        .glowing-button::after {
+            content: '';
+            position: absolute;
+            top: -10%;
+            left: -100%;
+            width: 50%;
+            height: 120%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+        }
+
+        .glowing-button:hover::after {
+            left: 150%;
+        }
+
+        .red-glow {
+            box-shadow: 0 0 15px rgba(229, 0, 0, 0.5);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .red-glow:hover {
+            box-shadow: 0 0 25px rgba(229, 0, 0, 0.8);
+        }
+
+        .particle-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(229, 0, 0, 0.1);
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background:
+                linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="rgba(229,0,0,0.03)" stroke-width="1"/></svg>');
+            background-size: 50px 50px;
+        }
+
+        .scanline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(
+                to bottom,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(229, 0, 0, 0.02) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            background-size: 100% 8px;
+            animation: scanline 4s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes scanline {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 0 100%;
+            }
+        }
+
+        .glow-effect {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(229, 0, 0, 0.1) 0%, rgba(229, 0, 0, 0) 70%);
+            filter: blur(20px);
+            animation: moveGlow 20s infinite alternate ease-in-out;
+            z-index: -1;
+        }
+
+        @keyframes moveGlow {
+            0% {
+                transform: translate(10%, 10%);
+            }
+            25% {
+                transform: translate(80%, 30%);
+            }
+            50% {
+                transform: translate(50%, 70%);
+            }
+            75% {
+                transform: translate(20%, 40%);
+            }
+            100% {
+                transform: translate(70%, 20%);
+            }
+        }
+
+        .logo-circle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(229, 0, 0, 0.8);
+        }
+
+        /* Profile Image Circle with Particles */
+        .profile-circle {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            overflow: visible;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #e50000;
+            box-shadow: 0 0 25px rgba(229, 0, 0, 0.6);
+            z-index: 2;
+            position: relative;
+            transition: all 0.5s ease;
+        }
+
+        .profile-image:hover {
+            box-shadow: 0 0 35px rgba(229, 0, 0, 0.9);
+            transform: scale(1.03);
+        }
+
+        .profile-particles {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: calc(100% + 40px);
+            height: calc(100% + 40px);
+            z-index: 1;
+        }
+
+        .profile-particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, rgba(229, 0, 0, 0.8) 0%, rgba(229, 0, 0, 0) 70%);
+            border-radius: 50%;
+            filter: blur(1px);
+            animation: orbit 8s linear infinite;
+        }
+
+        @keyframes orbit {
+            0% {
+                transform: rotate(0deg) translateX(140px) rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg) translateX(140px) rotate(-360deg);
+            }
+        }
+
+        .glow-ring {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: calc(100% + 20px);
+            height: calc(100% + 20px);
+            border-radius: 50%;
+            border: 2px solid rgba(229, 0, 0, 0.3);
+            box-shadow: 0 0 20px rgba(229, 0, 0, 0.5), inset 0 0 20px rgba(229, 0, 0, 0.5);
+            z-index: 1;
+            animation: pulse-ring 2s ease-out infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+        }
+
+        .digital-clock {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #000;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 20px;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            font-family: 'Montserrat', sans-serif;
+            text-shadow: 0 0 10px rgba(229, 0, 0, 0.7);
+        }
+
+        .digital-clock .time {
+            letter-spacing: 2px;
+        }
+
+        .digital-clock .timezone {
+            font-size: 0.8em;
+            opacity: 0.8;
+            margin-left: 5px;
+        }
+
+        /* Sidebar Menu */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 280px;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 5px 0 25px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            transition: all 0.3s ease-in-out;
+            padding: 20px 0;
+            overflow-y: auto;
+            padding-top: 90px;
+        }
+
+        .sidebar.open {
+            left: 0;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid rgba(229, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-menu li {
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            padding: 15px 25px;
+            color: #000000;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sidebar-menu a i {
+            margin-right: 15px;
+            width: 24px;
+            text-align: center;
+            color: #e50000;
+        }
+
+        .sidebar-menu a:hover {
+            background: rgba(229, 0, 0, 0.1);
+            color: #ffffff;
+            padding-left: 30px;
+        }
+
+        .sidebar-menu a::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: #e50000;
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-menu a:hover::before {
+            transform: scaleY(1);
+        }
+
+        .sidebar-menu a.active {
+            background: rgba(229, 0, 0, 0.2);
+            color: #ffffff;
+            border-left: 4px solid #e50000;
+        }
+
+        .sidebar-menu a.active i {
+            color: #ffffff;
+        }
+
+        .menu-toggle {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            z-index: 1100;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(229, 0, 0, 0.3);
+            color: #000000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            background: #e50000;
+            transform: scale(1.1);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 15px 0;
+            margin-top: 10px;
+            border-top: 1px solid rgba(229, 0, 0, 0.2);
+        }
+
+        .social-icon {
+            color: #000000;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(229, 0, 0, 0.1);
+        }
+
+        .social-icon:hover {
+            background: #e50000;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(229, 0, 0, 0.3);
+        }
+
+        .social-icon i {
+            margin: 0;
+        }
+
+        /* Floating Animation */
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+
+        /* Floating Icons */
+        .floating-icon {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(0, 0, 0, 0.9);
+            text-shadow: 0 0 15px rgba(229, 0, 0, 0.8);
+            z-index: 1;
+            animation: float 6s ease-in-out infinite;
+            filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.8));
+        }
+
+        .floating-icon:hover {
+            color: #000000;
+            text-shadow: 0 0 25px rgba(229, 0, 0, 1);
+            transform: scale(1.2);
+            filter: drop-shadow(0 0 10px rgba(0, 0, 0, 1));
+        }
+
+        /* Hero Section */
+        #home {
+            position: relative;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 245, 245, 0.95) 100%);
+            backdrop-filter: blur(5px);
+        }
+
+        /* Hero Text */
+        .animated-gradient {
+            background: linear-gradient(270deg, #e50000, #ff6666, #e50000);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradient-animation 4s ease infinite;
+            text-shadow: 0 0 15px rgba(229, 0, 0, 0.3);
+        }
+
+        .text-accent {
+            color: #000000 !important;
+            text-shadow: 0 0 10px rgba(229, 0, 0, 0.5);
+        }
+
+        /* Social Icons */
+        .social-icon {
+            background: rgba(255, 255, 255, 0.15) !important;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: rgba(229, 0, 0, 0.7) !important;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(229, 0, 0, 0.4);
+        }
+
+        .social-icon i {
+            color: #000000 !important;
+            text-shadow: 0 0 10px rgba(229, 0, 0, 0.7);
+        }
+
+        /* Card Glass Effect */
+        .card-glass {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(229, 0, 0, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .card-glass:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Hover 3D Effect */
+        .hover-3d {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hover-3d:hover {
+            transform: perspective(1000px) rotateX(5deg) rotateY(-5deg) translateZ(10px);
+        }
+
+        /* Section Divider */
+        .section-divider {
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #e50000, #ff6666);
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        /* Skill Pills */
+        .skill-pill {
+            background: rgba(229, 0, 0, 0.1);
+            color: #e50000;
+            border: 1px solid rgba(229, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .skill-pill:hover {
+            background: #e50000;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Timeline Items */
+        .timeline-item {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -25px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background: #e50000;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 0 0 2px rgba(229, 0, 0, 0.3);
+        }
+
+        /* Navigation */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(229, 0, 0, 0.1);
+            padding: 20px 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .header-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #000000;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Menu Toggle Button -->
+    <button class="menu-toggle" id="menuToggle">
+        <i class="fas fa-bars text-xl"></i>
+    </button>
+
+    <!-- Digital Clock -->
+    <div class="digital-clock" id="digitalClock"></div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+    
+    <!-- Sidebar Menu -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2 class="text-2xl font-bold text-black">Menu</h2>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="about.html" class="active"><i class="fas fa-user"></i> About</a></li>
+            <li><a href="expertise.html"><i class="fas fa-code"></i> Expertise</a></li>
+            <li><a href="experience.html"><i class="fas fa-briefcase"></i> Experience</a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li class="social-links">
+                <a href="https://www.instagram.com/zefanya.williams/" target="_blank" class="social-icon instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.tiktok.com/@zefanya.williams" target="_blank" class="social-icon tiktok">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Background Elements -->
+    <div class="grid-bg"></div>
+    <div class="particle-bg" id="particle-bg"></div>
+    <div class="scanline"></div>
+    <div class="glow-effect"></div>
+    <div class="glow-effect" style="animation-delay: -10s; left: 30%; top: 60%;"></div>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white relative overflow-hidden pt-32">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 animated-gradient">About Me</h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <!-- Profile Section -->
+            <div class="text-center mb-16">
+                <div class="profile-circle mx-auto mb-8">
+                    <img src="https://lh3.googleusercontent.com/a/ACg8ocLX3p_aKn0gXs5yR-2Gf5Qb3ydICZu2W5Or0L2gOmm9v5Vus8Gvig=s216-c-no"
+                        alt="Zefanya Williams"
+                        class="profile-image">
+                    <div class="profile-particles"></div>
+                    <div class="glow-ring"></div>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-10 items-center">
+                <div class="lg:w-1/2">
+                    <div class="card-glass p-8 rounded-2xl hover-3d">
+                        <h3 class="text-2xl font-bold mb-4 text-primary">Who I Am</h3>
+                        <p class="text-accent mb-6">
+                            I am a digital business student actively involved as a BA campus and frequently participate in volunteer activities. 
+                            I have the ability to work both individually and in groups. Additionally, I am a content creator for personal branding.
+                        </p>
+                        <p class="text-accent mb-6">
+                            I'm interested in AI technology and enjoy contributing to various campus project activities. 
+                            I also enjoy challenges in problem-solving.
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <div class="skill-pill px-4 py-2 rounded-full">
+                                <span class="text-sm text-accent">Team Leadership</span>
+                            </div>
+                            <div class="skill-pill px-4 py-2 rounded-full">
+                                <span class="text-sm text-accent">Problem Solving</span>
+                            </div>
+                            <div class="skill-pill px-4 py-2 rounded-full">
+                                <span class="text-sm text-accent">Creative Thinking</span>
+                            </div>
+                            <div class="skill-pill px-4 py-2 rounded-full">
+                                <span class="text-sm text-accent">Adaptability</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                                
+                <div class="lg:w-1/2">
+                    <div class="card-glass p-8 rounded-2xl hover-3d">
+                        <h3 class="text-2xl font-bold mb-6 text-primary">Education & Organizations</h3>
+                                                
+                        <div class="space-y-8 relative border-l-2 border-primary border-opacity-20 pl-8">
+                            <div class="relative timeline-item">
+                                <h4 class="text-lg font-semibold text-primary">Darwis Photography School</h4>
+                                <p class="text-sm text-gray-400 mb-2">Photography Student</p>
+                                <p class="text-accent text-sm">
+                                    Enthusiastically pursuing professional photography education, mastering technical skills in camera operation, lighting techniques, and post-processing. Developing a keen eye for composition and visual storytelling while exploring various photography genres to create compelling visual narratives.
+                                </p>
+                            </div>
+                            
+                            <div class="relative timeline-item">
+                                <h4 class="text-lg font-semibold text-primary">Green Academy</h4>
+                                <p class="text-sm text-gray-400 mb-2">Digital Business Student</p>
+                                <p class="text-accent text-sm">
+                                    Currently pursuing studies in digital business with focus on AI technology and digital marketing strategies.
+                                </p>
+                            </div>
+                                                    
+                            <div class="relative timeline-item">
+                                <h4 class="text-lg font-semibold text-primary">Badan Executive Mahasiswa</h4>
+                                <p class="text-sm text-gray-400 mb-2">2023 - 2025</p>
+                                <p class="text-accent text-sm">
+                                    Best member of September in Medinfo Division. Completed various projects related to design, content planning, and documentation.
+                                </p>
+                            </div>
+                                                    
+                            <div class="relative timeline-item">
+                                <h4 class="text-lg font-semibold text-primary">Campus Volunteer</h4>
+                                <p class="text-sm text-gray-400 mb-2">2022 - Present</p>
+                                <p class="text-accent text-sm">
+                                    Actively participated in various campus volunteer activities, helping organize events and community service projects.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional About Section -->
+            <div class="mt-16">
+                <div class="card-glass p-8 rounded-2xl hover-3d">
+                    <h3 class="text-2xl font-bold mb-6 text-primary text-center">My Journey</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-lg font-semibold text-primary mb-3">My Background</h4>
+                            <p class="text-accent mb-4">
+                                I started my journey in digital business with a passion for technology and innovation. Over the years, 
+                                I've developed skills in content creation, digital marketing, and data analysis, which have become essential 
+                                tools in my professional toolkit.
+                            </p>
+                            <p class="text-accent">
+                                My experience in student organizations has taught me valuable leadership and teamwork skills, 
+                                while my volunteer work has given me a broader perspective on community impact.
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-lg font-semibold text-primary mb-3">My Vision</h4>
+                            <p class="text-accent mb-4">
+                                I aim to leverage technology and digital business strategies to create meaningful solutions that address 
+                                real-world challenges. I believe in the power of AI and data-driven approaches to transform businesses 
+                                and improve user experiences.
+                            </p>
+                            <p class="text-accent">
+                                My goal is to continue growing as a professional in the digital business field, constantly learning 
+                                and adapting to new technologies and market trends.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Icons -->
+    <div class="floating-icon" style="top: 20%; left: 10%; animation-delay: -2s;">
+        <i class="fab fa-html5"></i>
+    </div>
+    <div class="floating-icon" style="top: 30%; right: 15%; animation-delay: -5s;">
+        <i class="fab fa-css3-alt"></i>
+    </div>
+    <div class="floating-icon" style="bottom: 25%; left: 20%; animation-delay: -8s;">
+        <i class="fab fa-js"></i>
+    </div>
+    <div class="floating-icon" style="bottom: 35%; right: 10%; animation-delay: -11s;">
+        <i class="fas fa-code"></i>
+    </div>
+    <div class="floating-icon" style="top: 15%; right: 25%; animation-delay: -14s;">
+        <i class="fas fa-laptop-code"></i>
+    </div>
+    <div class="floating-icon" style="bottom: 20%; right: 30%; animation-delay: -17s;">
+        <i class="fas fa-mobile-alt"></i>
+    </div>
+
+             <!-- FAQ Section -->
+            <div class="mt-16 px-4 md:px-6">
+                <div class="card-glass p-6 md:p-8 rounded-2xl hover-3d transform hover:scale-[1.005] transition-transform duration-300 max-w-4xl mx-auto w-full">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl md:text-3xl font-bold text-primary relative inline-block px-2">
+                            <span class="relative z-10 bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent break-words">
+                                Frequently Asked Questions <span class="inline-block ml-2 animate-float">❓</span>
+                            </span>
+                            <span class="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent rounded-full shadow-[0_0_15px_rgba(239,68,68,0.8)]"></span>
+                        </h3>
+                    </div>
+                    
+                    <div class="space-y-4 w-full">
+                        <!-- FAQ Item 1 -->
+                        <div class="faq-item bg-secondary bg-opacity-50 rounded-xl p-5 transition-all duration-300 hover:bg-opacity-70 cursor-pointer group border border-transparent hover:border-primary hover:border-opacity-30">
+                            <div class="flex justify-between items-center">
+                                <h4 class="text-base md:text-lg font-semibold text-primary flex items-center">
+                                    <span class="emoji-container mr-3">
+                                        <span class="emoji">👋</span>
+                                    </span>
+                                    Who are you?
+                                </h4>
+                                <span class="text-primary transform transition-transform duration-300 group-hover:rotate-180 text-sm">▼</span>
+                            </div>
+                            <div class="faq-answer mt-3 text-accent overflow-hidden max-h-0 transition-all duration-300 pl-9">
+                                <p class="leading-relaxed">I'm a digital business student passionate about AI technology and content creation. I love solving problems and working on innovative projects that make a difference.</p>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 2 -->
+                        <div class="faq-item bg-secondary bg-opacity-50 rounded-xl p-5 transition-all duration-300 hover:bg-opacity-70 cursor-pointer group border border-transparent hover:border-primary hover:border-opacity-30">
+                            <div class="flex justify-between items-center">
+                                <h4 class="text-base md:text-lg font-semibold text-primary flex items-center">
+                                    <span class="emoji-container mr-3">
+                                        <span class="emoji">🎓</span>
+                                    </span>
+                                    What's your educational background?
+                                </h4>
+                                <span class="text-primary transform transition-transform duration-300 group-hover:rotate-180 text-sm">▼</span>
+                            </div>
+                            <div class="faq-answer mt-3 text-accent overflow-hidden max-h-0 transition-all duration-300 pl-9">
+                                <p class="leading-relaxed">I'm currently studying Digital Business at Green Academy, focusing on AI technology and digital marketing strategies. I actively participate in campus organizations and volunteer activities to enhance my skills.</p>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 3 -->
+                        <div class="faq-item bg-secondary bg-opacity-50 rounded-xl p-5 transition-all duration-300 hover:bg-opacity-70 cursor-pointer group border border-transparent hover:border-primary hover:border-opacity-30">
+                            <div class="flex justify-between items-center">
+                                <h4 class="text-base md:text-lg font-semibold text-primary flex items-center">
+                                    <span class="emoji-container mr-3">
+                                        <span class="emoji">💡</span>
+                                    </span>
+                                    What are your skills?
+                                </h4>
+                                <span class="text-primary transform transition-transform duration-300 group-hover:rotate-180 text-sm">▼</span>
+                            </div>
+                            <div class="faq-answer mt-3 text-accent overflow-hidden max-h-0 transition-all duration-300 pl-9">
+                                <p class="leading-relaxed mb-3">My key skills include:</p>
+                                <ul class="list-disc pl-5 space-y-2">
+                                    <li>Team Leadership</li>
+                                    <li>Problem Solving & Critical Thinking</li>
+                                    <li>Content Creation & Digital Marketing</li>
+                                    <li>AI Technology & Data Analysis</li>
+                                    <li>Project Management</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 4 -->
+                        <div class="faq-item bg-secondary bg-opacity-50 rounded-xl p-5 transition-all duration-300 hover:bg-opacity-70 cursor-pointer group border border-transparent hover:border-primary hover:border-opacity-30">
+                            <div class="flex justify-between items-center">
+                                <h4 class="text-base md:text-lg font-semibold text-primary flex items-center">
+                                    <span class="emoji-container mr-3">
+                                        <span class="emoji">🚀</span>
+                                    </span>
+                                    What are your future goals?
+                                </h4>
+                                <span class="text-primary transform transition-transform duration-300 group-hover:rotate-180 text-sm">▼</span>
+                            </div>
+                            <div class="faq-answer mt-3 text-accent overflow-hidden max-h-0 transition-all duration-300 pl-9">
+                                <p class="leading-relaxed">I aim to leverage technology and digital business strategies to create meaningful solutions. I'm particularly interested in exploring how AI can transform businesses and improve user experiences. My goal is to bridge the gap between technology and business to create innovative solutions.</p>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 5 -->
+                        <div class="faq-item bg-secondary bg-opacity-50 rounded-xl p-5 transition-all duration-300 hover:bg-opacity-70 cursor-pointer group border border-transparent hover:border-primary hover:border-opacity-30">
+                            <div class="flex justify-between items-center">
+                                <h4 class="text-base md:text-lg font-semibold text-primary flex items-center">
+                                    <span class="emoji-container mr-3">
+                                        <span class="emoji">📱</span>
+                                    </span>
+                                    How can I connect with you?
+                                </h4>
+                                <span class="text-primary transform transition-transform duration-300 group-hover:rotate-180 text-sm">▼</span>
+                            </div>
+                            <div class="faq-answer mt-3 text-accent overflow-hidden max-h-0 transition-all duration-300 pl-9">
+                                <p class="leading-relaxed">Feel free to reach out through my social media links in the sidebar or visit the Contact page. I'm always open to interesting discussions and collaboration opportunities! You can also email me at <a href="mailto:your.email@example.com" class="text-primary hover:underline">your.email@example.com</a>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add this style in the head section -->
+            <style>
+                /* FAQ Section Styles */
+                .faq-item {
+                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+                }
+                
+                .faq-item:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+                }
+                
+                .faq-item.active {
+                    background-color: rgba(255, 255, 255, 0.05);
+                    border-color: rgba(229, 0, 0, 0.3) !important;
+                }
+                
+                .faq-item.active .faq-answer {
+                    max-height: 500px;
+                    padding-top: 10px;
+                }
+                
+                .emoji-container {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                
+                .emoji {
+                    display: inline-block;
+                    transition: all 0.3s ease;
+                    font-size: 1.2em;
+                }
+                
+                .faq-item:hover .emoji {
+                    animation: bounce 0.6s ease;
+                }
+                
+                .faq-item.active .emoji {
+                    animation: pulse 1.5s infinite;
+                }
+                
+                @keyframes bounce {
+                    0%, 100% { transform: translateY(0) scale(1); }
+                    50% { transform: translateY(-5px) scale(1.1); }
+                }
+                
+                @keyframes pulse {
+                    0% { transform: scale(1); }
+                    50% { transform: scale(1.15); }
+                    100% { transform: scale(1); }
+                }
+                
+                @keyframes float {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-5px); }
+                }
+                
+                .animate-float {
+                    animation: float 3s ease-in-out infinite;
+                    display: inline-block;
+                }
+                
+                /* Responsive adjustments */
+                @media (max-width: 640px) {
+                    .faq-item {
+                        padding: 0.75rem;
+                    }
+                    
+                    .faq-answer {
+                        font-size: 0.95rem;
+                    }
+                }
+            </style>
+
+            <!-- Add this script before the closing body tag -->
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const faqItems = document.querySelectorAll('.faq-item');
+                    
+                    // Function to close all FAQ items
+                    function closeAllFaqs(except = null) {
+                        faqItems.forEach(item => {
+                            if (item !== except) {
+                                item.classList.remove('active');
+                                const answer = item.querySelector('.faq-answer');
+                                answer.style.maxHeight = '0';
+                            }
+                        });
+                    }
+                    
+                    // Add click event to each FAQ item
+                    faqItems.forEach(item => {
+                        item.addEventListener('click', function() {
+                            const isActive = this.classList.contains('active');
+                            closeAllFaqs(isActive ? null : this);
+                            
+                            if (!isActive) {
+                                this.classList.add('active');
+                                const answer = this.querySelector('.faq-answer');
+                                answer.style.maxHeight = answer.scrollHeight + 'px';
+                            }
+                        });
+                        
+                        // Add keyboard navigation
+                        item.addEventListener('keydown', function(e) {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                                e.preventDefault();
+                                this.click();
+                            }
+                        });
+                    });
+                    
+                    // Auto-open first FAQ on page load
+                    if (faqItems.length > 0) {
+                        faqItems[0].classList.add('active');
+                        const firstAnswer = faqItems[0].querySelector('.faq-answer');
+                        firstAnswer.style.maxHeight = firstAnswer.scrollHeight + 'px';
+                    }
+                });
+            </script>
+
+    <!-- News Section -->
+    <section id="news" class="py-20 bg-white relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 animated-gradient">Latest News</h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <!-- News Carousel -->
+            <div class="relative max-w-6xl mx-auto">
+                <div class="carousel-container overflow-hidden rounded-2xl">
+                    <div class="carousel-wrapper flex transition-transform duration-500 ease-in-out" id="carouselWrapper">
+                        <!-- News Item 1 -->
+                        <div class="carousel-slide flex-shrink-0 w-full relative">
+                            <div class="card-glass p-8 rounded-2xl hover-3d h-96 flex flex-col justify-center items-center text-center relative overflow-hidden">
+                                <div class="absolute inset-0 bg-gradient-to-br from-red-500/10 to-transparent"></div>
+                                <div class="relative z-10">
+                                    <div class="w-16 h-16 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mb-6 mx-auto">
+                                        <i class="fas fa-trophy text-primary text-2xl"></i>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-primary mb-4">Fintech Competition Victory</h3>
+                                    <p class="text-accent mb-6">Cyber University student successfully dominates international fintech competition in Malaysia</p>
+                                    <a href="https://news.republika.co.id/berita/t2vmwr472/mahasiswa-cyber-university-ini-sukses-gebrak-kompetisi-fintech-internasional-di-malaysia"
+                                       target="_blank" class="glowing-button px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-opacity-90 transition">
+                                        Read Full Story
+                                    </a>
+                                </div>
+                                <!-- Simple Overlay -->
+                                <div class="news-overlay absolute inset-0 bg-black bg-opacity-80 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                                    <div class="text-center text-white p-6">
+                                        <h4 class="text-lg font-bold mb-2">Breaking News!</h4>
+                                        <p class="text-sm">Zefanya Williams from Cyber University wins international fintech competition in Malaysia, showcasing exceptional talent in financial technology innovation.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- News Item 2 -->
+                        <div class="carousel-slide flex-shrink-0 w-full relative">
+                            <div class="card-glass p-8 rounded-2xl hover-3d h-96 flex flex-col justify-center items-center text-center relative overflow-hidden">
+                                <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent"></div>
+                                <div class="relative z-10">
+                                    <div class="w-16 h-16 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mb-6 mx-auto">
+                                        <i class="fas fa-network-wired text-primary text-2xl"></i>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-primary mb-4">International Networking Success</h3>
+                                    <p class="text-accent mb-6">Beyond winning, Cyber University student builds valuable international connections in Malaysia</p>
+                                    <a href="https://edukasi.sindonews.com/read/1623473/211/tak-hanya-gelar-juara-mahasiswa-cyber-university-ini-sukses-bangun-jejaring-internasional-di-malaysia-1758528568"
+                                       target="_blank" class="glowing-button px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-opacity-90 transition">
+                                        Read Full Story
+                                    </a>
+                                </div>
+                                <!-- Simple Overlay -->
+                                <div class="news-overlay absolute inset-0 bg-black bg-opacity-80 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                                    <div class="text-center text-white p-6">
+                                        <h4 class="text-lg font-bold mb-2">Networking Achievement!</h4>
+                                        <p class="text-sm">Not only securing victory, Zefanya Williams successfully establishes international professional networks during the Malaysia fintech competition.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- News Item 3 -->
+                        <div class="carousel-slide flex-shrink-0 w-full relative">
+                            <div class="card-glass p-8 rounded-2xl hover-3d h-96 flex flex-col justify-center items-center text-center relative overflow-hidden">
+                                <div class="absolute inset-0 bg-gradient-to-br from-green-500/10 to-transparent"></div>
+                                <div class="relative z-10">
+                                    <div class="w-16 h-16 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mb-6 mx-auto">
+                                        <i class="fas fa-star text-primary text-2xl"></i>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-primary mb-4">Outstanding Achievement</h3>
+                                    <p class="text-accent mb-6">Cyber University student's remarkable success in international fintech competition highlighted</p>
+                                    <a href="https://milenianews.com/news/tak-hanya-gelar-juara-mahasiswa-cyber-university-ini-sukses-bangun-jejaring-internasional-di-malaysia/"
+                                       target="_blank" class="glowing-button px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-opacity-90 transition">
+                                        Read Full Story
+                                    </a>
+                                </div>
+                                <!-- Simple Overlay -->
+                                <div class="news-overlay absolute inset-0 bg-black bg-opacity-80 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                                    <div class="text-center text-white p-6">
+                                        <h4 class="text-lg font-bold mb-2">Featured Achievement!</h4>
+                                        <p class="text-sm">Zefanya Williams' outstanding performance in the Malaysia fintech competition earns recognition and builds lasting international connections.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <button class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 text-primary p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110" id="prevBtn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 text-primary p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110" id="nextBtn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+
+                <!-- Indicators -->
+                <div class="flex justify-center mt-6 space-x-2">
+                    <button class="carousel-indicator w-3 h-3 rounded-full bg-gray-300 hover:bg-primary transition-colors duration-300" data-slide="0"></button>
+                    <button class="carousel-indicator w-3 h-3 rounded-full bg-gray-300 hover:bg-primary transition-colors duration-300" data-slide="1"></button>
+                    <button class="carousel-indicator w-3 h-3 rounded-full bg-primary transition-colors duration-300" data-slide="2"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Carousel Styles -->
+    <style>
+        .carousel-container {
+            position: relative;
+        }
+
+        .carousel-wrapper {
+            width: 300%; /* 3 slides */
+        }
+
+        .carousel-slide {
+            width: calc(100% / 3); /* Each slide takes 1/3 of container */
+        }
+
+        .carousel-indicator.active {
+            background-color: #e50000 !important;
+        }
+
+        .news-overlay {
+            backdrop-filter: blur(5px);
+        }
+
+        @media (max-width: 768px) {
+            .carousel-slide {
+                width: 100%;
+            }
+
+            .carousel-wrapper {
+                width: 300%;
+            }
+        }
+    </style>
+
+    <!-- News Carousel Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const carouselWrapper = document.getElementById('carouselWrapper');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const indicators = document.querySelectorAll('.carousel-indicator');
+
+            let currentSlide = 0;
+            const totalSlides = 3;
+
+            function updateCarousel() {
+                const translateX = -currentSlide * (100 / totalSlides);
+                carouselWrapper.style.transform = `translateX(${translateX}%)`;
+
+                // Update indicators
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === currentSlide);
+                });
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateCarousel();
+            }
+
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                updateCarousel();
+            }
+
+            function goToSlide(slideIndex) {
+                currentSlide = slideIndex;
+                updateCarousel();
+            }
+
+            // Event listeners
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => goToSlide(index));
+            });
+
+            // Auto-play (optional)
+            setInterval(nextSlide, 5000);
+
+            // Initialize
+            updateCarousel();
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer class="bg-white py-10 relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="text-2xl font-bold animated-gradient">Zefanya Williams</div>
+                    <p class="text-gray-600 mt-2">Digital Business Student & Content Creator</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-600 hover:text-primary transition">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-600 hover:text-primary transition">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-600 hover:text-primary transition">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-600 hover:text-primary transition">
+                        <i class="fab fa-youtube text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-gray-300 pt-8 text-center text-gray-600 text-sm">
+                &copy; 2025 Zefanya Williams. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Create floating particles
+            const particleBg = document.getElementById('particle-bg');
+
+            for (let i = 0; i < 100; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+
+                // Random size between 5px and 20px
+                const size = Math.random() * 15 + 5;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+
+                // Random animation duration between 15s and 30s
+                const duration = Math.random() * 15 + 15;
+                particle.style.animationDuration = `${duration}s`;
+
+                // Random delay
+                particle.style.animationDelay = `${Math.random() * 10}s`;
+
+                particleBg.appendChild(particle);
+            }
+
+            // Toggle Sidebar
+            const menuToggle = document.getElementById('menuToggle');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+
+            menuToggle.addEventListener('click', () => {
+                sidebar.classList.toggle('open');
+                overlay.classList.toggle('open');
+                document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : '';
+            });
+
+            overlay.addEventListener('click', () => {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('open');
+                document.body.style.overflow = '';
+            });
+
+            // Close sidebar when clicking on a menu item (for mobile)
+            const menuItems = document.querySelectorAll('.sidebar-menu a');
+            menuItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    sidebar.classList.remove('open');
+                    overlay.classList.remove('open');
+                    document.body.style.overflow = '';
+
+                    // Update active state
+                    menuItems.forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                });
+            });
+
+            // Create profile image particles
+            const profileParticles = document.querySelector('.profile-particles');
+            if (profileParticles) {
+                const particleCount = 12; // Number of particles around the profile
+
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('profile-particle');
+
+                    // Random size between 4px and 10px
+                    const size = Math.random() * 6 + 4;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+
+                    // Position around the circle with different angles
+                    const angle = (i / particleCount) * 360;
+                    particle.style.animationDelay = `${i * (8 / particleCount)}s`;
+
+                    // Random opacity
+                    particle.style.opacity = (Math.random() * 0.5 + 0.3).toString();
+
+                    profileParticles.appendChild(particle);
+                }
+            }
+
+            // Digital Clock
+            function updateClock() {
+                const now = new Date();
+                const time = now.toLocaleTimeString('en-US', { hour12: false });
+                const timezone = 'WIB';
+                document.getElementById('digitalClock').innerHTML = `<span class="time">${time}</span><span class="timezone">${timezone}</span>`;
+            }
+            setInterval(updateClock, 1000);
+            updateClock();
+        });
+    </script>
+</body>
+</html>

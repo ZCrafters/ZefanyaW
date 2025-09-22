@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zefanya Williams - Experience</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#ffffff',
+                        primary: '#e50000',
+                        secondary: '#f5f5f5',
+                        accent: '#000000'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            overflow-x: hidden;
+        }
+
+        .animated-gradient {
+            background: linear-gradient(270deg, #e50000, #000000, #e50000);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradient-animation 4s ease infinite;
+        }
+
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50% }
+            50% { background-position: 100% 50% }
+            100% { background-position: 0% 50% }
+        }
+
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .glowing-button {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(229, 0, 0, 0.3);
+        }
+
+        .glowing-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(229, 0, 0, 0.5);
+        }
+
+        .glowing-button::after {
+            content: '';
+            position: absolute;
+            top: -10%;
+            left: -100%;
+            width: 50%;
+            height: 120%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+        }
+
+        .glowing-button:hover::after {
+            left: 150%;
+        }
+
+        .red-glow {
+            box-shadow: 0 0 15px rgba(229, 0, 0, 0.5);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .red-glow:hover {
+            box-shadow: 0 0 25px rgba(229, 0, 0, 0.8);
+        }
+
+        .particle-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(229, 0, 0, 0.1);
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background:
+                linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="rgba(229,0,0,0.03)" stroke-width="1"/></svg>');
+            background-size: 50px 50px;
+        }
+
+        .scanline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(
+                to bottom,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(229, 0, 0, 0.02) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            background-size: 100% 8px;
+            animation: scanline 4s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes scanline {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 0 100%;
+            }
+        }
+
+        .glow-effect {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(229, 0, 0, 0.1) 0%, rgba(229, 0, 0, 0) 70%);
+            filter: blur(20px);
+            animation: moveGlow 20s infinite alternate ease-in-out;
+            z-index: -1;
+        }
+
+        @keyframes moveGlow {
+            0% {
+                transform: translate(10%, 10%);
+            }
+            25% {
+                transform: translate(80%, 30%);
+            }
+            50% {
+                transform: translate(50%, 70%);
+            }
+            75% {
+                transform: translate(20%, 40%);
+            }
+            100% {
+                transform: translate(70%, 20%);
+            }
+        }
+
+        .logo-circle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(229, 0, 0, 0.8);
+        }
+
+        /* Profile Image Circle with Particles */
+        .profile-circle {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            overflow: visible;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #e50000;
+            box-shadow: 0 0 25px rgba(229, 0, 0, 0.6);
+            z-index: 2;
+            position: relative;
+            transition: all 0.5s ease;
+        }
+
+        .profile-image:hover {
+            box-shadow: 0 0 35px rgba(229, 0, 0, 0.9);
+            transform: scale(1.03);
+        }
+
+        .profile-particles {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: calc(100% + 40px);
+            height: calc(100% + 40px);
+            z-index: 1;
+        }
+
+        .profile-particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, rgba(229, 0, 0, 0.8) 0%, rgba(229, 0, 0, 0) 70%);
+            border-radius: 50%;
+            filter: blur(1px);
+            animation: orbit 8s linear infinite;
+        }
+
+        @keyframes orbit {
+            0% {
+                transform: rotate(0deg) translateX(140px) rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg) translateX(140px) rotate(-360deg);
+            }
+        }
+
+        .glow-ring {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: calc(100% + 20px);
+            height: calc(100% + 20px);
+            border-radius: 50%;
+            border: 2px solid rgba(229, 0, 0, 0.3);
+            box-shadow: 0 0 20px rgba(229, 0, 0, 0.5), inset 0 0 20px rgba(229, 0, 0, 0.5);
+            z-index: 1;
+            animation: pulse-ring 2s ease-out infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+        }
+
+        .digital-clock {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #000;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 20px;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            font-family: 'Montserrat', sans-serif;
+            text-shadow: 0 0 10px rgba(229, 0, 0, 0.7);
+        }
+
+        .digital-clock .time {
+            letter-spacing: 2px;
+        }
+
+        .digital-clock .timezone {
+            font-size: 0.8em;
+            opacity: 0.8;
+            margin-left: 5px;
+        }
+
+        /* Sidebar Menu */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 280px;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 5px 0 25px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            transition: all 0.3s ease-in-out;
+            padding: 20px 0;
+            overflow-y: auto;
+            padding-top: 90px;
+        }
+
+        .sidebar.open {
+            left: 0;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid rgba(229, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-menu li {
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            padding: 15px 25px;
+            color: #000000;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sidebar-menu a i {
+            margin-right: 15px;
+            width: 24px;
+            text-align: center;
+            color: #e50000;
+        }
+
+        .sidebar-menu a:hover {
+            background: rgba(229, 0, 0, 0.1);
+            color: #ffffff;
+            padding-left: 30px;
+        }
+
+        .sidebar-menu a::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: #e50000;
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-menu a:hover::before {
+            transform: scaleY(1);
+        }
+
+        .sidebar-menu a.active {
+            background: rgba(229, 0, 0, 0.2);
+            color: #ffffff;
+            border-left: 4px solid #e50000;
+        }
+
+        .sidebar-menu a.active i {
+            color: #ffffff;
+        }
+
+        .menu-toggle {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            z-index: 1100;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(229, 0, 0, 0.3);
+            color: #000000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            background: #e50000;
+            transform: scale(1.1);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 15px 0;
+            margin-top: 10px;
+            border-top: 1px solid rgba(229, 0, 0, 0.2);
+        }
+
+        .social-icon {
+            color: #000000;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(229, 0, 0, 0.1);
+        }
+
+        .social-icon:hover {
+            background: #e50000;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(229, 0, 0, 0.3);
+        }
+
+        .social-icon i {
+            margin: 0;
+        }
+
+        /* Floating Animation */
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+
+        /* Floating Icons */
+        .floating-icon {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(0, 0, 0, 0.9);
+            text-shadow: 0 0 15px rgba(229, 0, 0, 0.8);
+            z-index: 1;
+            animation: float 6s ease-in-out infinite;
+            filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.8));
+        }
+
+        .floating-icon:hover {
+            color: #000000;
+            text-shadow: 0 0 25px rgba(229, 0, 0, 1);
+            transform: scale(1.2);
+            filter: drop-shadow(0 0 10px rgba(0, 0, 0, 1));
+        }
+
+        /* Hero Section */
+        #home {
+            position: relative;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 245, 245, 0.95) 100%);
+            backdrop-filter: blur(5px);
+        }
+
+        /* Hero Text */
+        .animated-gradient {
+            background: linear-gradient(270deg, #e50000, #ff6666, #e50000);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradient-animation 4s ease infinite;
+            text-shadow: 0 0 15px rgba(229, 0, 0, 0.3);
+        }
+
+        .text-accent {
+            color: #000000 !important;
+            text-shadow: 0 0 10px rgba(229, 0, 0, 0.5);
+        }
+
+        /* Social Icons */
+        .social-icon {
+            background: rgba(255, 255, 255, 0.15) !important;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: rgba(229, 0, 0, 0.7) !important;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(229, 0, 0, 0.4);
+        }
+
+        .social-icon i {
+            color: #000000 !important;
+            text-shadow: 0 0 10px rgba(229, 0, 0, 0.7);
+        }
+
+        /* Card Glass Effect */
+        .card-glass {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(229, 0, 0, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .card-glass:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Hover 3D Effect */
+        .hover-3d {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hover-3d:hover {
+            transform: perspective(1000px) rotateX(5deg) rotateY(-5deg) translateZ(10px);
+        }
+
+        /* Section Divider */
+        .section-divider {
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #e50000, #ff6666);
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        /* Skill Pills */
+        .skill-pill {
+            background: rgba(229, 0, 0, 0.1);
+            color: #e50000;
+            border: 1px solid rgba(229, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .skill-pill:hover {
+            background: #e50000;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Timeline Items */
+        .timeline-item {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -25px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background: #e50000;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 0 0 2px rgba(229, 0, 0, 0.3);
+        }
+
+        /* Animasi fade-in */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Spin Border Effect */
+        .spin-border-container {
+            position: relative;
+        }
+
+        .spin-border {
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border: 2px solid transparent;
+            border-top: 2px solid #e50000;
+            border-radius: 50%;
+            animation: spin 2s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Glowing Line Effect */
+        .glowing-line-container {
+            position: relative;
+        }
+
+        .glowing-line {
+            position: absolute;
+            background: linear-gradient(45deg, #e50000, #ff6666, #e50000);
+            border-radius: 2px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .glowing-line-top {
+            top: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+        }
+
+        .glowing-line-bottom {
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+        }
+
+        .glowing-line-left {
+            top: 0;
+            bottom: 0;
+            left: -2px;
+            width: 2px;
+        }
+
+        .glowing-line-right {
+            top: 0;
+            bottom: 0;
+            right: -2px;
+            width: 2px;
+        }
+
+        .card-glass:hover .glowing-line {
+            opacity: 1;
+        }
+    </style>
+</head>
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="grid-bg"></div>
+    <div class="particle-bg" id="particle-bg"></div>
+    <div class="scanline"></div>
+    <div class="glow-effect"></div>
+    <div class="glow-effect" style="animation-delay: -10s; left: 30%; top: 60%;"></div>
+    
+    <!-- Menu Toggle Button -->
+    <button class="menu-toggle" id="menuToggle">
+        <i class="fas fa-bars text-xl"></i>
+    </button>
+
+    <!-- Digital Clock -->
+    <div class="digital-clock" id="digitalClock"></div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Sidebar Menu -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2 class="text-2xl font-bold text-black">Menu</h2>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="about.html"><i class="fas fa-user"></i> About</a></li>
+            <li><a href="expertise.html"><i class="fas fa-code"></i> Expertise</a></li>
+            <li><a href="experience.html" class="active"><i class="fas fa-briefcase"></i> Experience</a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li class="social-links">
+                <a href="https://www.instagram.com/zefanya.williams/" target="_blank" class="social-icon instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.tiktok.com/@zefanya.williams" target="_blank" class="social-icon tiktok">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 bg-white relative overflow-hidden pt-32">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 animated-gradient">My Experience</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <!-- Education Section -->
+            <div class="card-glass p-8 rounded-2xl hover-3d mb-12 transform transition-all duration-500 hover:scale-[1.02] spin-border-container glowing-line-container">
+                <div class="spin-border"></div>
+                <div class="glowing-line glowing-line-top"></div>
+                <div class="glowing-line glowing-line-bottom"></div>
+                <div class="glowing-line glowing-line-left"></div>
+                <div class="glowing-line glowing-line-right"></div>
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mr-4 red-glow floating">
+                        <i class="fas fa-graduation-cap text-primary text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-primary">Education</h3>
+                </div>
+                
+                <div class="ml-16 relative">
+                    <div class="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-red-400 to-transparent"></div>
+                    <div class="relative pl-8 pb-8">
+                        <div class="absolute left-0 top-2 w-4 h-4 rounded-full bg-primary animate-pulse"></div>
+                        <h4 class="text-lg font-semibold text-black">Universitas Siber Indonesia</h4>
+                        <p class="text-sm text-gray-400 mb-2">2022 – Present | Bachelor of Digital Business</p>
+                        <div class="card-glass p-4 rounded-lg mt-3 transform transition-all duration-300 hover:translate-x-2">
+                            <p class="text-accent text-sm">Pursuing a comprehensive education in digital business strategies, marketing, and technology integration.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Experience Section -->
+            <div class="card-glass p-8 rounded-2xl hover-3d mb-12 transform transition-all duration-500 hover:scale-[1.02] spin-border-container glowing-line-container">
+                <div class="spin-border"></div>
+                <div class="glowing-line glowing-line-top"></div>
+                <div class="glowing-line glowing-line-bottom"></div>
+                <div class="glowing-line glowing-line-left"></div>
+                <div class="glowing-line glowing-line-right"></div>
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mr-4 red-glow floating">
+                        <i class="fas fa-briefcase text-primary text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-primary">Experience</h3>
+                </div>
+                
+                <div class="ml-16 relative">
+                    <div class="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-red-400 to-transparent"></div>
+                    
+                    <!-- Experience Item 1 -->
+                    <div class="relative pl-8 pb-12 group">
+                        <div class="absolute left-0 top-2 w-4 h-4 rounded-full bg-primary group-hover:animate-ping"></div>
+                        <h4 class="text-lg font-semibold text-black group-hover:text-primary transition-colors duration-300">Salesman</h4>
+                        <p class="text-sm text-gray-400 mb-2">PT Sentul City Tbk | Mar 2025 – Present | Sentul City, Bogor</p>
+                        <div class="card-glass p-4 rounded-lg mt-3 transform transition-all duration-300 group-hover:translate-x-2">
+                            <ul class="text-accent text-sm list-disc pl-5 space-y-2">
+                                <li class="transform transition-all duration-300 hover:translate-x-1">Membantu klien menemukan properti sesuai kebutuhan dan anggaran</li>
+                                <li class="transform transition-all duration-300 hover:translate-x-1">Memberikan informasi menyeluruh terkait legalitas, nilai investasi, dan proses pembelian properti</li>
+                                <li class="transform transition-all duration-300 hover:translate-x-1">Pendekatan konsultatif dan personal untuk pengalaman pembelian yang nyaman</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Experience Item 2 -->
+                    <div class="relative pl-8 pb-12 group">
+                        <div class="absolute left-0 top-2 w-4 h-4 rounded-full bg-primary group-hover:animate-ping"></div>
+                        <h4 class="text-lg font-semibold text-white group-hover:text-primary transition-colors duration-300">Business Owner</h4>
+                        <p class="text-sm text-gray-400 mb-2">Gegaiaan | Feb 2025 – Present | Kota Bogor, Indonesia</p>
+                        <div class="card-glass p-4 rounded-lg mt-3 transform transition-all duration-300 group-hover:translate-x-2">
+                            <ul class="text-accent text-sm list-disc pl-5 space-y-2">
+                                <li class="transform transition-all duration-300 hover:translate-x-1">Mendirikan brand fashion lokal yang menekankan nilai berani, autentik, dan ekspresif</li>
+                                <li class="transform transition-all duration-300 hover:translate-x-1">Menghadirkan koleksi streetwear dan casualwear untuk generasi muda</li>
+                                <li class="transform transition-all duration-300 hover:translate-x-1">Fokus pada kualitas bahan, keunikan desain, dan pengalaman berbelanja personal</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Experience Item 3 -->
+                    <div class="relative pl-8 pb-12 group">
+                        <div class="absolute left-0 top-2 w-4 h-4 rounded-full bg-primary group-hover:animate-ping"></div>
+                        <h4 class="text-lg font-semibold text-white group-hover:text-primary transition-colors duration-300">Content Creator</h4>
+                        <p class="text-sm text-gray-400 mb-2">Instagram Pribadi | 2023 – Present | Jakarta Selatan</p>
+                        <div class="card-glass p-4 rounded-lg mt-3 transform transition-all duration-300 group-hover:translate-x-2">
+                            <ul class="text-accent text-sm list-disc pl-5 space-y-2">
+                                <li class="transform transition-all duration-300 hover:translate-x-1">Membuat konten kreatif untuk membangun audiens dan awareness</li>
+                                <li class="transform transition-all duration-300 hover:translate-x-1">Mengelola media sosial dan kampanye digital</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Experience Item 4 -->
+                    <div class="relative pl-8 pb-12 group">
+                        <div class="absolute left-0 top-2 w-4 h-4 rounded-full bg-primary group-hover:animate-ping"></div>
+                        <h4 class="text-lg font-semibold text-white group-hover:text-primary transition-colors duration-300">Head of PRP Unit Coding</h4>
+                        <p class="text-sm text-gray-400 mb-2">Universitas Siber Indonesia | Des 2024 – Present</p>
+                        <div class="card-glass p-4 rounded-lg mt-3 transform transition-all duration-300 group-hover:translate-x-2">
+                            <ul class="text-accent text-sm list-disc pl-5 space-y-2">
+                                <li class="transform transition-all duration-300 hover:translate-x-1">Memimpin unit kegiatan mahasiswa seputar coding dan pengembangan</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Experience Item 5 -->
+                    <div class="relative pl-8 pb-12 group">
+                        <div class="absolute left-0 top-2 w-4 h-4 rounded-full bg-primary group-hover:animate-ping"></div>
+                        <h4 class="text-lg font-semibold text-white group-hover:text-primary transition-colors duration-300">Campus Ambassador</h4>
+                        <p class="text-sm text-gray-400 mb-2">Kontrak | Nov 2023 – Present | South Jakarta</p>
+                        <div class="card-glass p-4 rounded-lg mt-3 transform transition-all duration-300 group-hover:translate-x-2">
+                            <ul class="text-accent text-sm list-disc pl-5 space-y-2">
+                                <li class="transform transition-all duration-300 hover:translate-x-1">Mewakili brand di kampus</li>
+                                <li class="transform transition-all duration-300 hover:translate-x-1">Menjalankan promosi dan kampanye edukatif</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Experience Item 6 -->
+                    <div class="relative pl-8 pb-12 group">
+                        <div class="absolute left-0 top-2 w-4 h-4 rounded-full bg-primary group-hover:animate-ping"></div>
+                        <h4 class="text-lg font-semibold text-white group-hover:text-primary transition-colors duration-300">Member of Medinfo BEM</h4>
+                        <p class="text-sm text-gray-400 mb-2">Nov 2023 – Mar 2025 | Jakarta</p>
+                        <div class="card-glass p-4 rounded-lg mt-3 transform transition-all duration-300 group-hover:translate-x-2">
+                            <ul class="text-accent text-sm list-disc pl-5 space-y-2">
+                                <li class="transform transition-all duration-300 hover:translate-x-1">Bertanggung jawab pada desain grafis dan komunikasi informasi internal dan eksternal</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Experience Item 7 -->
+                    <div class="relative pl-8 pb-8 group">
+                        <div class="absolute left-0 top-2 w-4 h-4 rounded-full bg-primary group-hover:animate-ping"></div>
+                        <h4 class="text-lg font-semibold text-white group-hover:text-primary transition-colors duration-300">Video Editor (Intern)</h4>
+                        <p class="text-sm text-gray-400 mb-2">Sekolah Fasilitasi | Nov 2024 – Des 2024 | Jakarta</p>
+                        <div class="card-glass p-4 rounded-lg mt-3 transform transition-all duration-300 group-hover:translate-x-2">
+                            <ul class="text-accent text-sm list-disc pl-5 space-y-2">
+                                <li class="transform transition-all duration-300 hover:translate-x-1">Mengedit materi video edukatif</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Certifications Section -->
+            <div class="card-glass p-8 rounded-2xl hover-3d mb-12 transform transition-all duration-500 hover:scale-[1.02] spin-border-container glowing-line-container">
+                <div class="spin-border"></div>
+                <div class="glowing-line glowing-line-top"></div>
+                <div class="glowing-line glowing-line-bottom"></div>
+                <div class="glowing-line glowing-line-left"></div>
+                <div class="glowing-line glowing-line-right"></div>
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mr-4 red-glow floating">
+                        <i class="fas fa-certificate text-primary text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-primary">Certifications</h3>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <!-- Certification 1 -->
+                    <div class="card-glass p-5 rounded-lg transform transition-all duration-300 hover:translate-y-[-5px] hover:shadow-[0_0_15px_rgba(229,0,0,0.3)]">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-video text-primary"></i>
+                            </div>
+                            <h4 class="text-lg font-semibold text-black">Content Creator</h4>
+                        </div>
+                        <p class="text-sm text-gray-400 mb-1">Mentorbox Indonesia</p>
+                        <ul class="text-accent text-sm list-disc pl-5 space-y-1">
+                            <li>Social Media Content Creation</li>
+                            <li>Engagement & Awareness Strategy</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Certification 2 -->
+                    <div class="card-glass p-5 rounded-lg transform transition-all duration-300 hover:translate-y-[-5px] hover:shadow-[0_0_15px_rgba(229,0,0,0.3)]">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-bullhorn text-primary"></i>
+                            </div>
+                            <h4 class="text-lg font-semibold text-black">Digital Marketing</h4>
+                        </div>
+                        <p class="text-sm text-gray-400 mb-1">Mentorbox Indonesia</p>
+                        <ul class="text-accent text-sm list-disc pl-5 space-y-1">
+                            <li>Google Site Development</li>
+                            <li>Keyword Research</li>
+                            <li>Produk Knowledge Presentation</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Certification 3 -->
+                    <div class="card-glass p-5 rounded-lg transform transition-all duration-300 hover:translate-y-[-5px] hover:shadow-[0_0_15px_rgba(229,0,0,0.3)]">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-database text-primary"></i>
+                            </div>
+                            <h4 class="text-lg font-semibold text-black">Data Science</h4>
+                        </div>
+                        <p class="text-sm text-gray-400 mb-1">Green Academy</p>
+                        <ul class="text-accent text-sm list-disc pl-5 space-y-1">
+                            <li>Data Analysis, Data Mining, Entry</li>
+                            <li>Web Application Development (Healthcare prediction)</li>
+                            <li>Flowchart & Visualization Tools</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Skills Section -->
+            <div class="card-glass p-8 rounded-2xl hover-3d transform transition-all duration-500 hover:scale-[1.02] spin-border-container glowing-line-container">
+                <div class="spin-border"></div>
+                <div class="glowing-line glowing-line-top"></div>
+                <div class="glowing-line glowing-line-bottom"></div>
+                <div class="glowing-line glowing-line-left"></div>
+                <div class="glowing-line glowing-line-right"></div>
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mr-4 red-glow floating">
+                        <i class="fas fa-tools text-primary text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-primary">Skills</h3>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+                    <div class="skill-card group">
+                        <div class="card-glass p-4 rounded-lg relative overflow-hidden transform transition-all duration-300 group-hover:translate-y-[-5px]">
+                            <div class="absolute inset-0 bg-gradient-to-r from-primary to-transparent opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                            <div class="flex items-center">
+                                <i class="fas fa-bullhorn text-primary mr-3 text-xl group-hover:animate-bounce"></i>
+                                <span class="text-accent">Digital Marketing & Campaigning</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card group">
+                        <div class="card-glass p-4 rounded-lg relative overflow-hidden transform transition-all duration-300 group-hover:translate-y-[-5px]">
+                            <div class="absolute inset-0 bg-gradient-to-r from-primary to-transparent opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                            <div class="flex items-center">
+                                <i class="fas fa-hashtag text-primary mr-3 text-xl group-hover:animate-bounce"></i>
+                                <span class="text-accent">Social Media Management</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card group">
+                        <div class="card-glass p-4 rounded-lg relative overflow-hidden transform transition-all duration-300 group-hover:translate-y-[-5px]">
+                            <div class="absolute inset-0 bg-gradient-to-r from-primary to-transparent opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                            <div class="flex items-center">
+                                <i class="fas fa-pen-fancy text-primary mr-3 text-xl group-hover:animate-bounce"></i>
+                                <span class="text-accent">Copywriting & Visual Storytelling</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card group">
+                        <div class="card-glass p-4 rounded-lg relative overflow-hidden transform transition-all duration-300 group-hover:translate-y-[-5px]">
+                            <div class="absolute inset-0 bg-gradient-to-r from-primary to-transparent opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                            <div class="flex items-center">
+                                <i class="fas fa-chart-line text-primary mr-3 text-xl group-hover:animate-bounce"></i>
+                                <span class="text-accent">Data Analysis</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card group">
+                        <div class="card-glass p-4 rounded-lg relative overflow-hidden transform transition-all duration-300 group-hover:translate-y-[-5px]">
+                            <div class="absolute inset-0 bg-gradient-to-r from-primary to-transparent opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                            <div class="flex items-center">
+                                <i class="fas fa-users text-primary mr-3 text-xl group-hover:animate-bounce"></i>
+                                <span class="text-accent">Team Leadership & Creative Direction</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card group">
+                        <div class="card-glass p-4 rounded-lg relative overflow-hidden transform transition-all duration-300 group-hover:translate-y-[-5px]">
+                            <div class="absolute inset-0 bg-gradient-to-r from-primary to-transparent opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                            <div class="flex items-center">
+                                <i class="fas fa-film text-primary mr-3 text-xl group-hover:animate-bounce"></i>
+                                <span class="text-accent">Video Production & Editing</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Projects Section -->
+            <div class="mt-16">
+                <h3 class="text-2xl font-bold mb-8 text-center animated-gradient">Featured Projects</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project 1 -->
+                    <div class="card-glass rounded-2xl overflow-hidden hover-3d">
+                        <div class="h-48 bg-gray-800 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent z-10"></div>
+                            <img src="https://via.placeholder.com/600x400/151518/e50000?text=Project+1" alt="Project 1" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-lg font-semibold text-primary mb-2">Cardiovascular Disease Detection</h4>
+                            <p class="text-gray-400 text-sm mb-4">A machine learning project to predict cardiovascular diseases from patient data.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Python</span>
+                                <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Machine Learning</span>
+                                <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Data Analysis</span>
+                            </div>
+                            <a href="#" class="text-primary text-sm hover:underline flex items-center">
+                                <span>View Project</span>
+                                <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 2 -->
+                    <div class="card-glass rounded-2xl overflow-hidden hover-3d">
+                        <div class="h-48 bg-gray-800 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent z-10"></div>
+                            <img src="https://via.placeholder.com/600x400/151518/e50000?text=Project+2" alt="Project 2" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-lg font-semibold text-primary mb-2">Digital Marketing Campaign</h4>
+                            <p class="text-gray-400 text-sm mb-4">Comprehensive marketing strategy for a local business that increased engagement by 45%.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Marketing</span>
+                                <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Social Media</span>
+                                <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Analytics</span>
+                            </div>
+                            <a href="#" class="text-primary text-sm hover:underline flex items-center">
+                                <span>View Project</span>
+                                <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 3 -->
+                    <div class="card-glass rounded-2xl overflow-hidden hover-3d">
+                        <div class="h-48 bg-gray-800 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent z-10"></div>
+                            <img src="https://via.placeholder.com/600x400/151518/e50000?text=Project+3" alt="Project 3" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-lg font-semibold text-primary mb-2">Video Production Series</h4>
+                            <p class="text-gray-400 text-sm mb-4">Educational video series about digital business trends and technologies.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Video Editing</span>
+                                <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Content Creation</span>
+                                <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Storytelling</span>
+                            </div>
+                            <a href="#" class="text-primary text-sm hover:underline flex items-center">
+                                <span>View Project</span>
+                                <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 4 - Digital Canvas -->
+                    <div class="card-glass rounded-2xl overflow-hidden hover-3d">
+                        <div class="h-48 bg-gray-800 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent z-10"></div>
+                            <img src="https://via.placeholder.com/600x400/151518/00ff88?text=Digital+Canvas" alt="Digital Canvas Project" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-lg font-semibold text-primary mb-2">Interactive Digital Canvas</h4>
+                            <p class="text-gray-400 text-sm mb-4">A creative web-based drawing application with real-time drawing tools and effects.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">HTML5</span>
+                                <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">CSS3</span>
+                                <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">JavaScript</span>
+                                <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Canvas API</span>
+                            </div>
+                            <a href="Canvas.html" class="text-primary text-sm hover:underline flex items-center group">
+                                <span>Try Canvas</span>
+                                <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Icons -->
+    <div class="floating-icon" style="top: 20%; left: 10%; animation-delay: -2s;">
+        <i class="fab fa-html5"></i>
+    </div>
+    <div class="floating-icon" style="top: 30%; right: 15%; animation-delay: -5s;">
+        <i class="fab fa-css3-alt"></i>
+    </div>
+    <div class="floating-icon" style="bottom: 25%; left: 20%; animation-delay: -8s;">
+        <i class="fab fa-js"></i>
+    </div>
+    <div class="floating-icon" style="bottom: 35%; right: 10%; animation-delay: -11s;">
+        <i class="fas fa-code"></i>
+    </div>
+    <div class="floating-icon" style="top: 15%; right: 25%; animation-delay: -14s;">
+        <i class="fas fa-laptop-code"></i>
+    </div>
+    <div class="floating-icon" style="bottom: 20%; right: 30%; animation-delay: -17s;">
+        <i class="fas fa-mobile-alt"></i>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white py-10 relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="text-2xl font-bold animated-gradient">Zefanya Williams</div>
+                    <p class="text-gray-600 text-sm mt-2">Digital Business Student & Content Creator</p>
+                </div>
+
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-600 hover:text-primary transition">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="text-gray-600 hover:text-primary transition">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="text-gray-600 hover:text-primary transition">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-600 hover:text-primary transition">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-300 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-600 text-sm mb-4 md:mb-0"> 2025 Zefanya Williams. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-600 hover:text-primary text-sm transition">Privacy Policy</a>
+                    <a href="#" class="text-gray-600 hover:text-primary text-sm transition">Terms of Service</a>
+                    <a href="#" class="text-gray-600 hover:text-primary text-sm transition">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Create floating particles
+            const particleBg = document.getElementById('particle-bg');
+
+            for (let i = 0; i < 100; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+
+                // Random size between 5px and 20px
+                const size = Math.random() * 15 + 5;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+
+                // Random animation duration between 15s and 30s
+                const duration = Math.random() * 15 + 15;
+                particle.style.animationDuration = `${duration}s`;
+
+                // Random delay
+                particle.style.animationDelay = `${Math.random() * 10}s`;
+
+                particleBg.appendChild(particle);
+            }
+
+            // Toggle Sidebar
+            const menuToggle = document.getElementById('menuToggle');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+
+            menuToggle.addEventListener('click', () => {
+                sidebar.classList.toggle('open');
+                overlay.classList.toggle('open');
+                document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : '';
+            });
+
+            overlay.addEventListener('click', () => {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('open');
+                document.body.style.overflow = '';
+            });
+
+            // Close sidebar when clicking on a menu item (for mobile)
+            const menuItems = document.querySelectorAll('.sidebar-menu a');
+            menuItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    sidebar.classList.remove('open');
+                    overlay.classList.remove('open');
+                    document.body.style.overflow = '';
+
+                    // Update active state
+                    menuItems.forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                });
+            });
+
+            // Digital Clock
+            function updateClock() {
+                const now = new Date();
+                const time = now.toLocaleTimeString('en-US', { hour12: false });
+                const timezone = 'WIB';
+                document.getElementById('digitalClock').innerHTML = `<span class="time">${time}</span><span class="timezone">${timezone}</span>`;
+            }
+            setInterval(updateClock, 1000);
+            updateClock();
+
+            // Fungsi untuk menangani animasi scroll
+            function handleScrollAnimation() {
+                const elements = document.querySelectorAll('.fade-in');
+
+                elements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+
+                    // Jika elemen terlihat di viewport
+                    if (elementTop < windowHeight - 50) {
+                        element.classList.add('visible');
+                    }
+                });
+            }
+
+            // Tambahkan class fade-in ke elemen yang ingin dianimasikan
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.classList.add('fade-in');
+            });
+
+            // Jalankan sekali di awal
+            handleScrollAnimation();
+
+            // Jalankan saat di-scroll
+            window.addEventListener('scroll', handleScrollAnimation);
+        });
+    </script>
+</body>
+</html>

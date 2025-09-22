@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Digital Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes float {
+            0% { transform: translateY(0px) rotateY(0deg); }
+            25% { transform: translateY(-15px) rotateY(5deg); }
+            50% { transform: translateY(-25px) rotateY(0deg); }
+            75% { transform: translateY(-15px) rotateY(-5deg); }
+            100% { transform: translateY(0px) rotateY(0deg); }
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 15px rgba(255, 0, 0, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(255, 0, 0, 0.7); }
+            100% { box-shadow: 0 0 15px rgba(255, 0, 0, 0.4); }
+        }
+        
+        
+        .calculator-body {
+            transform: rotateX(5deg) translateZ(20px);
+            box-shadow: 
+                0 10px 15px -3px rgba(0, 0, 0, 0.2),
+                inset 0 -5px 15px rgba(0, 0, 0, 0.5),
+                inset 0 5px 15px rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            z-index: 10;
+        }
+        
+        .calculator-base {
+            transform: translateY(10px) rotateX(-60deg) scaleY(0.5);
+            z-index: 1;
+            opacity: 0.8;
+            border-radius: 20px;
+        }
+        
+        .btn {
+            transition: all 0.1s ease;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 0px rgba(0, 0, 0, 0.3);
+            position: relative;
+            border-width: 1px;
+            border-style: solid;
+            border-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(0);
+        }
+        
+        .btn:active {
+            transform: translateY(4px);
+            box-shadow: none;
+            filter: brightness(0.9);
+            transition: all 0.05s ease;
+        }
+        
+        .btn:hover {
+            filter: brightness(1.2);
+            transform: translateY(-2px) translateZ(5px);
+            box-shadow: 0 6px 0px rgba(0, 0, 0, 0.3),
+                        0 0 10px rgba(255, 255, 255, 0.3);
+            transition: all 0.2s ease;
+        }
+        
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            border-radius: inherit;
+        }
+        
+        .btn:active::after {
+            opacity: 1;
+        }
+        
+        .btn-operator, .btn-equals, .btn-clear {
+            background: linear-gradient(135deg, #b91c1c, #7f1d1d);
+            border: 1px solid rgba(220, 38, 38, 0.6);
+            box-shadow: 0 4px 0px rgba(139, 0, 0, 0.6);
+        }
+        
+        .btn-operator:hover, .btn-equals:hover, .btn-clear:hover {
+            box-shadow: 0 6px 0px rgba(139, 0, 0, 0.6), 0 0 15px rgba(220, 38, 38, 0.7);
+        }
+        
+        .btn-operator:active, .btn-equals:active, .btn-clear:active {
+            box-shadow: none;
+            background: linear-gradient(135deg, #991c1c, #5f1d1d);
+        }
+        
+        .display {
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+            box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.3),
+                        inset 0 0 20px rgba(255, 0, 0, 0.2);
+            transform-style: preserve-3d;
+            transform: translateZ(20px);
+            transition: all 0.3s ease;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse {
+            animation: pulse 0.3s ease;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-black to-gray-900 flex items-center justify-center p-4 overflow-hidden">
+    <div class="calculator relative w-full max-w-xs">
+        <!-- 3D base shadow -->
+        <div class="calculator-base absolute inset-0 bg-gradient-to-br from-red-900 to-black"></div>
+        
+        <!-- Main calculator body -->
+        <div class="calculator-body bg-gradient-to-br from-black to-gray-900 p-6 relative overflow-hidden border border-red-600">
+            <!-- Screen glow effect -->
+            <div class="absolute top-0 left-0 right-0 h-3 bg-white opacity-10 blur-md"></div>
+            
+            <!-- Display -->
+            <div class="display mb-4 p-4 rounded-xl bg-gradient-to-b from-gray-900 to-black text-right relative overflow-hidden border border-red-600">
+                <!-- Scanner effect -->
+                <div class="absolute top-0 left-0 right-0 h-1 bg-red-500 animate-pulse" style="box-shadow: 0 0 10px 2px rgba(255, 0, 0, 0.7);"></div>
+                <!-- Previous calculation -->
+                <div id="prev-calculation" class="text-gray-400 text-sm h-5 overflow-hidden"></div>
+                
+                <!-- Current display -->
+                <div id="display" class="text-white text-3xl font-semibold tracking-wider transition-all duration-100">0</div>
+                
+                <!-- LCD grid effect -->
+                <div class="absolute inset-0 opacity-10" style="
+                    background-size: 5px 5px;
+                    background-image: linear-gradient(to right, gray 1px, transparent 1px), 
+                                      linear-gradient(to bottom, gray 1px, transparent 1px);
+                "></div>
+            </div>
+            
+            <!-- Keypad -->
+            <div class="grid grid-cols-4 gap-3">
+                <!-- Row 1 -->
+                <button class="btn btn-clear col-span-2 py-4 px-2 rounded-xl text-white font-bold bg-red-500" onclick="clearAll()">AC</button>
+                <button class="btn btn-operator py-4 px-2 rounded-xl text-white font-bold" onclick="appendOperation('⌫')"><i class="fas fa-backspace"></i></button>
+                <button class="btn btn-operator py-4 px-2 rounded-xl text-white font-bold" onclick="appendOperation('/')">/</button>
+                
+                <!-- Row 2 -->
+                <button class="btn py-4 px-2 rounded-xl bg-black text-white font-bold hover:bg-gray-900 border border-red-900 hover:border-red-700 hover:shadow-lg" onclick="appendNumber('7')">7</button>
+                <button class="btn py-4 px-2 rounded-xl bg-gray-800 text-white font-bold hover:bg-gray-700 border border-gray-700 hover:border-gray-600" onclick="appendNumber('8')">8</button>
+                <button class="btn py-4 px-2 rounded-xl bg-gray-800 text-white font-bold hover:bg-gray-700 border border-gray-700 hover:border-gray-600" onclick="appendNumber('9')">9</button>
+                <button class="btn btn-operator py-4 px-2 rounded-xl text-white font-bold" onclick="appendOperation('*')">×</button>
+                
+                <!-- Row 3 -->
+                <button class="btn py-4 px-2 rounded-xl bg-gray-800 text-white font-bold hover:bg-gray-700 border border-gray-700 hover:border-gray-600" onclick="appendNumber('4')">4</button>
+                <button class="btn py-4 px-2 rounded-xl bg-gray-800 text-white font-bold hover:bg-gray-700 border border-gray-700 hover:border-gray-600" onclick="appendNumber('5')">5</button>
+                <button class="btn py-4 px-2 rounded-xl bg-gray-800 text-white font-bold hover:bg-gray-700 border border-gray-700 hover:border-gray-600" onclick="appendNumber('6')">6</button>
+                <button class="btn btn-operator py-4 px-2 rounded-xl text-white font-bold" onclick="appendOperation('-')">-</button>
+                
+                <!-- Row 4 -->
+                <button class="btn py-4 px-2 rounded-xl bg-gray-800 text-white font-bold hover:bg-gray-700 border border-gray-700 hover:border-gray-600" onclick="appendNumber('1')">1</button>
+                <button class="btn py-4 px-2 rounded-xl bg-gray-800 text-white font-bold hover:bg-gray-700 border border-gray-700 hover:border-gray-600" onclick="appendNumber('2')">2</button>
+                <button class="btn py-4 px-2 rounded-xl bg-gray-800 text-white font-bold hover:bg-gray-700 border border-gray-700 hover:border-gray-600" onclick="appendNumber('3')">3</button>
+                <button class="btn btn-operator py-4 px-2 rounded-xl text-white font-bold" onclick="appendOperation('+')">+</button>
+                
+                <!-- Row 5 -->
+                <button class="btn py-4 px-2 rounded-xl bg-gray-800 text-white font-bold hover:bg-gray-700 border border-gray-700 hover:border-gray-600" onclick="appendNumber('0')">0</button>
+                <button class="btn py-4 px-2 rounded-xl bg-gray-800 text-white font-bold hover:bg-gray-700 border border-gray-700 hover:border-gray-600" onclick="appendNumber('.')">.</button>
+                <button class="btn btn-equals col-span-2 py-4 px-2 rounded-xl text-white font-bold" onclick="calculate()">=</button>
+            </div>
+            
+            <!-- Branding -->
+            <div class="mt-4 text-center text-gray-400 text-xs">
+                <div class="flex items-center justify-center">
+                    <span class="mr-2">3D CALCULATOR</span>
+                    <i class="fas fa-calculator"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentInput = '0';
+        let previousInput = '';
+        let operation = null;
+        let resetScreen = false;
+        
+        const display = document.getElementById('display');
+        const prevCalculation = document.getElementById('prev-calculation');
+        
+        function appendNumber(number) {
+            if (currentInput === '0' || resetScreen) {
+                currentInput = number;
+                resetScreen = false;
+            } else {
+                currentInput += number;
+            }
+            updateDisplay();
+            
+            // Add pulse animation
+            display.classList.add('pulse');
+            setTimeout(() => {
+                display.classList.remove('pulse');
+            }, 300);
+        }
+        
+        function appendOperation(op) {
+            if (op === '⌫') {
+                if (currentInput.length === 1) {
+                    currentInput = '0';
+                } else {
+                    currentInput = currentInput.slice(0, -1);
+                }
+                updateDisplay();
+                return;
+            }
+            
+            if (operation !== null) calculate();
+            previousInput = currentInput;
+            operation = op;
+            resetScreen = true;
+            updateCalculationDisplay();
+        }
+        
+        function clearAll() {
+            currentInput = '0';
+            previousInput = '';
+            operation = null;
+            updateDisplay();
+            prevCalculation.textContent = '';
+        }
+        
+        function calculate() {
+            if (operation === null || resetScreen) return;
+            
+            let result;
+            const prev = parseFloat(previousInput);
+            const current = parseFloat(currentInput);
+            
+            switch (operation) {
+                case '+':
+                    result = prev + current;
+                    break;
+                case '-':
+                    result = prev - current;
+                    break;
+                case '*':
+                    result = prev * current;
+                    break;
+                case '/':
+                    result = prev / current;
+                    break;
+                default:
+                    return;
+            }
+            
+            // Show full calculation
+            prevCalculation.textContent = `${previousInput} ${operation} ${currentInput}`;
+            
+            currentInput = result.toString();
+            operation = null;
+            resetScreen = true;
+            updateDisplay();
+        }
+        
+        function updateDisplay() {
+            display.textContent = currentInput;
+        }
+        
+        function updateCalculationDisplay() {
+            if (operation) {
+                prevCalculation.textContent = `${previousInput} ${operation}`;
+            }
+        }
+        
+        // Add keyboard support
+        document.addEventListener('keydown', (e) => {
+            if (e.key >= '0' && e.key <= '9') appendNumber(e.key);
+            else if (e.key === '.') appendNumber('.');
+            else if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/') appendOperation(e.key);
+            else if (e.key === 'Enter' || e.key === '=') calculate();
+            else if (e.key === 'Escape') clearAll();
+            else if (e.key === 'Backspace') appendOperation('⌫');
+        });
+        
+        // Add button press effect on keyboard press
+        document.addEventListener('keydown', (e) => {
+            if (['0','1','2','3','4','5','6','7','8','9','.','+','-','*','/','Enter','=','Escape','Backspace'].includes(e.key)) {
+                e.preventDefault();
+                const button = Array.from(document.querySelectorAll('button')).find(btn => {
+                    if (e.key === 'Enter' || e.key === '=') return btn.textContent === '=';
+                    if (e.key === 'Escape') return btn.textContent === 'AC';
+                    if (e.key === 'Backspace') return btn.innerHTML.includes('fa-backspace');
+                    if (e.key === '*') return btn.textContent === '×';
+                    return btn.textContent === e.key;
+                });
+                
+                if (button) {
+                    button.classList.add('transform', 'translate-y-1', 'shadow-none');
+                    setTimeout(() => {
+                        button.classList.remove('transform', 'translate-y-1', 'shadow-none');
+                    }, 100);
+                }
+            }
+        });
+    </script>
+    <!-- Advanced Particle Background -->
+    <div id="particle-container" class="fixed inset-0 overflow-hidden z-0">
+        <canvas id="particle-canvas"></canvas>
+        <div class="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black opacity-90"></div>
+    </div>
+</body>
+</html>
