@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+tn<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +6,7 @@
     <title>Expertise - Zefanya Williams</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/bento-grid.css">
     <script>
         tailwind.config = {
             theme: {
@@ -60,11 +61,13 @@
             overflow: hidden;
             transition: all 0.3s ease;
             box-shadow: 0 0 15px rgba(229, 0, 0, 0.3);
+            background: linear-gradient(45deg, #e50000, #ff3333);
         }
 
         .glowing-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 20px rgba(229, 0, 0, 0.5);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(229, 0, 0, 0.6);
+            background: linear-gradient(45deg, #ff3333, #e50000);
         }
 
         .glowing-button::after {
@@ -74,13 +77,17 @@
             left: -100%;
             width: 50%;
             height: 120%;
-            background: rgba(255, 255, 255, 0.2);
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.4), transparent);
             transform: rotate(45deg);
-            transition: all 0.5s ease;
+            transition: all 0.6s ease;
         }
 
         .glowing-button:hover::after {
             left: 150%;
+        }
+
+        .glowing-button:active {
+            transform: translateY(-1px) scale(0.98);
         }
 
         .red-glow {
@@ -558,6 +565,38 @@
             transform: perspective(1000px) rotateX(5deg) rotateY(-5deg) translateZ(10px);
         }
 
+        /* Enhanced Button Effects */
+        .btn-pulse {
+            animation: pulse-glow 2s infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 15px rgba(229, 0, 0, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(229, 0, 0, 0.6);
+            }
+        }
+
+        /* Card Hover Enhancement */
+        .card-glass:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Focus Styles */
+        a:focus, button:focus {
+            outline: 2px solid #e50000;
+            outline-offset: 2px;
+        }
+
+        /* Text Selection */
+        ::selection {
+            background: rgba(229, 0, 0, 0.3);
+            color: #000;
+        }
+
         /* Section Divider */
         .section-divider {
             width: 60px;
@@ -624,6 +663,548 @@
             color: #000000;
             margin-bottom: 10px;
         }
+
+
+        /* Radial Orbital Timeline Styles */
+        .orbital-container {
+            position: relative;
+            width: 100%;
+            height: 800px;
+            margin: 0 auto;
+        }
+
+        .orbital-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 2px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .ring-1 {
+            width: 400px;
+            height: 400px;
+            border-color: rgba(239, 68, 68, 0.2);
+            animation: rotate-slow 60s linear infinite;
+        }
+
+        .ring-2 {
+            width: 600px;
+            height: 600px;
+            border-color: rgba(239, 68, 68, 0.15);
+            animation: rotate-slow 80s linear infinite reverse;
+        }
+
+        .ring-3 {
+            width: 800px;
+            height: 800px;
+            border-color: rgba(239, 68, 68, 0.1);
+            animation: rotate-slow 100s linear infinite;
+        }
+
+        @keyframes rotate-slow {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .orbit-item {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 60px;
+            height: 60px;
+            margin: -30px 0 0 -30px;
+            transform-origin: 50% 50%;
+            animation: orbit-float 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes orbit-float {
+            0% { transform: translate(0, 0) rotate(var(--angle)) translateX(0) rotate(0deg); }
+            100% { transform: translate(0, -10px) rotate(var(--angle)) translateX(0) rotate(0deg); }
+        }
+
+        .skill-node {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(55, 65, 81, 0.9), rgba(75, 85, 99, 0.9));
+            border: 2px solid rgba(239, 68, 68, 0.3);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow:
+                0 4px 15px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .skill-node::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 50%;
+        }
+
+        .skill-node:hover {
+            transform: scale(1.2);
+            border-color: #ef4444;
+            box-shadow:
+                0 8px 25px rgba(239, 68, 68, 0.3),
+                0 0 0 1px rgba(239, 68, 68, 0.4),
+                0 0 20px rgba(239, 68, 68, 0.2);
+        }
+
+        .skill-node:hover::before {
+            opacity: 1;
+        }
+
+        .skill-node i {
+            font-size: 1.5rem;
+            color: #ef4444;
+            margin-bottom: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-node span {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #f3f4f6;
+            text-align: center;
+            line-height: 1;
+        }
+
+        .skill-node:hover i {
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        .skill-node:hover span {
+            color: #fff;
+        }
+
+        /* Skill Modal Styles */
+        .skill-modal {
+            backdrop-filter: blur(20px);
+        }
+
+        .skill-modal-content {
+            position: relative;
+            animation: modal-appear 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes modal-appear {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .skill-modal-body {
+            animation: fade-in-up 0.6s ease-out 0.2s both;
+        }
+
+        @keyframes fade-in-up {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Connection Lines */
+        .connection-lines line {
+            stroke: url(#connectionGradient);
+            stroke-width: 2;
+            opacity: 0.4;
+            animation: pulse-line 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse-line {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .orbital-container {
+                height: 600px;
+            }
+
+            .ring-1 {
+                width: 300px;
+                height: 300px;
+            }
+
+            .ring-2 {
+                width: 450px;
+                height: 450px;
+            }
+
+            .ring-3 {
+                width: 600px;
+                height: 600px;
+            }
+
+            .orbit-item {
+                width: 50px;
+                height: 50px;
+                margin: -25px 0 0 -25px;
+            }
+
+            .skill-node i {
+                font-size: 1.2rem;
+            }
+
+            .skill-node span {
+                font-size: 0.6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .orbital-container {
+                height: 500px;
+            }
+
+            .ring-1 {
+                width: 250px;
+                height: 250px;
+            }
+
+            .ring-2 {
+                width: 350px;
+                height: 350px;
+            }
+
+            .ring-3 {
+                width: 450px;
+                height: 450px;
+            }
+
+            .orbit-item {
+                width: 40px;
+                height: 40px;
+                margin: -20px 0 0 -20px;
+            }
+
+            .skill-node i {
+                font-size: 1rem;
+            }
+
+            .skill-node span {
+                font-size: 0.5rem;
+            }
+        }
+
+        /* Enhanced Animations */
+        .skill-node {
+            animation: skill-appear 0.8s cubic-bezier(0.4, 0, 0.2, 1) both;
+        }
+
+        .orbit-item:nth-child(1) .skill-node { animation-delay: 0.1s; }
+        .orbit-item:nth-child(2) .skill-node { animation-delay: 0.2s; }
+        .orbit-item:nth-child(3) .skill-node { animation-delay: 0.3s; }
+        .orbit-item:nth-child(4) .skill-node { animation-delay: 0.4s; }
+        .orbit-item:nth-child(5) .skill-node { animation-delay: 0.5s; }
+
+        @keyframes skill-appear {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Hover Effects for Orbital Items */
+        .orbit-item:hover .skill-node {
+            animation-play-state: paused;
+        }
+
+        .orbit-item:hover {
+            z-index: 10;
+        }
+
+        /* Pulse Animation for Active Skills */
+        .skill-node.active {
+            animation: skill-pulse 2s ease-in-out infinite;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            border-color: #fff;
+        }
+
+        .skill-node.active i,
+        .skill-node.active span {
+            color: #fff;
+        }
+
+        @keyframes skill-pulse {
+            0%, 100% {
+                box-shadow:
+                    0 4px 15px rgba(239, 68, 68, 0.4),
+                    0 0 0 1px rgba(255, 255, 255, 0.2);
+            }
+            50% {
+                box-shadow:
+                    0 8px 25px rgba(239, 68, 68, 0.6),
+                    0 0 0 1px rgba(255, 255, 255, 0.4);
+            }
+        }
+
+        /* Background Effects */
+        #expertise {
+            background-image:
+                radial-gradient(circle at 20% 50%, rgba(239, 68, 68, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(239, 68, 68, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(239, 68, 68, 0.1) 0%, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        /* Glowing Red Title Effect */
+        .glowing-red-title {
+            color: #ffffff;
+            text-shadow:
+                0 0 5px rgba(239, 68, 68, 0.5),
+                0 0 10px rgba(239, 68, 68, 0.5),
+                0 0 15px rgba(239, 68, 68, 0.5),
+                0 0 20px rgba(239, 68, 68, 0.5),
+                0 0 35px rgba(239, 68, 68, 0.8),
+                0 0 40px rgba(239, 68, 68, 0.8);
+            animation: red-glow-pulse 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes red-glow-pulse {
+            0% {
+                text-shadow:
+                    0 0 5px rgba(239, 68, 68, 0.5),
+                    0 0 10px rgba(239, 68, 68, 0.5),
+                    0 0 15px rgba(239, 68, 68, 0.5),
+                    0 0 20px rgba(239, 68, 68, 0.5),
+                    0 0 35px rgba(239, 68, 68, 0.8),
+                    0 0 40px rgba(239, 68, 68, 0.8);
+            }
+            100% {
+                text-shadow:
+                    0 0 2px rgba(239, 68, 68, 0.3),
+                    0 0 5px rgba(239, 68, 68, 0.3),
+                    0 0 10px rgba(239, 68, 68, 0.3),
+                    0 0 15px rgba(239, 68, 68, 0.3),
+                    0 0 25px rgba(239, 68, 68, 0.6),
+                    0 0 30px rgba(239, 68, 68, 0.6);
+            }
+        }
+
+        /* Enhanced Bento Grid Animations */
+        .bento-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bento-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+            z-index: 1;
+        }
+
+        .bento-card:hover::before {
+            left: 100%;
+        }
+
+        .bento-card.loading {
+            animation: cardLoad 0.8s ease-out forwards;
+        }
+
+        @keyframes cardLoad {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .bento-card.shimmer {
+            position: relative;
+        }
+
+        .bento-card.shimmer::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            animation: shimmerMove 2s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shimmerMove {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Enhanced Progress Bars */
+        .progress-bar {
+            position: relative;
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-bar div {
+            height: 100%;
+            border-radius: 2px;
+            transition: width 0.5s ease;
+            position: relative;
+        }
+
+        .progress-bar div::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: progressShine 2s infinite;
+        }
+
+        @keyframes progressShine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Enhanced Interactive Elements */
+        .interactive-element {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .interactive-element:hover {
+            transform: translateY(-2px);
+        }
+
+        .interactive-element:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        /* Floating Action Button Enhancement */
+        #expertiseFAB {
+            animation: fabPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes fabPulse {
+            0%, 100% {
+                box-shadow: 0 4px 20px rgba(229, 0, 0, 0.3);
+            }
+            50% {
+                box-shadow: 0 8px 30px rgba(229, 0, 0, 0.5);
+            }
+        }
+
+        /* Enhanced Group Hover Effects */
+        .group\/skill:hover {
+            background: rgba(229, 0, 0, 0.1) !important;
+            border-color: rgba(229, 0, 0, 0.3) !important;
+        }
+
+        .group\/tech:hover {
+            background: rgba(6, 182, 212, 0.1) !important;
+            border-color: rgba(6, 182, 212, 0.3) !important;
+        }
+
+        .group\/innovation:hover {
+            background: rgba(16, 185, 129, 0.1) !important;
+            border-color: rgba(16, 185, 129, 0.3) !important;
+        }
+
+        /* Professional Glow Effect */
+        .professional-glow {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(229, 0, 0, 0.1) 0%, transparent 70%);
+            animation: rotateGlow 10s linear infinite;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .bento-card:hover .professional-glow {
+            opacity: 1;
+        }
+
+        @keyframes rotateGlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Floating Labels Enhancement */
+        .floating-label {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 5;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .bento-card:hover .floating-label {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Enhanced Card States */
+        .bento-card.featured .floating-label {
+            background: linear-gradient(45deg, #e50000, #ff3333);
+            color: white;
+        }
+
+        .bento-card.featured:hover .floating-label {
+            background: linear-gradient(45deg, #ff3333, #e50000);
+        }
     </style>
 </head>
 <body>
@@ -642,8 +1223,6 @@
     <!-- Digital Clock -->
     <div class="digital-clock" id="digitalClock"></div>
 
-    <!-- Overlay -->
-    <div class="overlay" id="overlay"></div>
 
     <!-- Sidebar Menu -->
     <aside class="sidebar" id="sidebar">
@@ -669,216 +1248,361 @@
 
     <!-- Overlay -->
     <div class="overlay" id="overlay"></div>
+<!-- Expertise Section - Bento Grid Layout -->
+<section id="expertise" class="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-black relative overflow-hidden pt-32">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white glowing-red-title">My Expertise</h2>
+            <div class="section-divider bg-gradient-to-r from-red-500 to-red-600 w-20 h-1 mx-auto"></div>
+            <p class="text-gray-300 max-w-3xl mx-auto mt-4">
+                Discover my comprehensive skill set through this interactive bento grid layout showcasing technical expertise, creative abilities, and professional competencies.
+            </p>
+        </div>
 
-    <!-- Expertise Section -->
-    <section id="expertise" class="py-20 bg-white relative overflow-hidden pt-32">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 animated-gradient">My Expertise</h2>
-                <div class="section-divider"></div>
-                <p class="text-black max-w-3xl mx-auto">
-                    I specialize in various areas of digital business and content creation, bringing a unique blend of technical skills and creative vision to every project.
-                </p>
-            </div>
-            
-            <div class="skill-bar">
-                <div class="skill-progress" style="width: 90%"></div>
-            </div>
+        <!-- Bento Grid Layout -->
+        <div class="bento-container max-w-7xl mx-auto">
+            <!-- Core Skills - Large Card -->
+            <div class="bento-large bento-card bento-card-primary featured">
+                <div class="card-glass rounded-3xl p-8 h-full group relative overflow-hidden">
+                    <div class="floating-label">Featured</div>
+                    <div class="professional-glow"></div>
+                    <div class="absolute inset-0 bg-gradient-to-br from-red-500/10 to-transparent"></div>
+                    <div class="relative z-10 h-full flex flex-col">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center mr-4 shadow-xl group-hover:shadow-red-400/50 transition-all duration-500">
+                                <i class="fas fa-code text-white text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-white mb-2">Core Technical Skills</h3>
+                                <p class="text-gray-300 text-sm">Foundation of my expertise</p>
+                            </div>
+                        </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Video Editing -->
-                <div class="card-glass p-8 rounded-2xl hover-3d">
-                    <div class="w-16 h-16 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mb-6 red-glow">
-                        <i class="fas fa-video text-2xl text-primary"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-black">Video Editing</h3>
-                    <p class="text-gray-600 mb-4">
-                        Professional video editing with attention to detail and storytelling. Proficient in creating engaging content for various platforms.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Adobe Premiere Pro</span>
-                        <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">After Effects</span>
-                        <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">DaVinci Resolve</span>
-                    </div>
-                </div>
-                
-                <!-- Digital Marketing -->
-                <div class="card-glass p-8 rounded-2xl hover-3d">
-                    <div class="w-16 h-16 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mb-6 red-glow">
-                        <i class="fas fa-bullhorn text-2xl text-primary"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-black">Digital Marketing</h3>
-                    <p class="text-gray-600 mb-4">
-                        Strategic digital marketing with focus on ROI and brand growth. Experience in social media management and campaign planning.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Social Media</span>
-                        <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">SEO</span>
-                        <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Content Strategy</span>
-                    </div>
-                </div>
-                
-                <!-- Data Analysis -->
-                <div class="card-glass p-8 rounded-2xl hover-3d">
-                    <div class="w-16 h-16 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mb-6 red-glow">
-                        <i class="fas fa-chart-line text-2xl text-primary"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-black">Data Analysis</h3>
-                    <p class="text-gray-600 mb-4">
-                        Data-driven decision making using modern analytics tools. Skilled in extracting insights and creating actionable recommendations.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Python</span>
-                        <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">SQL</span>
-                        <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Tableau</span>
-                    </div>
-                </div>
-                
-                <!-- Web Development -->
-                <div class="card-glass p-8 rounded-2xl hover-3d">
-                    <div class="w-16 h-16 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mb-6 red-glow">
-                        <i class="fas fa-code text-2xl text-primary"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-black">Web Development</h3>
-                    <p class="text-gray-600 mb-4">
-                        Creating responsive and user-friendly websites with modern technologies. Focus on performance and accessibility.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">HTML/CSS</span>
-                        <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">JavaScript</span>
-                        <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">React</span>
-                    </div>
-                </div>
-                
-                <!-- Content Creation -->
-                <div class="card-glass p-8 rounded-2xl hover-3d">
-                    <div class="w-16 h-16 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mb-6 red-glow">
-                        <i class="fas fa-pen-fancy text-2xl text-primary"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-black">Content Creation</h3>
-                    <p class="text-gray-600 mb-4">
-                        Crafting engaging and valuable content across various formats. Skilled in storytelling and audience engagement.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Copywriting</span>
-                        <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Blog Writing</span>
-                        <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Scriptwriting</span>
-                    </div>
-                </div>
-                
-                <!-- Photography -->
-                <div class="card-glass p-8 rounded-2xl hover-3d">
-                    <div class="w-16 h-16 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mb-6 red-glow">
-                        <i class="fas fa-camera text-2xl text-primary"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-black">Photography</h3>
-                    <p class="text-gray-600 mb-4">
-                        Capturing moments with creativity and technical precision. Experience in portrait, event, and product photography.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Lightroom</span>
-                        <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Photoshop</span>
-                        <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Composition</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Skills Overview -->
-            <div class="mt-20">
-                <div class="card-glass p-8 rounded-2xl">
-                    <h3 class="text-2xl font-bold mb-8 text-primary text-center">Skills Overview</h3>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <!-- Technical Skills -->
-                        <div>
-                            <h4 class="text-xl font-semibold mb-4 text-black">Technical Skills</h4>
-                            
-                            <div class="space-y-4">
-                                <div>
-                                    <div class="flex justify-between mb-1">
-                                        <span class="text-sm text-accent">Capcut</span>
-                                        <span class="text-sm text-primary">90%</span>
-                                    </div>
-                                    <div class="w-full bg-gray-800 rounded-full h-2">
-                                        <div class="bg-primary h-2 rounded-full" style="width: 90%"></div>
-                                    </div>
+                        <div class="grid grid-cols-2 gap-4 flex-1">
+                            <div class="text-center p-4 bg-gray-800/50 rounded-xl border border-gray-700 hover:border-red-500/50 transition-colors duration-300 interactive-element cursor-pointer group/skill" data-skill="video-editing">
+                                <i class="fas fa-video text-red-400 text-2xl mb-2 group-hover/skill:text-white transition-colors duration-300"></i>
+                                <h4 class="text-white font-semibold text-sm">Video Editing</h4>
+                                <p class="text-gray-400 text-xs mt-1">Professional</p>
+                                <div class="mt-2 w-full bg-gray-700 rounded-full h-1">
+                                    <div class="bg-gradient-to-r from-red-500 to-red-600 h-1 rounded-full w-4/5 transition-all duration-500 group-hover/skill:w-full"></div>
                                 </div>
-                                
-                                <div>
-                                    <div class="flex justify-between mb-1">
-                                        <span class="text-sm text-accent">Photography</span>
-                                        <span class="text-sm text-primary">75%</span>
-                                    </div>
-                                    <div class="w-full bg-gray-800 rounded-full h-2">
-                                        <div class="bg-primary h-2 rounded-full" style="width: 75%"></div>
-                                    </div>
+                            </div>
+                            <div class="text-center p-4 bg-gray-800/50 rounded-xl border border-gray-700 hover:border-red-500/50 transition-colors duration-300 interactive-element cursor-pointer group/skill" data-skill="photography">
+                                <i class="fas fa-camera text-red-400 text-2xl mb-2 group-hover/skill:text-white transition-colors duration-300"></i>
+                                <h4 class="text-white font-semibold text-sm">Photography</h4>
+                                <p class="text-gray-400 text-xs mt-1">Creative</p>
+                                <div class="mt-2 w-full bg-gray-700 rounded-full h-1">
+                                    <div class="bg-gradient-to-r from-red-500 to-red-600 h-1 rounded-full w-5/6 transition-all duration-500 group-hover/skill:w-full"></div>
                                 </div>
-                                
-                                <div>
-                                    <div class="flex justify-between mb-1">
-                                        <span class="text-sm text-accent">Data Analysis</span>
-                                        <span class="text-sm text-primary">80%</span>
-                                    </div>
-                                    <div class="w-full bg-gray-800 rounded-full h-2">
-                                        <div class="bg-primary h-2 rounded-full" style="width: 80%"></div>
-                                    </div>
+                            </div>
+                            <div class="text-center p-4 bg-gray-800/50 rounded-xl border border-gray-700 hover:border-red-500/50 transition-colors duration-300 interactive-element cursor-pointer group/skill" data-skill="web-dev">
+                                <i class="fas fa-code text-red-400 text-2xl mb-2 group-hover/skill:text-white transition-colors duration-300"></i>
+                                <h4 class="text-white font-semibold text-sm">Web Dev</h4>
+                                <p class="text-gray-400 text-xs mt-1">Full Stack</p>
+                                <div class="mt-2 w-full bg-gray-700 rounded-full h-1">
+                                    <div class="bg-gradient-to-r from-red-500 to-red-600 h-1 rounded-full w-4/5 transition-all duration-500 group-hover/skill:w-full"></div>
                                 </div>
-                                
-                                <div>
-                                    <div class="flex justify-between mb-1">
-                                        <span class="text-sm text-accent">AI Tools</span>
-                                        <span class="text-sm text-primary">85%</span>
-                                    </div>
-                                    <div class="w-full bg-gray-800 rounded-full h-2">
-                                        <div class="bg-primary h-2 rounded-full" style="width: 85%"></div>
-                                    </div>
+                            </div>
+                            <div class="text-center p-4 bg-gray-800/50 rounded-xl border border-gray-700 hover:border-red-500/50 transition-colors duration-300 interactive-element cursor-pointer group/skill" data-skill="data-analysis">
+                                <i class="fas fa-chart-line text-red-400 text-2xl mb-2 group-hover/skill:text-white transition-colors duration-300"></i>
+                                <h4 class="text-white font-semibold text-sm">Data Analysis</h4>
+                                <p class="text-gray-400 text-xs mt-1">Insights</p>
+                                <div class="mt-2 w-full bg-gray-700 rounded-full h-1">
+                                    <div class="bg-gradient-to-r from-red-500 to-red-600 h-1 rounded-full w-4/5 transition-all duration-500 group-hover/skill:w-full"></div>
                                 </div>
                             </div>
                         </div>
-                        
-                        <!-- Soft Skills -->
-                        <div>
-                            <h4 class="text-xl font-semibold mb-4 text-black">Soft Skills</h4>
-                            
-                            <div class="space-y-4">
-                                <div>
-                                    <div class="flex justify-between mb-1">
-                                        <span class="text-sm text-accent">Communication</span>
-                                        <span class="text-sm text-primary">95%</span>
-                                    </div>
-                                    <div class="w-full bg-gray-800 rounded-full h-2">
-                                        <div class="bg-primary h-2 rounded-full" style="width: 95%"></div>
-                                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Advanced Skills - Medium Card -->
+            <div class="bento-medium bento-card bento-card-secondary">
+                <div class="card-glass rounded-3xl p-6 h-full group relative overflow-hidden">
+                    <div class="floating-label">AI Focus</div>
+                    <div class="professional-glow"></div>
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent"></div>
+                    <div class="relative z-10 h-full flex flex-col">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mr-3 shadow-lg group-hover:shadow-blue-400/50 transition-all duration-500">
+                                <i class="fas fa-robot text-white text-lg"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white">Advanced Tech</h3>
+                                <p class="text-gray-400 text-xs">AI & Innovation</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3 flex-1">
+                            <div class="flex items-center justify-between p-3 bg-gray-800/30 rounded-lg border border-gray-700/50 hover:border-blue-500/50 transition-colors duration-300 interactive-element cursor-pointer group/skill" data-skill="machine-learning">
+                                <div class="flex items-center">
+                                    <i class="fas fa-brain text-blue-400 mr-3 group-hover/skill:text-white transition-colors duration-300"></i>
+                                    <span class="text-white text-sm">Machine Learning</span>
                                 </div>
-                                
-                                <div>
-                                    <div class="flex justify-between mb-1">
-                                        <span class="text-sm text-accent">Leadership</span>
-                                        <span class="text-sm text-primary">85%</span>
-                                    </div>
-                                    <div class="w-full bg-gray-800 rounded-full h-2">
-                                        <div class="bg-primary h-2 rounded-full" style="width: 85%"></div>
-                                    </div>
+                                <div class="w-16 h-1 bg-gray-600 rounded-full">
+                                    <div class="w-4/5 h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full transition-all duration-500 group-hover/skill:w-full"></div>
                                 </div>
-                                
-                                <div>
-                                    <div class="flex justify-between mb-1">
-                                        <span class="text-sm text-accent">Problem Solving</span>
-                                        <span class="text-sm text-primary">90%</span>
-                                    </div>
-                                    <div class="w-full bg-gray-800 rounded-full h-2">
-                                        <div class="bg-primary h-2 rounded-full" style="width: 90%"></div>
-                                    </div>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-gray-800/30 rounded-lg border border-gray-700/50 hover:border-blue-500/50 transition-colors duration-300 interactive-element cursor-pointer group/skill" data-skill="automation">
+                                <div class="flex items-center">
+                                    <i class="fas fa-cog text-blue-400 mr-3 group-hover/skill:text-white transition-colors duration-300"></i>
+                                    <span class="text-white text-sm">Automation</span>
                                 </div>
-                                
-                                <div>
-                                    <div class="flex justify-between mb-1">
-                                        <span class="text-sm text-accent">Teamwork</span>
-                                        <span class="text-sm text-primary">90%</span>
-                                    </div>
-                                    <div class="w-full bg-gray-800 rounded-full h-2">
-                                        <div class="bg-primary h-2 rounded-full" style="width: 90%"></div>
-                                    </div>
+                                <div class="w-16 h-1 bg-gray-600 rounded-full">
+                                    <div class="w-5/6 h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full transition-all duration-500 group-hover/skill:w-full"></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-gray-800/30 rounded-lg border border-gray-700/50 hover:border-blue-500/50 transition-colors duration-300 interactive-element cursor-pointer group/skill" data-skill="analytics">
+                                <div class="flex items-center">
+                                    <i class="fas fa-chart-pie text-blue-400 mr-3 group-hover/skill:text-white transition-colors duration-300"></i>
+                                    <span class="text-white text-sm">Analytics</span>
+                                </div>
+                                <div class="w-16 h-1 bg-gray-600 rounded-full">
+                                    <div class="w-4/5 h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full transition-all duration-500 group-hover/skill:w-full"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Creative Skills - Medium Card -->
+            <div class="bento-medium bento-card bento-card-warning">
+                <div class="card-glass rounded-3xl p-6 h-full group relative overflow-hidden">
+                    <div class="floating-label">Creative</div>
+                    <div class="professional-glow"></div>
+                    <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent"></div>
+                    <div class="relative z-10 h-full flex flex-col">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mr-3 shadow-lg group-hover:shadow-purple-400/50 transition-all duration-500">
+                                <i class="fas fa-palette text-white text-lg"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white">Creative Design</h3>
+                                <p class="text-gray-400 text-xs">Visual & Content</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3 flex-1">
+                            <div class="flex items-center justify-between p-3 bg-gray-800/30 rounded-lg border border-gray-700/50 hover:border-purple-500/50 transition-colors duration-300 interactive-element cursor-pointer group/skill" data-skill="content-creation">
+                                <div class="flex items-center">
+                                    <i class="fas fa-pen-fancy text-purple-400 mr-3 group-hover/skill:text-white transition-colors duration-300"></i>
+                                    <span class="text-white text-sm">Content Creation</span>
+                                </div>
+                                <div class="w-16 h-1 bg-gray-600 rounded-full">
+                                    <div class="w-5/6 h-full bg-gradient-to-r from-purple-500 to-purple-600 rounded-full transition-all duration-500 group-hover/skill:w-full"></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-gray-800/30 rounded-lg border border-gray-700/50 hover:border-purple-500/50 transition-colors duration-300 interactive-element cursor-pointer group/skill" data-skill="ui-ux">
+                                <div class="flex items-center">
+                                    <i class="fas fa-palette text-purple-400 mr-3 group-hover/skill:text-white transition-colors duration-300"></i>
+                                    <span class="text-white text-sm">UI/UX Design</span>
+                                </div>
+                                <div class="w-16 h-1 bg-gray-600 rounded-full">
+                                    <div class="w-4/5 h-full bg-gradient-to-r from-purple-500 to-purple-600 rounded-full transition-all duration-500 group-hover/skill:w-full"></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-gray-800/30 rounded-lg border border-gray-700/50 hover:border-purple-500/50 transition-colors duration-300 interactive-element cursor-pointer group/skill" data-skill="digital-marketing">
+                                <div class="flex items-center">
+                                    <i class="fas fa-bullhorn text-purple-400 mr-3 group-hover/skill:text-white transition-colors duration-300"></i>
+                                    <span class="text-white text-sm">Digital Marketing</span>
+                                </div>
+                                <div class="w-16 h-1 bg-gray-600 rounded-full">
+                                    <div class="w-5/6 h-full bg-gradient-to-r from-purple-500 to-purple-600 rounded-full transition-all duration-500 group-hover/skill:w-full"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Leadership - Small Card -->
+            <div class="bento-small bento-card bento-card-success">
+                <div class="card-glass rounded-3xl p-6 h-full group relative overflow-hidden">
+                    <div class="floating-label">Lead</div>
+                    <div class="professional-glow"></div>
+                    <div class="absolute inset-0 bg-gradient-to-br from-green-500/10 to-transparent"></div>
+                    <div class="relative z-10 h-full flex flex-col items-center text-center">
+                        <div class="w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mb-4 shadow-lg group-hover:shadow-green-400/50 transition-all duration-500">
+                            <i class="fas fa-users text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Leadership</h3>
+                        <p class="text-gray-400 text-xs mb-4">Team Management</p>
+                        <div class="progress-bar w-full" style="--progress: 95%;">
+                            <div class="w-5/6 h-full bg-gradient-to-r from-green-500 to-green-600 rounded-full"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Management - Small Card -->
+            <div class="bento-small bento-card bento-card-warning">
+                <div class="card-glass rounded-3xl p-6 h-full group relative overflow-hidden">
+                    <div class="floating-label">PM</div>
+                    <div class="professional-glow"></div>
+                    <div class="absolute inset-0 bg-gradient-to-br from-yellow-500/10 to-transparent"></div>
+                    <div class="relative z-10 h-full flex flex-col items-center text-center">
+                        <div class="w-14 h-14 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-2xl flex items-center justify-center mb-4 shadow-lg group-hover:shadow-yellow-400/50 transition-all duration-500">
+                            <i class="fas fa-tasks text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Project Mgmt</h3>
+                        <p class="text-gray-400 text-xs mb-4">Organization</p>
+                        <div class="progress-bar w-full" style="--progress: 85%;">
+                            <div class="w-4/5 h-full bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-full"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Strategy - Small Card -->
+            <div class="bento-small bento-card bento-card-secondary">
+                <div class="card-glass rounded-3xl p-6 h-full group relative overflow-hidden">
+                    <div class="floating-label">Strategic</div>
+                    <div class="professional-glow"></div>
+                    <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-transparent"></div>
+                    <div class="relative z-10 h-full flex flex-col items-center text-center">
+                        <div class="w-14 h-14 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-2xl flex items-center justify-center mb-4 shadow-lg group-hover:shadow-indigo-400/50 transition-all duration-500">
+                            <i class="fas fa-lightbulb text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Strategy</h3>
+                        <p class="text-gray-400 text-xs mb-4">Planning</p>
+                        <div class="progress-bar w-full" style="--progress: 90%;">
+                            <div class="w-5/6 h-full bg-gradient-to-r from-indigo-500 to-indigo-600 rounded-full"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Projects - Wide Card -->
+            <div class="bento-wide bento-card bento-card-dark">
+                <div class="card-glass rounded-3xl p-8 h-full group relative overflow-hidden">
+                    <div class="floating-label">Portfolio</div>
+                    <div class="professional-glow"></div>
+                    <div class="absolute inset-0 bg-gradient-to-br from-pink-500/10 to-transparent"></div>
+                    <div class="relative z-10 h-full flex flex-col">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl flex items-center justify-center mr-4 shadow-xl group-hover:shadow-pink-400/50 transition-all duration-500">
+                                <i class="fas fa-project-diagram text-white text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-white mb-2">Featured Projects</h3>
+                                <p class="text-gray-300 text-sm">Real-world applications</p>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 flex-1">
+                            <div class="p-4 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-pink-500/50 transition-colors duration-300 interactive-element cursor-pointer" data-project="ai-healthcare">
+                                <h4 class="text-white font-semibold text-sm mb-2">AI Healthcare Prediction</h4>
+                                <p class="text-gray-400 text-xs mb-3">Machine learning model for disease prediction</p>
+                                <div class="flex flex-wrap gap-1">
+                                    <span class="px-2 py-1 bg-pink-500/20 text-pink-400 rounded text-xs">Python</span>
+                                    <span class="px-2 py-1 bg-pink-500/20 text-pink-400 rounded text-xs">ML</span>
+                                </div>
+                            </div>
+                            <div class="p-4 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-pink-500/50 transition-colors duration-300 interactive-element cursor-pointer" data-project="canvas-app">
+                                <h4 class="text-white font-semibold text-sm mb-2">Interactive Canvas App</h4>
+                                <p class="text-gray-400 text-xs mb-3">Web-based drawing application</p>
+                                <div class="flex flex-wrap gap-1">
+                                    <span class="px-2 py-1 bg-pink-500/20 text-pink-400 rounded text-xs">HTML5</span>
+                                    <span class="px-2 py-1 bg-pink-500/20 text-pink-400 rounded text-xs">Canvas</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tools & Technologies - Large Card -->
+            <div class="bento-large bento-card bento-card-success">
+                <div class="card-glass rounded-3xl p-8 h-full group relative overflow-hidden">
+                    <div class="floating-label">Tech Stack</div>
+                    <div class="professional-glow"></div>
+                    <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-transparent"></div>
+                    <div class="relative z-10 h-full flex flex-col">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-2xl flex items-center justify-center mr-4 shadow-xl group-hover:shadow-cyan-400/50 transition-all duration-500">
+                                <i class="fas fa-tools text-white text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-white mb-2">Tools & Technologies</h3>
+                                <p class="text-gray-300 text-sm">Professional toolkit</p>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3 flex-1">
+                            <div class="p-3 bg-gray-800/30 rounded-lg border border-gray-700/50 text-center interactive-element cursor-pointer group/tech hover:border-cyan-500/50 transition-colors duration-300" data-tool="python">
+                                <i class="fab fa-python text-cyan-400 text-xl mb-2 group-hover/tech:text-white transition-colors duration-300"></i>
+                                <p class="text-white text-xs font-semibold">Python</p>
+                                <div class="mt-2 w-full bg-gray-700 rounded-full h-1">
+                                    <div class="bg-gradient-to-r from-cyan-500 to-cyan-600 h-1 rounded-full w-4/5 transition-all duration-500 group-hover/tech:w-full"></div>
+                                </div>
+                            </div>
+                            <div class="p-3 bg-gray-800/30 rounded-lg border border-gray-700/50 text-center interactive-element cursor-pointer group/tech hover:border-cyan-500/50 transition-colors duration-300" data-tool="javascript">
+                                <i class="fab fa-js text-cyan-400 text-xl mb-2 group-hover/tech:text-white transition-colors duration-300"></i>
+                                <p class="text-white text-xs font-semibold">JavaScript</p>
+                                <div class="mt-2 w-full bg-gray-700 rounded-full h-1">
+                                    <div class="bg-gradient-to-r from-cyan-500 to-cyan-600 h-1 rounded-full w-4/5 transition-all duration-500 group-hover/tech:w-full"></div>
+                                </div>
+                            </div>
+                            <div class="p-3 bg-gray-800/30 rounded-lg border border-gray-700/50 text-center interactive-element cursor-pointer group/tech hover:border-cyan-500/50 transition-colors duration-300" data-tool="react">
+                                <i class="fab fa-react text-cyan-400 text-xl mb-2 group-hover/tech:text-white transition-colors duration-300"></i>
+                                <p class="text-white text-xs font-semibold">React</p>
+                                <div class="mt-2 w-full bg-gray-700 rounded-full h-1">
+                                    <div class="bg-gradient-to-r from-cyan-500 to-cyan-600 h-1 rounded-full w-4/5 transition-all duration-500 group-hover/tech:w-full"></div>
+                                </div>
+                            </div>
+                            <div class="p-3 bg-gray-800/30 rounded-lg border border-gray-700/50 text-center interactive-element cursor-pointer group/tech hover:border-cyan-500/50 transition-colors duration-300" data-tool="sql">
+                                <i class="fas fa-database text-cyan-400 text-xl mb-2 group-hover/tech:text-white transition-colors duration-300"></i>
+                                <p class="text-white text-xs font-semibold">SQL</p>
+                                <div class="mt-2 w-full bg-gray-700 rounded-full h-1">
+                                    <div class="bg-gradient-to-r from-cyan-500 to-cyan-600 h-1 rounded-full w-4/5 transition-all duration-500 group-hover/tech:w-full"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- New Enhanced Neon Card -->
+            <div class="bento-wide bento-card bento-card-neon">
+                <div class="card-glass rounded-3xl p-8 h-full group relative overflow-hidden">
+                    <div class="floating-label">Innovation</div>
+                    <div class="professional-glow"></div>
+                    <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent"></div>
+                    <div class="relative z-10 h-full flex flex-col">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl flex items-center justify-center mr-4 shadow-xl group-hover:shadow-emerald-400/50 transition-all duration-500">
+                                <i class="fas fa-lightbulb text-white text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-white mb-2">Innovation Hub</h3>
+                                <p class="text-gray-300 text-sm">Cutting-edge technologies</p>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 flex-1">
+                            <div class="p-4 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-emerald-500/50 transition-colors duration-300 interactive-element cursor-pointer group/innovation text-center" data-skill="ai-tech">
+                                <i class="fas fa-robot text-emerald-400 text-3xl mb-3 group-hover/innovation:text-white transition-colors duration-300"></i>
+                                <h4 class="text-white font-semibold text-sm mb-2">AI Integration</h4>
+                                <p class="text-gray-400 text-xs">Advanced AI solutions</p>
+                                <div class="mt-3 w-full bg-gray-700 rounded-full h-1">
+                                    <div class="bg-gradient-to-r from-emerald-500 to-emerald-600 h-1 rounded-full w-4/5 transition-all duration-500 group-hover/innovation:w-full"></div>
+                                </div>
+                            </div>
+                            <div class="p-4 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-emerald-500/50 transition-colors duration-300 interactive-element cursor-pointer group/innovation text-center" data-skill="strategy">
+                                <i class="fas fa-chart-network text-emerald-400 text-3xl mb-3 group-hover/innovation:text-white transition-colors duration-300"></i>
+                                <h4 class="text-white font-semibold text-sm mb-2">Strategic Planning</h4>
+                                <p class="text-gray-400 text-xs">Business strategy</p>
+                                <div class="mt-3 w-full bg-gray-700 rounded-full h-1">
+                                    <div class="bg-gradient-to-r from-emerald-500 to-emerald-600 h-1 rounded-full w-5/6 transition-all duration-500 group-hover/innovation:w-full"></div>
+                                </div>
+                            </div>
+                            <div class="p-4 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-emerald-500/50 transition-colors duration-300 interactive-element cursor-pointer group/innovation text-center" data-skill="leadership">
+                                <i class="fas fa-users-cog text-emerald-400 text-3xl mb-3 group-hover/innovation:text-white transition-colors duration-300"></i>
+                                <h4 class="text-white font-semibold text-sm mb-2">Team Leadership</h4>
+                                <p class="text-gray-400 text-xs">Project management</p>
+                                <div class="mt-3 w-full bg-gray-700 rounded-full h-1">
+                                    <div class="bg-gradient-to-r from-emerald-500 to-emerald-600 h-1 rounded-full w-5/6 transition-all duration-500 group-hover/innovation:w-full"></div>
                                 </div>
                             </div>
                         </div>
@@ -886,7 +1610,23 @@
                 </div>
             </div>
         </div>
-    </section>
+
+        <!-- Fixed Floating Action Button -->
+        <div class="fixed bottom-8 right-8 z-50">
+            <button id="expertiseFAB" class="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center shadow-2xl hover:shadow-red-400/50 transition-all duration-500 hover:scale-110 group floating">
+                <i class="fas fa-plus text-white text-xl group-hover:rotate-90 transition-transform duration-300"></i>
+            </button>
+            <div class="absolute bottom-20 right-0 bg-gray-800 text-white p-4 rounded-xl shadow-xl opacity-0 pointer-events-none transition-all duration-300 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 whitespace-nowrap">
+                <p class="text-sm font-semibold">Quick Actions</p>
+                <div class="flex flex-col space-y-2 mt-2">
+                    <button class="text-left text-xs hover:text-red-400 transition-colors">View Portfolio</button>
+                    <button class="text-left text-xs hover:text-red-400 transition-colors">Contact Me</button>
+                    <button class="text-left text-xs hover:text-red-400 transition-colors">Download CV</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Footer -->
     <footer class="bg-white py-10 relative overflow-hidden">
@@ -988,7 +1728,430 @@
             }
             setInterval(updateClock, 1000);
             updateClock();
+
+            // Skill Modal Functionality
+            const skillModal = document.getElementById('skillModal');
+            const closeModal = document.getElementById('closeModal');
+            const skillNodes = document.querySelectorAll('.skill-node');
+
+            // Skill data
+            const skillData = {
+                'video-editing': {
+                    icon: 'fas fa-video',
+                    title: 'Video Editing',
+                    description: 'Professional video editing with attention to detail and storytelling across multiple platforms. Expertise in creating engaging content for social media, marketing campaigns, and educational purposes.',
+                    tools: ['Premiere Pro', 'After Effects', 'DaVinci Resolve', 'Final Cut Pro'],
+                    skills: [
+                        { name: 'Technical', level: 85, color: 'blue' },
+                        { name: 'Creative', level: 90, color: 'green' },
+                        { name: 'Soft Skills', level: 95, color: 'purple' }
+                    ]
+                },
+                'photography': {
+                    icon: 'fas fa-camera',
+                    title: 'Photography',
+                    description: 'Creative photography with focus on composition, lighting, and visual storytelling. Experience in portrait, event, and commercial photography.',
+                    tools: ['Lightroom', 'Photoshop', 'Capture One', 'VSCO'],
+                    skills: [
+                        { name: 'Technical', level: 88, color: 'blue' },
+                        { name: 'Creative', level: 92, color: 'green' },
+                        { name: 'Soft Skills', level: 87, color: 'purple' }
+                    ]
+                },
+                'web-dev': {
+                    icon: 'fas fa-code',
+                    title: 'Web Development',
+                    description: 'Full-stack web development with modern frameworks and technologies. Building responsive, user-friendly applications with clean code.',
+                    tools: ['HTML5', 'CSS3', 'JavaScript', 'React', 'Node.js'],
+                    skills: [
+                        { name: 'Technical', level: 90, color: 'blue' },
+                        { name: 'Creative', level: 85, color: 'green' },
+                        { name: 'Soft Skills', level: 88, color: 'purple' }
+                    ]
+                },
+                'data-analysis': {
+                    icon: 'fas fa-chart-line',
+                    title: 'Data Analysis',
+                    description: 'Advanced data analysis and visualization to extract meaningful insights from complex datasets. Statistical modeling and predictive analytics.',
+                    tools: ['Python', 'R', 'SQL', 'Tableau', 'Power BI'],
+                    skills: [
+                        { name: 'Technical', level: 92, color: 'blue' },
+                        { name: 'Creative', level: 80, color: 'green' },
+                        { name: 'Soft Skills', level: 85, color: 'purple' }
+                    ]
+                },
+                'digital-marketing': {
+                    icon: 'fas fa-bullhorn',
+                    title: 'Digital Marketing',
+                    description: 'Comprehensive digital marketing strategies including SEO, social media marketing, content marketing, and paid advertising campaigns.',
+                    tools: ['Google Analytics', 'Facebook Ads', 'Hootsuite', 'Mailchimp'],
+                    skills: [
+                        { name: 'Technical', level: 87, color: 'blue' },
+                        { name: 'Creative', level: 93, color: 'green' },
+                        { name: 'Soft Skills', level: 90, color: 'purple' }
+                    ]
+                },
+                'ai-tech': {
+                    icon: 'fas fa-robot',
+                    title: 'AI & Technology',
+                    description: 'Artificial Intelligence and machine learning implementation. Working with AI tools and technologies to solve complex problems.',
+                    tools: ['TensorFlow', 'PyTorch', 'OpenAI', 'Hugging Face'],
+                    skills: [
+                        { name: 'Technical', level: 85, color: 'blue' },
+                        { name: 'Creative', level: 88, color: 'green' },
+                        { name: 'Soft Skills', level: 82, color: 'purple' }
+                    ]
+                },
+                'content-creation': {
+                    icon: 'fas fa-pen-fancy',
+                    title: 'Content Creation',
+                    description: 'Creative content development for various platforms. Storytelling, copywriting, and multimedia content production.',
+                    tools: ['Canva', 'Adobe Creative Suite', 'Figma', 'Notion'],
+                    skills: [
+                        { name: 'Technical', level: 83, color: 'blue' },
+                        { name: 'Creative', level: 95, color: 'green' },
+                        { name: 'Soft Skills', level: 92, color: 'purple' }
+                    ]
+                },
+                'ui-ux': {
+                    icon: 'fas fa-palette',
+                    title: 'UI/UX Design',
+                    description: 'User interface and user experience design with focus on usability and aesthetic appeal. Wireframing, prototyping, and user research.',
+                    tools: ['Figma', 'Adobe XD', 'Sketch', 'InVision'],
+                    skills: [
+                        { name: 'Technical', level: 88, color: 'blue' },
+                        { name: 'Creative', level: 94, color: 'green' },
+                        { name: 'Soft Skills', level: 89, color: 'purple' }
+                    ]
+                },
+                'project-mgmt': {
+                    icon: 'fas fa-tasks',
+                    title: 'Project Management',
+                    description: 'Efficient project planning, execution, and delivery. Team coordination, resource management, and timeline optimization.',
+                    tools: ['Trello', 'Asana', 'Jira', 'Monday.com'],
+                    skills: [
+                        { name: 'Technical', level: 85, color: 'blue' },
+                        { name: 'Creative', level: 80, color: 'green' },
+                        { name: 'Soft Skills', level: 95, color: 'purple' }
+                    ]
+                },
+                'leadership': {
+                    icon: 'fas fa-users',
+                    title: 'Leadership',
+                    description: 'Team leadership and mentoring. Building collaborative environments and driving team success through effective communication.',
+                    tools: ['Slack', 'Microsoft Teams', 'Zoom', 'Google Workspace'],
+                    skills: [
+                        { name: 'Technical', level: 78, color: 'blue' },
+                        { name: 'Creative', level: 85, color: 'green' },
+                        { name: 'Soft Skills', level: 98, color: 'purple' }
+                    ]
+                },
+                'machine-learning': {
+                    icon: 'fas fa-brain',
+                    title: 'Machine Learning',
+                    description: 'Advanced machine learning algorithms and model development. Deep learning, neural networks, and predictive modeling.',
+                    tools: ['Python', 'Scikit-learn', 'Keras', 'Jupyter'],
+                    skills: [
+                        { name: 'Technical', level: 90, color: 'blue' },
+                        { name: 'Creative', level: 82, color: 'green' },
+                        { name: 'Soft Skills', level: 85, color: 'purple' }
+                    ]
+                },
+                'automation': {
+                    icon: 'fas fa-cog',
+                    title: 'Automation',
+                    description: 'Process automation and workflow optimization. Building efficient systems to reduce manual work and increase productivity.',
+                    tools: ['Python', 'Zapier', 'IFTTT', 'Power Automate'],
+                    skills: [
+                        { name: 'Technical', level: 92, color: 'blue' },
+                        { name: 'Creative', level: 88, color: 'green' },
+                        { name: 'Soft Skills', level: 83, color: 'purple' }
+                    ]
+                },
+                'analytics': {
+                    icon: 'fas fa-chart-pie',
+                    title: 'Analytics',
+                    description: 'Business intelligence and data analytics. Creating dashboards, reports, and actionable insights from data.',
+                    tools: ['Google Analytics', 'Tableau', 'Power BI', 'Excel'],
+                    skills: [
+                        { name: 'Technical', level: 89, color: 'blue' },
+                        { name: 'Creative', level: 85, color: 'green' },
+                        { name: 'Soft Skills', level: 87, color: 'purple' }
+                    ]
+                },
+                'strategy': {
+                    icon: 'fas fa-lightbulb',
+                    title: 'Strategy',
+                    description: 'Strategic planning and business development. Market analysis, competitive research, and growth strategy formulation.',
+                    tools: ['SWOT Analysis', 'Business Model Canvas', 'Market Research', 'Competitive Analysis'],
+                    skills: [
+                        { name: 'Technical', level: 85, color: 'blue' },
+                        { name: 'Creative', level: 90, color: 'green' },
+                        { name: 'Soft Skills', level: 93, color: 'purple' }
+                    ]
+                }
+            };
+
+            // Open modal function
+            function openSkillModal(skillKey) {
+                const skill = skillData[skillKey];
+                if (!skill) return;
+
+                // Update modal content
+                document.querySelector('.skill-modal-icon').className = `${skill.icon} text-white text-2xl skill-modal-icon`;
+                document.querySelector('.skill-modal-title').textContent = skill.title;
+                document.querySelector('.skill-modal-body p').textContent = skill.description;
+
+                // Update tools
+                const toolsContainer = document.querySelector('.skill-modal-body .flex.flex-wrap');
+                toolsContainer.innerHTML = skill.tools.map(tool =>
+                    `<span class="px-3 py-1 bg-red-500/20 text-red-400 rounded-full text-sm border border-red-500/30">${tool}</span>`
+                ).join('');
+
+                // Update skill levels
+                const skillLevels = document.querySelectorAll('.skill-modal-body .grid.grid-cols-3 > div');
+                skill.skills.forEach((skillLevel, index) => {
+                    if (skillLevels[index]) {
+                        const progressBar = skillLevels[index].querySelector('.bg-gradient-to-r');
+                        const skillName = skillLevels[index].querySelector('.text-white.text-xs.font-semibold');
+                        const skillPercent = skillLevels[index].querySelector('.text-gray-400.text-xs');
+                        
+                        progressBar.style.width = `${skillLevel.level}%`;
+                        progressBar.className = `bg-gradient-to-r from-${skillLevel.color}-500 to-${skillLevel.color}-600 h-2 rounded-full`;
+                        skillName.textContent = skillLevel.name;
+                        skillPercent.textContent = `${skillLevel.level}% Proficiency`;
+                    }
+                });
+
+                // Show modal
+                skillModal.classList.remove('opacity-0', 'pointer-events-none');
+                skillModal.classList.add('opacity-100');
+                document.querySelector('.skill-modal-content').classList.remove('scale-95');
+                document.querySelector('.skill-modal-content').classList.add('scale-100');
+            }
+
+            // Close modal function
+            function closeSkillModal() {
+                skillModal.classList.add('opacity-0', 'pointer-events-none');
+                skillModal.classList.remove('opacity-100');
+                document.querySelector('.skill-modal-content').classList.add('scale-95');
+                document.querySelector('.skill-modal-content').classList.remove('scale-100');
+            }
+
+            // Add click events to skill nodes
+            skillNodes.forEach(node => {
+                const orbitItem = node.closest('.orbit-item');
+                const skillKey = orbitItem.getAttribute('data-skill');
+                
+                node.addEventListener('click', () => {
+                    openSkillModal(skillKey);
+                });
+
+                // Add keyboard navigation
+                node.setAttribute('tabindex', '0');
+                node.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openSkillModal(skillKey);
+                    }
+                });
+            });
+
+            // Close modal events
+            closeModal.addEventListener('click', closeSkillModal);
+            skillModal.addEventListener('click', (e) => {
+                if (e.target === skillModal) {
+                    closeSkillModal();
+                }
+            });
+
+            // Close modal with Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !skillModal.classList.contains('pointer-events-none')) {
+                    closeSkillModal();
+                }
+            });
+
+            // Add parallax effect to background
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const parallax = document.querySelector('#expertise');
+                const speed = scrolled * 0.5;
+
+                if (parallax) {
+                    parallax.style.backgroundPosition = `center ${speed}px`;
+                }
+            });
+
+            // Floating Action Button functionality
+            const expertiseFAB = document.getElementById('expertiseFAB');
+            if (expertiseFAB) {
+                expertiseFAB.addEventListener('click', function() {
+                    // Smooth scroll to top
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+
+            // Add entrance animations to bento cards
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all bento cards
+            const bentoCards = document.querySelectorAll('.bento-card');
+            bentoCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = `all 0.6s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.1}s`;
+                observer.observe(card);
+            });
+
+            // Interactive elements functionality
+            const interactiveElements = document.querySelectorAll('.interactive-element');
+            interactiveElements.forEach(element => {
+                element.addEventListener('click', function() {
+                    // Add click animation
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+
+                    // Get data attribute
+                    const skillType = this.getAttribute('data-skill') || this.getAttribute('data-project') || this.getAttribute('data-tool');
+
+                    if (skillType) {
+                        // Show feedback
+                        showInteractiveFeedback(skillType, this);
+                    }
+                });
+
+                // Add keyboard support
+                element.setAttribute('tabindex', '0');
+                element.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+            });
+
+            // Function to show interactive feedback
+            function showInteractiveFeedback(type, element) {
+                const feedbackMessages = {
+                    'video-editing': '🎬 Professional video editing expertise',
+                    'photography': '📸 Creative photography skills',
+                    'web-dev': '💻 Full-stack web development',
+                    'data-analysis': '📊 Advanced data analysis',
+                    'ai-healthcare': '🤖 AI-powered healthcare solutions',
+                    'canvas-app': '🎨 Interactive web applications',
+                    'python': '🐍 Python programming expert',
+                    'javascript': '⚡ JavaScript development',
+                    'react': '⚛️ React framework specialist',
+                    'sql': '🗄️ Database management',
+                    'machine-learning': '🧠 Advanced machine learning algorithms',
+                    'automation': '⚙️ Process automation & optimization',
+                    'analytics': '📈 Business intelligence & analytics',
+                    'content-creation': '✍️ Creative content development',
+                    'ui-ux': '🎨 User interface & experience design',
+                    'digital-marketing': '📢 Digital marketing strategies',
+                    'ai-tech': '🚀 AI integration & innovation',
+                    'strategy': '🎯 Strategic planning & execution',
+                    'leadership': '👥 Team leadership & management'
+                };
+
+                const message = feedbackMessages[type] || 'Interactive element clicked!';
+
+                // Create temporary feedback element
+                const feedback = document.createElement('div');
+                feedback.textContent = message;
+                feedback.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: rgba(229, 0, 0, 0.9);
+                    color: white;
+                    padding: 20px 30px;
+                    border-radius: 10px;
+                    font-size: 16px;
+                    font-weight: 600;
+                    z-index: 10000;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                    animation: fadeInOut 2s ease-in-out;
+                    backdrop-filter: blur(10px);
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                `;
+
+                document.body.appendChild(feedback);
+
+                // Remove feedback after animation
+                setTimeout(() => {
+                    feedback.remove();
+                }, 2000);
+            }
+
+            // Add enhanced hover effects for skill cards
+            const skillCards = document.querySelectorAll('.bento-card');
+            skillCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px) scale(1.02)';
+                    this.style.zIndex = '10';
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                    this.style.zIndex = '';
+                });
+            });
+
+            // Add loading animation for cards
+            const loadingCards = document.querySelectorAll('.bento-card');
+            loadingCards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+                card.classList.add('loading');
+            });
+
+            // Add shimmer effect on scroll
+            function addShimmerEffect() {
+                const cards = document.querySelectorAll('.bento-card');
+                cards.forEach(card => {
+                    if (card.getBoundingClientRect().top < window.innerHeight * 0.8) {
+                        card.classList.add('shimmer');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', addShimmerEffect);
+            addShimmerEffect(); // Run on load
+
+            // Add CSS for feedback animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeInOut {
+                    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+                    20% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                    80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                    100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+                }
+            `;
+            document.head.appendChild(style);
         });
     </script>
+
+    <!-- Theme Toggle Script -->
+    <script src="js/theme.js"></script>
 </body>
 </html>

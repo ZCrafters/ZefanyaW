@@ -7,17 +7,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Toggle sidebar
     function toggleSidebar() {
+        const isOpen = sidebar.classList.contains('open');
         sidebar.classList.toggle('open');
         overlay.classList.toggle('open');
         menuToggle.classList.toggle('open');
         body.classList.toggle('sidebar-open');
-        
+
         // Toggle aria-expanded for accessibility
-        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
-        menuToggle.setAttribute('aria-expanded', !isExpanded);
-        
+        menuToggle.setAttribute('aria-expanded', !isOpen);
+
         // Set focus to sidebar when opened for better keyboard navigation
-        if (!isExpanded) {
+        if (!isOpen) {
             sidebar.setAttribute('tabindex', '-1');
             sidebar.focus();
         }

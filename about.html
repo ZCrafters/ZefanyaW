@@ -624,6 +624,358 @@
             color: #000000;
             margin-bottom: 10px;
         }
+
+        /* Bento Grid Layout */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .bento-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Bento Grid Sizes */
+        .bento-small {
+            grid-column: span 3;
+        }
+
+        .bento-medium {
+            grid-column: span 4;
+        }
+
+        .bento-large {
+            grid-column: span 6;
+        }
+
+        .bento-wide {
+            grid-column: span 8;
+        }
+
+        .bento-tall {
+            grid-row: span 2;
+        }
+
+        .col-span-full {
+            grid-column: 1 / -1;
+        }
+
+        /* Responsive Bento Grid */
+        @media (max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: repeat(6, 1fr);
+                gap: 1rem;
+            }
+
+            .bento-small,
+            .bento-medium,
+            .bento-large,
+            .bento-wide {
+                grid-column: span 6;
+            }
+
+            .bento-tall {
+                grid-row: span 1;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .bento-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.75rem;
+            }
+
+            .bento-small,
+            .bento-medium,
+            .bento-large,
+            .bento-wide {
+                grid-column: span 3;
+            }
+        }
+
+        /* Enhanced Bento Card Styles */
+        .bento-card .card-glass {
+            height: 100%;
+            min-height: 200px;
+            position: relative;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(229, 0, 0, 0.1);
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.1),
+                0 0 0 1px rgba(255, 255, 255, 0.5);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .bento-card .card-glass:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow:
+                0 20px 40px rgba(0, 0, 0, 0.15),
+                0 0 0 1px rgba(229, 0, 0, 0.2),
+                0 0 30px rgba(229, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        /* Bento Card Content Animations */
+        .bento-card .card-glass:hover .profile-image {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        .bento-card .card-glass:hover .skill-pill {
+            transform: scale(1.1) translateY(-2px);
+        }
+
+        /* Timeline Items in Bento Cards */
+        .bento-card .timeline-item {
+            position: relative;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+            border-left: 2px solid rgba(229, 0, 0, 0.2);
+        }
+
+        .bento-card .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 4px;
+            width: 8px;
+            height: 8px;
+            background: #e50000;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 0 0 2px rgba(229, 0, 0, 0.3);
+        }
+
+        /* Bento Card Icons */
+        .bento-card .card-glass i {
+            transition: all 0.3s ease;
+        }
+
+        .bento-card .card-glass:hover i {
+            transform: scale(1.1);
+            color: #e50000 !important;
+        }
+
+        /* Bento Card Text Effects */
+        .bento-card .card-glass h3 {
+            background: linear-gradient(135deg, #e50000, #ff6666);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .bento-card .card-glass:hover h3 {
+            background: linear-gradient(135deg, #ff6666, #e50000);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            transform: translateX(5px);
+        }
+
+        /* Bento Card Background Patterns */
+        .bento-card:nth-child(odd) .card-glass::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(229, 0, 0, 0.03) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(30px, -30px);
+        }
+
+        .bento-card:nth-child(even) .card-glass::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(229, 0, 0, 0.02) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(-20px, 20px);
+        }
+
+        /* Enhanced Fun Facts Card Styles */
+        .fun-fact-item {
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: center;
+        }
+
+        .fun-fact-item:hover {
+            transform: scale(1.1) translateY(-8px) rotate(2deg);
+            box-shadow:
+                0 20px 40px rgba(255, 193, 7, 0.3),
+                0 0 0 1px rgba(255, 193, 7, 0.2),
+                inset 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .fun-fact-item .relative {
+            position: relative;
+        }
+
+        .fun-fact-item .relative::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(45deg, #fbbf24, #f59e0b, #d97706);
+            border-radius: 1rem;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .fun-fact-item:hover .relative::before {
+            opacity: 0.3;
+            animation: rotate 2s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .fun-fact-item h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            line-height: 1.2;
+            letter-spacing: -0.025em;
+            transition: all 0.3s ease;
+        }
+
+        .fun-fact-item p {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            transition: all 0.3s ease;
+        }
+
+        /* Enhanced icon animations */
+        .fun-fact-item .w-16 {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: center;
+        }
+
+        .fun-fact-item:hover .w-16 {
+            transform: scale(1.15) rotate(5deg);
+            filter: drop-shadow(0 0 10px rgba(255, 193, 7, 0.5));
+        }
+
+        /* Heart icon animation */
+        .fun-fact-item .absolute {
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transform-origin: center;
+        }
+
+        .fun-fact-item:hover .absolute {
+            transform: scale(1.2) rotate(10deg);
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1.2) rotate(10deg); }
+            50% { transform: scale(1.4) rotate(15deg); }
+        }
+
+        /* Enhanced card background effects */
+        .card-glass:has(.fun-fact-item:hover) {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow:
+                0 25px 50px rgba(255, 193, 7, 0.15),
+                0 0 0 1px rgba(255, 193, 7, 0.1);
+        }
+
+        /* Typography enhancements */
+        .fun-fact-item h3 {
+            background: linear-gradient(135deg, #1f2937, #374151);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .fun-fact-item:hover h3 {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 4px rgba(245, 158, 11, 0.3);
+        }
+
+        .fun-fact-item p {
+            color: #6b7280;
+        }
+
+        .fun-fact-item:hover p {
+            color: #374151;
+        }
+
+        /* Responsive adjustments for fun facts */
+        @media (max-width: 768px) {
+            .fun-fact-item {
+                padding: 1rem !important;
+            }
+
+            .fun-fact-item:hover {
+                transform: scale(1.05) translateY(-4px) rotate(1deg);
+            }
+
+            .fun-fact-item h3 {
+                font-size: 1.125rem;
+            }
+
+            .fun-fact-item p {
+                font-size: 0.8125rem;
+            }
+        }
+
+        /* Additional glow effects */
+        .fun-fact-item::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255, 193, 7, 0.4) 0%, transparent 70%);
+            border-radius: 50%;
+            transition: all 0.5s ease;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .fun-fact-item:hover::after {
+            width: 120px;
+            height: 120px;
+            animation: pulse-glow 2s ease-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 0.4;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.8;
+            }
+        }
     </style>
 </head>
 <body>
@@ -667,129 +1019,352 @@
     <div class="glow-effect"></div>
     <div class="glow-effect" style="animation-delay: -10s; left: 30%; top: 60%;"></div>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-white relative overflow-hidden pt-32">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 animated-gradient">About Me</h2>
-                <div class="section-divider"></div>
-            </div>
+    <!-- About Section - Enhanced Layout -->
+    <section id="about" class="py-20 bg-gradient-to-br from-white via-gray-50 to-white relative overflow-hidden pt-32">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <!-- Hero Section with Enhanced Profile -->
+            <div class="text-center mb-20 relative">
+                <div class="absolute inset-0 -z-10">
+                    <div class="absolute top-10 left-1/4 w-32 h-32 bg-red-100 rounded-full opacity-30 animate-pulse"></div>
+                    <div class="absolute top-20 right-1/4 w-24 h-24 bg-red-50 rounded-full opacity-40 animate-pulse" style="animation-delay: 1s;"></div>
+                    <div class="absolute bottom-10 left-1/3 w-20 h-20 bg-red-50 rounded-full opacity-20 animate-pulse" style="animation-delay: 2s;"></div>
+                </div>
 
-            <!-- Profile Section -->
-            <div class="text-center mb-16">
-                <div class="profile-circle mx-auto mb-8">
-                    <img src="https://lh3.googleusercontent.com/a/ACg8ocLX3p_aKn0gXs5yR-2Gf5Qb3ydICZu2W5Or0L2gOmm9v5Vus8Gvig=s216-c-no"
-                        alt="Zefanya Williams"
-                        class="profile-image">
-                    <div class="profile-particles"></div>
-                    <div class="glow-ring"></div>
+                <div class="relative inline-block mb-12">
+                    <div class="profile-circle w-64 h-64 mx-auto relative">
+                        <img src="https://lh3.googleusercontent.com/a/ACg8ocLX3p_aKn0gXs5yR-2Gf5Qb3ydICZu2W5Or0L2gOmm9v5Vus8Gvig=s216-c-no"
+                            alt="Zefanya Williams"
+                            class="profile-image w-full h-full">
+                        <div class="profile-particles"></div>
+                        <div class="glow-ring"></div>
+                        <!-- Enhanced glow effects -->
+                        <div class="absolute inset-0 rounded-full bg-gradient-to-r from-red-400/20 to-transparent animate-spin" style="animation-duration: 8s;"></div>
+                        <div class="absolute inset-0 rounded-full bg-gradient-to-l from-transparent to-red-400/20 animate-pulse"></div>
+                    </div>
+                    <!-- Floating elements around profile -->
+                    <div class="absolute -top-4 -right-4 w-8 h-8 bg-red-400 rounded-full animate-bounce opacity-60"></div>
+                    <div class="absolute -bottom-6 -left-6 w-6 h-6 bg-red-300 rounded-full animate-bounce opacity-40" style="animation-delay: 0.5s;"></div>
+                    <div class="absolute top-1/2 -left-8 w-4 h-4 bg-red-500 rounded-full animate-ping opacity-50"></div>
+                </div>
+
+                <h1 class="text-5xl md:text-6xl font-bold mb-6">
+                    <span class="animated-gradient">Zefanya Williams</span>
+                </h1>
+                <div class="section-divider mb-6"></div>
+                <p class="text-xl md:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
+                    Digital Business Student & Content Creator passionate about
+                    <span class="text-red-600 font-semibold">AI technology</span> and
+                    <span class="text-red-600 font-semibold">innovative solutions</span>
+                </p>
+
+                <!-- Enhanced skill badges -->
+                <div class="flex flex-wrap justify-center gap-4 mt-8">
+                    <div class="skill-pill px-6 py-3 rounded-full text-sm font-medium bg-gradient-to-r from-red-500 to-red-600 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                        <i class="fas fa-crown mr-2"></i>Leadership
+                    </div>
+                    <div class="skill-pill px-6 py-3 rounded-full text-sm font-medium bg-gradient-to-r from-red-400 to-red-500 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                        <i class="fas fa-lightbulb mr-2"></i>Innovation
+                    </div>
+                    <div class="skill-pill px-6 py-3 rounded-full text-sm font-medium bg-gradient-to-r from-red-500 to-red-600 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                        <i class="fas fa-robot mr-2"></i>AI Enthusiast
+                    </div>
+                    <div class="skill-pill px-6 py-3 rounded-full text-sm font-medium bg-gradient-to-r from-red-400 to-red-500 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                        <i class="fas fa-camera mr-2"></i>Creative
+                    </div>
                 </div>
             </div>
+<!-- Main Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-20">
+    <!-- Left Column - Personal Info -->
+    <div class="lg:col-span-2 space-y-8">
+        <!-- Who I Am Section -->
+        <div class="card-glass p-8 rounded-3xl hover-3d group relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-red-100 to-transparent rounded-bl-full opacity-50"></div>
+            <div class="relative z-10">
+                <div class="flex items-center mb-6">
+                    <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center mr-4 shadow-lg group-hover:shadow-red-300/50 transition-all duration-300">
+                        <i class="fas fa-user text-white text-2xl"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-primary">Who I Am</h2>
+                </div>
+                <div class="space-y-4 text-gray-700 leading-relaxed">
+                    <p class="text-lg">
+                        I am a <span class="font-semibold text-red-600">digital business student</span> actively involved as a campus ambassador and frequently participate in volunteer activities. I have the ability to work both individually and in groups.
+                    </p>
+                    <p class="text-lg">
+                        I'm deeply interested in <span class="font-semibold text-red-600">AI technology</span> and enjoy contributing to various campus project activities. I also enjoy challenges in problem-solving and finding innovative solutions.
+                    </p>
+                </div>
+            </div>
+        </div>
 
-            <div class="flex flex-col gap-10 items-center">
-                <div class="lg:w-1/2">
-                    <div class="card-glass p-8 rounded-2xl hover-3d">
-                        <h3 class="text-2xl font-bold mb-4 text-primary">Who I Am</h3>
-                        <p class="text-accent mb-6">
-                            I am a digital business student actively involved as a BA campus and frequently participate in volunteer activities. 
-                            I have the ability to work both individually and in groups. Additionally, I am a content creator for personal branding.
+        <!-- My Journey Section -->
+        <div class="card-glass p-8 rounded-3xl hover-3d group relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-blue-100 to-transparent rounded-bl-full opacity-50"></div>
+            <div class="relative z-10">
+                <div class="flex items-center mb-6">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mr-4 shadow-lg group-hover:shadow-blue-300/50 transition-all duration-300">
+                        <i class="fas fa-road text-white text-2xl"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-primary">My Journey</h2>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Background</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Started my journey in digital business with a passion for technology and innovation. Over the years, I've developed skills in content creation, digital marketing, and data analysis.
                         </p>
-                        <p class="text-accent mb-6">
-                            I'm interested in AI technology and enjoy contributing to various campus project activities. 
-                            I also enjoy challenges in problem-solving.
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Vision</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            To leverage technology and digital business strategies to create meaningful solutions that address real-world challenges and improve user experiences.
                         </p>
-                        <div class="flex flex-wrap gap-3">
-                            <div class="skill-pill px-4 py-2 rounded-full">
-                                <span class="text-sm text-accent">Team Leadership</span>
-                            </div>
-                            <div class="skill-pill px-4 py-2 rounded-full">
-                                <span class="text-sm text-accent">Problem Solving</span>
-                            </div>
-                            <div class="skill-pill px-4 py-2 rounded-full">
-                                <span class="text-sm text-accent">Creative Thinking</span>
-                            </div>
-                            <div class="skill-pill px-4 py-2 rounded-full">
-                                <span class="text-sm text-accent">Adaptability</span>
-                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Column - Education & Organizations -->
+    <div class="space-y-8">
+        <!-- Education Section -->
+        <div class="card-glass p-8 rounded-3xl hover-3d group relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-green-100 to-transparent rounded-bl-full opacity-50"></div>
+            <div class="relative z-10">
+                <div class="flex items-center mb-6">
+                    <div class="w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mr-4 shadow-lg group-hover:shadow-green-300/50 transition-all duration-300">
+                        <i class="fas fa-graduation-cap text-white text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-primary">Education</h2>
+                </div>
+                <div class="space-y-6">
+                    <div class="border-l-4 border-green-400 pl-6 hover:border-green-600 transition-colors duration-300">
+                        <h3 class="text-lg font-bold text-gray-800">Green Academy</h3>
+                        <p class="text-sm text-gray-500 mb-2">Digital Business Student</p>
+                        <p class="text-gray-700 text-sm">Currently pursuing studies in digital business with focus on AI technology and digital marketing strategies.</p>
+                    </div>
+                    <div class="border-l-4 border-green-400 pl-6 hover:border-green-600 transition-colors duration-300">
+                        <h3 class="text-lg font-bold text-gray-800">Darwis Photography School</h3>
+                        <p class="text-sm text-gray-500 mb-2">Photography Student</p>
+                        <p class="text-gray-700 text-sm">Professional photography education, mastering technical skills and visual storytelling.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Organizations Section -->
+        <div class="card-glass p-8 rounded-3xl hover-3d group relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-purple-100 to-transparent rounded-bl-full opacity-50"></div>
+            <div class="relative z-10">
+                <div class="flex items-center mb-6">
+                    <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mr-4 shadow-lg group-hover:shadow-purple-300/50 transition-all duration-300">
+                        <i class="fas fa-users text-white text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-primary">Organizations</h2>
+                </div>
+                <div class="space-y-4">
+                    <div class="flex items-start space-x-4 p-4 bg-white/50 rounded-xl hover:bg-white/70 transition-all duration-300">
+                        <i class="fas fa-crown text-purple-600 text-xl mt-1"></i>
+                        <div>
+                            <h3 class="font-bold text-gray-800">BEM Member</h3>
+                            <p class="text-sm text-gray-500">2023-2025</p>
+                            <p class="text-gray-700 text-sm">Best member of September in Medinfo Division</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4 p-4 bg-white/50 rounded-xl hover:bg-white/70 transition-all duration-300">
+                        <i class="fas fa-hands-helping text-purple-600 text-xl mt-1"></i>
+                        <div>
+                            <h3 class="font-bold text-gray-800">Campus Volunteer</h3>
+                            <p class="text-sm text-gray-500">2022-Present</p>
+                            <p class="text-gray-700 text-sm">Active participation in campus events and community service</p>
                         </div>
                     </div>
                 </div>
-                                
-                <div class="lg:w-1/2">
-                    <div class="card-glass p-8 rounded-2xl hover-3d">
-                        <h3 class="text-2xl font-bold mb-6 text-primary">Education & Organizations</h3>
-                                                
-                        <div class="space-y-8 relative border-l-2 border-primary border-opacity-20 pl-8">
-                            <div class="relative timeline-item">
-                                <h4 class="text-lg font-semibold text-primary">Darwis Photography School</h4>
-                                <p class="text-sm text-gray-400 mb-2">Photography Student</p>
-                                <p class="text-accent text-sm">
-                                    Enthusiastically pursuing professional photography education, mastering technical skills in camera operation, lighting techniques, and post-processing. Developing a keen eye for composition and visual storytelling while exploring various photography genres to create compelling visual narratives.
-                                </p>
-                            </div>
-                            
-                            <div class="relative timeline-item">
-                                <h4 class="text-lg font-semibold text-primary">Green Academy</h4>
-                                <p class="text-sm text-gray-400 mb-2">Digital Business Student</p>
-                                <p class="text-accent text-sm">
-                                    Currently pursuing studies in digital business with focus on AI technology and digital marketing strategies.
-                                </p>
-                            </div>
-                                                    
-                            <div class="relative timeline-item">
-                                <h4 class="text-lg font-semibold text-primary">Badan Executive Mahasiswa</h4>
-                                <p class="text-sm text-gray-400 mb-2">2023 - 2025</p>
-                                <p class="text-accent text-sm">
-                                    Best member of September in Medinfo Division. Completed various projects related to design, content planning, and documentation.
-                                </p>
-                            </div>
-                                                    
-                            <div class="relative timeline-item">
-                                <h4 class="text-lg font-semibold text-primary">Campus Volunteer</h4>
-                                <p class="text-sm text-gray-400 mb-2">2022 - Present</p>
-                                <p class="text-accent text-sm">
-                                    Actively participated in various campus volunteer activities, helping organize events and community service projects.
-                                </p>
-                            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Fun Facts & FAQ Section - Side by Side -->
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-12 mb-20">
+    <!-- Fun Facts - Clean Card Design -->
+    <div class="card-glass p-8 rounded-3xl hover-3d group relative overflow-hidden shadow-2xl hover:shadow-yellow-300/30 transition-all duration-500">
+        <div class="absolute inset-0 bg-gradient-to-br from-yellow-50 via-white to-yellow-50 opacity-60"></div>
+        <div class="relative z-10">
+            <!-- Header -->
+            <div class="text-center mb-8">
+                <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-3xl mb-6 shadow-2xl group-hover:shadow-yellow-400/50 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
+                    <i class="fas fa-star text-white text-3xl"></i>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Fun Facts</h2>
+                <div class="section-divider w-20 h-1 bg-gradient-to-r from-yellow-400 to-yellow-600 mx-auto mb-4"></div>
+                <p class="text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed">
+                    Discover what makes me tick beyond the professional realm
+                </p>
+            </div>
+
+            <!-- Fun Facts Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div class="fun-fact-item text-center p-4 bg-white/60 backdrop-blur-sm rounded-2xl hover:bg-white/80 transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 group/fact">
+                    <div class="relative mb-3">
+                        <div class="w-12 h-12 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-2xl flex items-center justify-center mx-auto shadow-lg group-hover/fact:shadow-yellow-400/50 transition-all duration-500 group-hover/fact:scale-110 group-hover/fact:rotate-6">
+                            <i class="fas fa-camera text-white text-lg"></i>
+                        </div>
+                        <div class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center opacity-0 group-hover/fact:opacity-100 transition-all duration-300 transform group-hover/fact:scale-110">
+                            <i class="fas fa-heart text-white text-xs"></i>
                         </div>
                     </div>
+                    <h3 class="text-lg font-bold text-gray-800 mb-1 group-hover/fact:text-yellow-600 transition-colors duration-300">Photography</h3>
+                    <p class="text-gray-600 text-xs leading-relaxed group-hover/fact:text-gray-700 transition-colors duration-300">
+                        Passionate about capturing moments
+                    </p>
+                </div>
+
+                <div class="fun-fact-item text-center p-4 bg-white/60 backdrop-blur-sm rounded-2xl hover:bg-white/80 transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 group/fact">
+                    <div class="relative mb-3">
+                        <div class="w-12 h-12 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-2xl flex items-center justify-center mx-auto shadow-lg group-hover/fact:shadow-yellow-400/50 transition-all duration-500 group-hover/fact:scale-110 group-hover/fact:rotate-6">
+                            <i class="fas fa-robot text-white text-lg"></i>
+                        </div>
+                        <div class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center opacity-0 group-hover/fact:opacity-100 transition-all duration-300 transform group-hover/fact:scale-110">
+                            <i class="fas fa-heart text-white text-xs"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 mb-1 group-hover/fact:text-yellow-600 transition-colors duration-300">AI Technology</h3>
+                    <p class="text-gray-600 text-xs leading-relaxed group-hover/fact:text-gray-700 transition-colors duration-300">
+                        Fascinated by artificial intelligence
+                    </p>
+                </div>
+
+                <div class="fun-fact-item text-center p-4 bg-white/60 backdrop-blur-sm rounded-2xl hover:bg-white/80 transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 group/fact">
+                    <div class="relative mb-3">
+                        <div class="w-12 h-12 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-2xl flex items-center justify-center mx-auto shadow-lg group-hover/fact:shadow-yellow-400/50 transition-all duration-500 group-hover/fact:scale-110 group-hover/fact:rotate-6">
+                            <i class="fas fa-hands-helping text-white text-lg"></i>
+                        </div>
+                        <div class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center opacity-0 group-hover/fact:opacity-100 transition-all duration-300 transform group-hover/fact:scale-110">
+                            <i class="fas fa-heart text-white text-xs"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 mb-1 group-hover/fact:text-yellow-600 transition-colors duration-300">Community</h3>
+                    <p class="text-gray-600 text-xs leading-relaxed group-hover/fact:text-gray-700 transition-colors duration-300">
+                        Dedicated to helping others
+                    </p>
                 </div>
             </div>
 
-            <!-- Additional About Section -->
-            <div class="mt-16">
-                <div class="card-glass p-8 rounded-2xl hover-3d">
-                    <h3 class="text-2xl font-bold mb-6 text-primary text-center">My Journey</h3>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div>
-                            <h4 class="text-lg font-semibold text-primary mb-3">My Background</h4>
-                            <p class="text-accent mb-4">
-                                I started my journey in digital business with a passion for technology and innovation. Over the years, 
-                                I've developed skills in content creation, digital marketing, and data analysis, which have become essential 
-                                tools in my professional toolkit.
-                            </p>
-                            <p class="text-accent">
-                                My experience in student organizations has taught me valuable leadership and teamwork skills, 
-                                while my volunteer work has given me a broader perspective on community impact.
-                            </p>
-                        </div>
-                        
-                        <div>
-                            <h4 class="text-lg font-semibold text-primary mb-3">My Vision</h4>
-                            <p class="text-accent mb-4">
-                                I aim to leverage technology and digital business strategies to create meaningful solutions that address 
-                                real-world challenges. I believe in the power of AI and data-driven approaches to transform businesses 
-                                and improve user experiences.
-                            </p>
-                            <p class="text-accent">
-                                My goal is to continue growing as a professional in the digital business field, constantly learning 
-                                and adapting to new technologies and market trends.
-                            </p>
-                        </div>
+            <!-- Fun Quote -->
+            <div class="mt-6 text-center">
+                <blockquote class="text-base md:text-lg text-gray-700 italic max-w-2xl mx-auto leading-relaxed">
+                    "Life is like photography. You need the negatives to develop."
+                </blockquote>
+                <cite class="text-sm text-gray-500 mt-2 block">- Unknown</cite>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="card-glass p-8 rounded-3xl hover-3d group relative overflow-hidden shadow-2xl hover:shadow-red-300/30 transition-all duration-500">
+        <div class="relative z-10">
+            <div class="text-center mb-8">
+                <h3 class="text-2xl md:text-3xl font-bold text-primary relative inline-block px-2">
+                    <span class="relative z-10 bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent break-words">
+                        Frequently Asked Questions <span class="inline-block ml-2 animate-float">❓</span>
+                    </span>
+                    <span class="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent rounded-full shadow-[0_0_15px_rgba(239,68,68,0.8)]"></span>
+                </h3>
+            </div>
+
+            <div class="space-y-3 w-full">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item bg-secondary bg-opacity-50 rounded-xl p-4 transition-all duration-300 hover:bg-opacity-70 cursor-pointer group border border-transparent hover:border-primary hover:border-opacity-30">
+                    <div class="flex justify-between items-center">
+                        <h4 class="text-sm md:text-base font-semibold text-primary flex items-center">
+                            <span class="emoji-container mr-2">
+                                <span class="emoji">👋</span>
+                            </span>
+                            Who are you?
+                        </h4>
+                        <span class="text-primary transform transition-transform duration-300 group-hover:rotate-180 text-xs">▼</span>
+                    </div>
+                    <div class="faq-answer mt-2 text-accent overflow-hidden max-h-0 transition-all duration-300 pl-6">
+                        <p class="leading-relaxed text-sm">I'm a digital business student passionate about AI technology and content creation. I love solving problems and working on innovative projects that make a difference.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="faq-item bg-secondary bg-opacity-50 rounded-xl p-4 transition-all duration-300 hover:bg-opacity-70 cursor-pointer group border border-transparent hover:border-primary hover:border-opacity-30">
+                    <div class="flex justify-between items-center">
+                        <h4 class="text-sm md:text-base font-semibold text-primary flex items-center">
+                            <span class="emoji-container mr-2">
+                                <span class="emoji">🎓</span>
+                            </span>
+                            What's your educational background?
+                        </h4>
+                        <span class="text-primary transform transition-transform duration-300 group-hover:rotate-180 text-xs">▼</span>
+                    </div>
+                    <div class="faq-answer mt-2 text-accent overflow-hidden max-h-0 transition-all duration-300 pl-6">
+                        <p class="leading-relaxed text-sm">I'm currently studying Digital Business at Green Academy, focusing on AI technology and digital marketing strategies. I actively participate in campus organizations and volunteer activities to enhance my skills.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="faq-item bg-secondary bg-opacity-50 rounded-xl p-4 transition-all duration-300 hover:bg-opacity-70 cursor-pointer group border border-transparent hover:border-primary hover:border-opacity-30">
+                    <div class="flex justify-between items-center">
+                        <h4 class="text-sm md:text-base font-semibold text-primary flex items-center">
+                            <span class="emoji-container mr-2">
+                                <span class="emoji">💡</span>
+                            </span>
+                            What are your skills?
+                        </h4>
+                        <span class="text-primary transform transition-transform duration-300 group-hover:rotate-180 text-xs">▼</span>
+                    </div>
+                    <div class="faq-answer mt-2 text-accent overflow-hidden max-h-0 transition-all duration-300 pl-6">
+                        <p class="leading-relaxed mb-2 text-sm">My key skills include:</p>
+                        <ul class="list-disc pl-4 space-y-1 text-sm">
+                            <li>Team Leadership</li>
+                            <li>Problem Solving & Critical Thinking</li>
+                            <li>Content Creation & Digital Marketing</li>
+                            <li>AI Technology & Data Analysis</li>
+                            <li>Project Management</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="faq-item bg-secondary bg-opacity-50 rounded-xl p-4 transition-all duration-300 hover:bg-opacity-70 cursor-pointer group border border-transparent hover:border-primary hover:border-opacity-30">
+                    <div class="flex justify-between items-center">
+                        <h4 class="text-sm md:text-base font-semibold text-primary flex items-center">
+                            <span class="emoji-container mr-2">
+                                <span class="emoji">🚀</span>
+                            </span>
+                            What are your future goals?
+                        </h4>
+                        <span class="text-primary transform transition-transform duration-300 group-hover:rotate-180 text-xs">▼</span>
+                    </div>
+                    <div class="faq-answer mt-2 text-accent overflow-hidden max-h-0 transition-all duration-300 pl-6">
+                        <p class="leading-relaxed text-sm">I aim to leverage technology and digital business strategies to create meaningful solutions. I'm particularly interested in exploring how AI can transform businesses and improve user experiences.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="faq-item bg-secondary bg-opacity-50 rounded-xl p-4 transition-all duration-300 hover:bg-opacity-70 cursor-pointer group border border-transparent hover:border-primary hover:border-opacity-30">
+                    <div class="flex justify-between items-center">
+                        <h4 class="text-sm md:text-base font-semibold text-primary flex items-center">
+                            <span class="emoji-container mr-2">
+                                <span class="emoji">📱</span>
+                            </span>
+                            How can I connect with you?
+                        </h4>
+                        <span class="text-primary transform transition-transform duration-300 group-hover:rotate-180 text-xs">▼</span>
+                    </div>
+                    <div class="faq-answer mt-2 text-accent overflow-hidden max-h-0 transition-all duration-300 pl-6">
+                        <p class="leading-relaxed text-sm">Feel free to reach out through my social media links in the sidebar or visit the Contact page. I'm always open to interesting discussions and collaboration opportunities!</p>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
         </div>
     </section>
 
@@ -813,109 +1388,7 @@
         <i class="fas fa-mobile-alt"></i>
     </div>
 
-             <!-- FAQ Section -->
-            <div class="mt-16 px-4 md:px-6">
-                <div class="card-glass p-6 md:p-8 rounded-2xl hover-3d transform hover:scale-[1.005] transition-transform duration-300 max-w-4xl mx-auto w-full">
-                    <div class="text-center mb-8">
-                        <h3 class="text-2xl md:text-3xl font-bold text-primary relative inline-block px-2">
-                            <span class="relative z-10 bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent break-words">
-                                Frequently Asked Questions <span class="inline-block ml-2 animate-float">❓</span>
-                            </span>
-                            <span class="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent rounded-full shadow-[0_0_15px_rgba(239,68,68,0.8)]"></span>
-                        </h3>
-                    </div>
-                    
-                    <div class="space-y-4 w-full">
-                        <!-- FAQ Item 1 -->
-                        <div class="faq-item bg-secondary bg-opacity-50 rounded-xl p-5 transition-all duration-300 hover:bg-opacity-70 cursor-pointer group border border-transparent hover:border-primary hover:border-opacity-30">
-                            <div class="flex justify-between items-center">
-                                <h4 class="text-base md:text-lg font-semibold text-primary flex items-center">
-                                    <span class="emoji-container mr-3">
-                                        <span class="emoji">👋</span>
-                                    </span>
-                                    Who are you?
-                                </h4>
-                                <span class="text-primary transform transition-transform duration-300 group-hover:rotate-180 text-sm">▼</span>
-                            </div>
-                            <div class="faq-answer mt-3 text-accent overflow-hidden max-h-0 transition-all duration-300 pl-9">
-                                <p class="leading-relaxed">I'm a digital business student passionate about AI technology and content creation. I love solving problems and working on innovative projects that make a difference.</p>
-                            </div>
-                        </div>
-
-                        <!-- FAQ Item 2 -->
-                        <div class="faq-item bg-secondary bg-opacity-50 rounded-xl p-5 transition-all duration-300 hover:bg-opacity-70 cursor-pointer group border border-transparent hover:border-primary hover:border-opacity-30">
-                            <div class="flex justify-between items-center">
-                                <h4 class="text-base md:text-lg font-semibold text-primary flex items-center">
-                                    <span class="emoji-container mr-3">
-                                        <span class="emoji">🎓</span>
-                                    </span>
-                                    What's your educational background?
-                                </h4>
-                                <span class="text-primary transform transition-transform duration-300 group-hover:rotate-180 text-sm">▼</span>
-                            </div>
-                            <div class="faq-answer mt-3 text-accent overflow-hidden max-h-0 transition-all duration-300 pl-9">
-                                <p class="leading-relaxed">I'm currently studying Digital Business at Green Academy, focusing on AI technology and digital marketing strategies. I actively participate in campus organizations and volunteer activities to enhance my skills.</p>
-                            </div>
-                        </div>
-
-                        <!-- FAQ Item 3 -->
-                        <div class="faq-item bg-secondary bg-opacity-50 rounded-xl p-5 transition-all duration-300 hover:bg-opacity-70 cursor-pointer group border border-transparent hover:border-primary hover:border-opacity-30">
-                            <div class="flex justify-between items-center">
-                                <h4 class="text-base md:text-lg font-semibold text-primary flex items-center">
-                                    <span class="emoji-container mr-3">
-                                        <span class="emoji">💡</span>
-                                    </span>
-                                    What are your skills?
-                                </h4>
-                                <span class="text-primary transform transition-transform duration-300 group-hover:rotate-180 text-sm">▼</span>
-                            </div>
-                            <div class="faq-answer mt-3 text-accent overflow-hidden max-h-0 transition-all duration-300 pl-9">
-                                <p class="leading-relaxed mb-3">My key skills include:</p>
-                                <ul class="list-disc pl-5 space-y-2">
-                                    <li>Team Leadership</li>
-                                    <li>Problem Solving & Critical Thinking</li>
-                                    <li>Content Creation & Digital Marketing</li>
-                                    <li>AI Technology & Data Analysis</li>
-                                    <li>Project Management</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- FAQ Item 4 -->
-                        <div class="faq-item bg-secondary bg-opacity-50 rounded-xl p-5 transition-all duration-300 hover:bg-opacity-70 cursor-pointer group border border-transparent hover:border-primary hover:border-opacity-30">
-                            <div class="flex justify-between items-center">
-                                <h4 class="text-base md:text-lg font-semibold text-primary flex items-center">
-                                    <span class="emoji-container mr-3">
-                                        <span class="emoji">🚀</span>
-                                    </span>
-                                    What are your future goals?
-                                </h4>
-                                <span class="text-primary transform transition-transform duration-300 group-hover:rotate-180 text-sm">▼</span>
-                            </div>
-                            <div class="faq-answer mt-3 text-accent overflow-hidden max-h-0 transition-all duration-300 pl-9">
-                                <p class="leading-relaxed">I aim to leverage technology and digital business strategies to create meaningful solutions. I'm particularly interested in exploring how AI can transform businesses and improve user experiences. My goal is to bridge the gap between technology and business to create innovative solutions.</p>
-                            </div>
-                        </div>
-
-                        <!-- FAQ Item 5 -->
-                        <div class="faq-item bg-secondary bg-opacity-50 rounded-xl p-5 transition-all duration-300 hover:bg-opacity-70 cursor-pointer group border border-transparent hover:border-primary hover:border-opacity-30">
-                            <div class="flex justify-between items-center">
-                                <h4 class="text-base md:text-lg font-semibold text-primary flex items-center">
-                                    <span class="emoji-container mr-3">
-                                        <span class="emoji">📱</span>
-                                    </span>
-                                    How can I connect with you?
-                                </h4>
-                                <span class="text-primary transform transition-transform duration-300 group-hover:rotate-180 text-sm">▼</span>
-                            </div>
-                            <div class="faq-answer mt-3 text-accent overflow-hidden max-h-0 transition-all duration-300 pl-9">
-                                <p class="leading-relaxed">Feel free to reach out through my social media links in the sidebar or visit the Contact page. I'm always open to interesting discussions and collaboration opportunities! You can also email me at <a href="mailto:your.email@example.com" class="text-primary hover:underline">your.email@example.com</a>.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+   
             <!-- Add this style in the head section -->
             <style>
                 /* FAQ Section Styles */
@@ -1053,24 +1526,59 @@
                     <div class="carousel-wrapper flex transition-transform duration-500 ease-in-out" id="carouselWrapper">
                         <!-- News Item 1 -->
                         <div class="carousel-slide flex-shrink-0 w-full relative">
-                            <div class="card-glass p-8 rounded-2xl hover-3d h-96 flex flex-col justify-center items-center text-center relative overflow-hidden">
+                            <div class="card-glass news-card-enhanced p-6 rounded-2xl hover-3d h-96 relative overflow-hidden group">
                                 <div class="absolute inset-0 bg-gradient-to-br from-red-500/10 to-transparent"></div>
-                                <div class="relative z-10">
-                                    <div class="w-16 h-16 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mb-6 mx-auto">
-                                        <i class="fas fa-trophy text-primary text-2xl"></i>
+                                <div class="relative z-10 h-full flex flex-col">
+                                    <!-- Image Section -->
+                                    <div class="mb-4 flex-shrink-0">
+                                        <div class="w-full h-40 bg-gradient-to-br from-red-100 to-red-200 rounded-xl flex items-center justify-center relative overflow-hidden">
+                                            <div class="absolute inset-0 bg-gradient-to-br from-red-500/20 to-transparent"></div>
+                                            <div class="text-center relative z-10">
+                                                <div class="news-image-container relative inline-block">
+                                                    <div class="news-glow-effect"></div>
+                                                    <div class="news-image-bg"></div>
+                                                    <div class="news-image-professional">
+                                                        <img src="assets/republika.png" alt="Republika News Logo" class="news-image w-32 h-32 object-contain">
+                                                    </div>
+                                                </div>
+                                                <p class="text-red-600 font-bold text-sm mt-4">Competition Victory</p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <h3 class="text-xl font-bold text-primary mb-4">Fintech Competition Victory</h3>
-                                    <p class="text-accent mb-6">Cyber University student successfully dominates international fintech competition in Malaysia</p>
-                                    <a href="https://news.republika.co.id/berita/t2vmwr472/mahasiswa-cyber-university-ini-sukses-gebrak-kompetisi-fintech-internasional-di-malaysia"
-                                       target="_blank" class="glowing-button px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-opacity-90 transition">
-                                        Read Full Story
-                                    </a>
+
+                                    <!-- Content Section -->
+                                    <div class="flex-1 flex flex-col justify-between">
+                                        <div>
+                                            <h3 class="text-xl font-bold text-primary mb-3">🏆 International Fintech Competition Victory</h3>
+                                            <p class="text-accent text-sm mb-4 leading-relaxed">
+                                                Zefanya Williams, a talented Digital Business student from Cyber University, has achieved remarkable success by winning the prestigious International Fintech Competition held in Malaysia. This victory highlights his exceptional skills in financial technology innovation, problem-solving, and strategic thinking. The competition featured participants from across Southeast Asia, making this achievement even more significant.
+                                            </p>
+                                            <div class="flex flex-wrap gap-2 mb-4">
+                                                <span class="skill-pill px-2 py-1 rounded-full text-xs">International Recognition</span>
+                                                <span class="skill-pill px-2 py-1 rounded-full text-xs">Innovation Award</span>
+                                                <span class="skill-pill px-2 py-1 rounded-full text-xs">Malaysia 2024</span>
+                                            </div>
+                                        </div>
+                                        <div class="flex justify-between items-center">
+                                            <a href="https://news.republika.co.id/berita/t2vmwr472/mahasiswa-cyber-university-ini-sukses-gebrak-kompetisi-fintech-internasional-di-malaysia"
+                                               target="_blank" class="glowing-button px-4 py-2 bg-primary text-white rounded-lg font-medium hover:bg-opacity-90 transition text-sm">
+                                                Read Full Story
+                                            </a>
+                                            <span class="text-xs text-gray-400">2024</span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <!-- Simple Overlay -->
-                                <div class="news-overlay absolute inset-0 bg-black bg-opacity-80 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                                    <div class="text-center text-white p-6">
-                                        <h4 class="text-lg font-bold mb-2">Breaking News!</h4>
-                                        <p class="text-sm">Zefanya Williams from Cyber University wins international fintech competition in Malaysia, showcasing exceptional talent in financial technology innovation.</p>
+erele.
+                                <!-- Enhanced Overlay -->
+                                <div class="news-overlay absolute inset-0 bg-black bg-opacity-85 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                                    <div class="text-center text-white p-6 max-w-md">
+                                        <h4 class="text-lg font-bold mb-3 text-red-400">🏆 International Victory!</h4>
+                                        <p class="text-sm leading-relaxed">Zefanya Williams triumphs in Malaysia's prestigious fintech competition, demonstrating exceptional innovation and strategic thinking. This remarkable achievement not only showcases his technical expertise but also highlights Indonesia's growing prominence in the global fintech landscape.</p>
+                                        <div class="mt-4 flex flex-wrap gap-2 justify-center">
+                                            <span class="px-2 py-1 bg-red-500/20 text-red-300 rounded-full text-xs">Innovation</span>
+                                            <span class="px-2 py-1 bg-red-500/20 text-red-300 rounded-full text-xs">Leadership</span>
+                                            <span class="px-2 py-1 bg-red-500/20 text-red-300 rounded-full text-xs">Excellence</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1078,24 +1586,59 @@
 
                         <!-- News Item 2 -->
                         <div class="carousel-slide flex-shrink-0 w-full relative">
-                            <div class="card-glass p-8 rounded-2xl hover-3d h-96 flex flex-col justify-center items-center text-center relative overflow-hidden">
+                            <div class="card-glass news-card-enhanced p-6 rounded-2xl hover-3d h-96 relative overflow-hidden group">
                                 <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent"></div>
-                                <div class="relative z-10">
-                                    <div class="w-16 h-16 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mb-6 mx-auto">
-                                        <i class="fas fa-network-wired text-primary text-2xl"></i>
+                                <div class="relative z-10 h-full flex flex-col">
+                                    <!-- Image Section -->
+                                    <div class="mb-4 flex-shrink-0">
+                                        <div class="w-full h-40 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl flex items-center justify-center relative overflow-hidden">
+                                            <div class="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-transparent"></div>
+                                            <div class="text-center relative z-10">
+                                                <div class="news-image-container relative inline-block">
+                                                    <div class="news-glow-effect" style="background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);"></div>
+                                                    <div class="news-image-bg" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.05));"></div>
+                                                    <div class="news-image-professional">
+                                                        <img src="assets/sidonews.png" alt="Sindo News Logo" class="news-image w-32 h-32 object-contain">
+                                                    </div>
+                                                </div>
+                                                <p class="text-blue-600 font-bold text-sm mt-4">Networking</p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <h3 class="text-xl font-bold text-primary mb-4">International Networking Success</h3>
-                                    <p class="text-accent mb-6">Beyond winning, Cyber University student builds valuable international connections in Malaysia</p>
-                                    <a href="https://edukasi.sindonews.com/read/1623473/211/tak-hanya-gelar-juara-mahasiswa-cyber-university-ini-sukses-bangun-jejaring-internasional-di-malaysia-1758528568"
-                                       target="_blank" class="glowing-button px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-opacity-90 transition">
-                                        Read Full Story
-                                    </a>
+
+                                    <!-- Content Section -->
+                                    <div class="flex-1 flex flex-col justify-between">
+                                        <div>
+                                            <h3 class="text-xl font-bold text-primary mb-3">🌐 Global Networking & Professional Growth</h3>
+                                            <p class="text-accent text-sm mb-4 leading-relaxed">
+                                                Beyond securing victory in the international competition, Zefanya Williams demonstrated exceptional networking skills by establishing valuable professional connections with industry leaders, fintech experts, and fellow competitors from Malaysia and beyond. These strategic relationships have opened doors for future collaborations, mentorship opportunities, and potential partnerships in the fintech industry.
+                                            </p>
+                                            <div class="flex flex-wrap gap-2 mb-4">
+                                                <span class="skill-pill px-2 py-1 rounded-full text-xs">Professional Networking</span>
+                                                <span class="skill-pill px-2 py-1 rounded-full text-xs">Industry Connections</span>
+                                                <span class="skill-pill px-2 py-1 rounded-full text-xs">Future Collaborations</span>
+                                            </div>
+                                        </div>
+                                        <div class="flex justify-between items-center">
+                                            <a href="https://edukasi.sindonews.com/read/1623473/211/tak-hanya-gelar-juara-mahasiswa-cyber-university-ini-sukses-bangun-jejaring-internasional-di-malaysia-1758528568"
+                                               target="_blank" class="glowing-button px-4 py-2 bg-primary text-white rounded-lg font-medium hover:bg-opacity-90 transition text-sm">
+                                                Read Full Story
+                                            </a>
+                                            <span class="text-xs text-gray-400">2024</span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <!-- Simple Overlay -->
-                                <div class="news-overlay absolute inset-0 bg-black bg-opacity-80 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                                    <div class="text-center text-white p-6">
-                                        <h4 class="text-lg font-bold mb-2">Networking Achievement!</h4>
-                                        <p class="text-sm">Not only securing victory, Zefanya Williams successfully establishes international professional networks during the Malaysia fintech competition.</p>
+
+                                <!-- Enhanced Overlay -->
+                                <div class="news-overlay absolute inset-0 bg-black bg-opacity-85 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                                    <div class="text-center text-white p-6 max-w-md">
+                                        <h4 class="text-lg font-bold mb-3 text-blue-400">🌐 Global Network Expansion!</h4>
+                                        <p class="text-sm leading-relaxed">Beyond competition victory, Zefanya Williams excels in building strategic international relationships with fintech leaders, industry experts, and potential collaborators. These connections pave the way for future partnerships and knowledge exchange opportunities.</p>
+                                        <div class="mt-4 flex flex-wrap gap-2 justify-center">
+                                            <span class="px-2 py-1 bg-blue-500/20 text-blue-300 rounded-full text-xs">Networking</span>
+                                            <span class="px-2 py-1 bg-blue-500/20 text-blue-300 rounded-full text-xs">Partnerships</span>
+                                            <span class="px-2 py-1 bg-blue-500/20 text-blue-300 rounded-full text-xs">Growth</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1103,24 +1646,59 @@
 
                         <!-- News Item 3 -->
                         <div class="carousel-slide flex-shrink-0 w-full relative">
-                            <div class="card-glass p-8 rounded-2xl hover-3d h-96 flex flex-col justify-center items-center text-center relative overflow-hidden">
+                            <div class="card-glass news-card-enhanced p-6 rounded-2xl hover-3d h-96 relative overflow-hidden group">
                                 <div class="absolute inset-0 bg-gradient-to-br from-green-500/10 to-transparent"></div>
-                                <div class="relative z-10">
-                                    <div class="w-16 h-16 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mb-6 mx-auto">
-                                        <i class="fas fa-star text-primary text-2xl"></i>
+                                <div class="relative z-10 h-full flex flex-col">
+                                    <!-- Image Section -->
+                                    <div class="mb-4 flex-shrink-0">
+                                        <div class="w-full h-40 bg-gradient-to-br from-green-100 to-green-200 rounded-xl flex items-center justify-center relative overflow-hidden">
+                                            <div class="absolute inset-0 bg-gradient-to-br from-green-500/20 to-transparent"></div>
+                                            <div class="text-center relative z-10">
+                                                <div class="news-image-container relative inline-block">
+                                                    <div class="news-glow-effect" style="background: radial-gradient(circle, rgba(34, 197, 94, 0.3) 0%, transparent 70%);"></div>
+                                                    <div class="news-image-bg" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.05));"></div>
+                                                    <div class="news-image-professional">
+                                                        <img src="assets/milenial.png" alt="Milenial News Logo" class="news-image w-32 h-32 object-contain">
+                                                    </div>
+                                                </div>
+                                                <p class="text-green-600 font-bold text-sm mt-4">Recognition</p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <h3 class="text-xl font-bold text-primary mb-4">Outstanding Achievement</h3>
-                                    <p class="text-accent mb-6">Cyber University student's remarkable success in international fintech competition highlighted</p>
-                                    <a href="https://milenianews.com/news/tak-hanya-gelar-juara-mahasiswa-cyber-university-ini-sukses-bangun-jejaring-internasional-di-malaysia/"
-                                       target="_blank" class="glowing-button px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-opacity-90 transition">
-                                        Read Full Story
-                                    </a>
+
+                                    <!-- Content Section -->
+                                    <div class="flex-1 flex flex-col justify-between">
+                                        <div>
+                                            <h3 class="text-xl font-bold text-primary mb-3">⭐ Media Recognition & Industry Impact</h3>
+                                            <p class="text-accent text-sm mb-4 leading-relaxed">
+                                                Zefanya Williams' outstanding performance in the Malaysia fintech competition has garnered widespread media attention and industry recognition. Featured across multiple reputable news platforms including Republika, Sindo News, and Milenial News, this achievement showcases his exceptional talent in financial technology and innovation. The coverage highlights his strategic thinking, technical expertise, and potential to contribute significantly to Indonesia's growing fintech ecosystem.
+                                            </p>
+                                            <div class="flex flex-wrap gap-2 mb-4">
+                                                <span class="skill-pill px-2 py-1 rounded-full text-xs">Media Coverage</span>
+                                                <span class="skill-pill px-2 py-1 rounded-full text-xs">Industry Recognition</span>
+                                                <span class="skill-pill px-2 py-1 rounded-full text-xs">National Pride</span>
+                                            </div>
+                                        </div>
+                                        <div class="flex justify-between items-center">
+                                            <a href="https://milenianews.com/news/tak-hanya-gelar-juara-mahasiswa-cyber-university-ini-sukses-bangun-jejaring-internasional-di-malaysia/"
+                                               target="_blank" class="glowing-button px-4 py-2 bg-primary text-white rounded-lg font-medium hover:bg-opacity-90 transition text-sm">
+                                                Read Full Story
+                                            </a>
+                                            <span class="text-xs text-gray-400">2024</span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <!-- Simple Overlay -->
-                                <div class="news-overlay absolute inset-0 bg-black bg-opacity-80 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                                    <div class="text-center text-white p-6">
-                                        <h4 class="text-lg font-bold mb-2">Featured Achievement!</h4>
-                                        <p class="text-sm">Zefanya Williams' outstanding performance in the Malaysia fintech competition earns recognition and builds lasting international connections.</p>
+
+                                <!-- Enhanced Overlay -->
+                                <div class="news-overlay absolute inset-0 bg-black bg-opacity-85 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                                    <div class="text-center text-white p-6 max-w-md">
+                                        <h4 class="text-lg font-bold mb-3 text-green-400">⭐ National Spotlight!</h4>
+                                        <p class="text-sm leading-relaxed">Zefanya Williams' exceptional achievement receives extensive media coverage across major Indonesian news platforms, highlighting his contribution to the nation's growing fintech ecosystem and inspiring future generations of digital business leaders.</p>
+                                        <div class="mt-4 flex flex-wrap gap-2 justify-center">
+                                            <span class="px-2 py-1 bg-green-500/20 text-green-300 rounded-full text-xs">Media Star</span>
+                                            <span class="px-2 py-1 bg-green-500/20 text-green-300 rounded-full text-xs">Inspiration</span>
+                                            <span class="px-2 py-1 bg-green-500/20 text-green-300 rounded-full text-xs">Impact</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1129,17 +1707,17 @@
                 </div>
 
                 <!-- Navigation Buttons -->
-                <button class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 text-primary p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110" id="prevBtn">
+                <button class="carousel-nav-btn absolute left-4 top-1/2 transform -translate-y-1/2 text-primary p-3 rounded-full shadow-lg" id="prevBtn">
                     <i class="fas fa-chevron-left"></i>
                 </button>
-                <button class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 text-primary p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110" id="nextBtn">
+                <button class="carousel-nav-btn absolute right-4 top-1/2 transform -translate-y-1/2 text-primary p-3 rounded-full shadow-lg" id="nextBtn">
                     <i class="fas fa-chevron-right"></i>
                 </button>
 
                 <!-- Indicators -->
                 <div class="flex justify-center mt-6 space-x-2">
-                    <button class="carousel-indicator w-3 h-3 rounded-full bg-gray-300 hover:bg-primary transition-colors duration-300" data-slide="0"></button>
-                    <button class="carousel-indicator w-3 h-3 rounded-full bg-gray-300 hover:bg-primary transition-colors duration-300" data-slide="1"></button>
+                    <button class="carousel-indicator w-3 h-3 rounded-full bg-gray-300 transition-colors duration-300" data-slide="0"></button>
+                    <button class="carousel-indicator w-3 h-3 rounded-full bg-gray-300 transition-colors duration-300" data-slide="1"></button>
                     <button class="carousel-indicator w-3 h-3 rounded-full bg-primary transition-colors duration-300" data-slide="2"></button>
                 </div>
             </div>
@@ -1168,6 +1746,141 @@
             backdrop-filter: blur(5px);
         }
 
+        /* Enhanced News Image Styles */
+        .news-image-container {
+            position: relative;
+            display: inline-block;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .news-image-container:hover {
+            transform: scale(1.1) translateY(-5px);
+        }
+
+        .news-image {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        }
+
+        .news-image:hover {
+            transform: scale(1.2) rotate(5deg);
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+        }
+
+        /* Enhanced glow effects for news images */
+        .news-glow-effect {
+            position: absolute;
+            inset: -10px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(229, 0, 0, 0.3) 0%, transparent 70%);
+            filter: blur(15px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        .news-image-container:hover .news-glow-effect {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        /* Bounce animation for news images */
+        .news-bounce {
+            animation: news-bounce 0.6s ease-out;
+        }
+
+        @keyframes news-bounce {
+            0% { transform: scale(1) translateY(0); }
+            50% { transform: scale(1.1) translateY(-8px); }
+            100% { transform: scale(1.05) translateY(0); }
+        }
+
+        /* Enhanced image backgrounds */
+        .news-image-bg {
+            position: absolute;
+            inset: -5px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(229, 0, 0, 0.1), rgba(229, 0, 0, 0.05));
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+
+        .news-image-container:hover .news-image-bg {
+            opacity: 1;
+            transform: scale(1.3);
+        }
+
+        /* Professional image styling */
+        .news-image-professional {
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px;
+            box-shadow:
+                0 4px 12px rgba(0, 0, 0, 0.1),
+                0 0 0 1px rgba(229, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .news-image-container:hover .news-image-professional {
+            box-shadow:
+                0 8px 25px rgba(229, 0, 0, 0.2),
+                0 0 0 2px rgba(229, 0, 0, 0.3),
+                0 0 30px rgba(229, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        /* Enhanced carousel navigation */
+        .carousel-nav-btn {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(229, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel-nav-btn:hover {
+            background: rgba(229, 0, 0, 0.9);
+            color: white;
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(229, 0, 0, 0.3);
+        }
+
+        /* Enhanced indicators */
+        .carousel-indicator {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel-indicator::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(229, 0, 0, 0.2);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .carousel-indicator:hover::before {
+            width: 12px;
+            height: 12px;
+        }
+
+        .carousel-indicator.active::before {
+            width: 16px;
+            height: 16px;
+            background: rgba(229, 0, 0, 0.4);
+        }
+
+        /* Responsive enhancements */
         @media (max-width: 768px) {
             .carousel-slide {
                 width: 100%;
@@ -1176,6 +1889,62 @@
             .carousel-wrapper {
                 width: 300%;
             }
+
+            .news-image {
+                width: 28px;
+                height: 28px;
+            }
+
+            .news-image-container:hover {
+                transform: scale(1.05) translateY(-3px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .news-image {
+                width: 24px;
+                height: 24px;
+            }
+
+            .news-image-container:hover {
+                transform: scale(1.02) translateY(-2px);
+            }
+        }
+
+        /* Additional glow animations */
+        @keyframes pulse-glow {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.6;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.9;
+            }
+        }
+
+        /* Enhanced card hover effects */
+        .news-card-enhanced {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .news-card-enhanced:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow:
+                0 25px 50px rgba(0, 0, 0, 0.15),
+                0 0 0 1px rgba(229, 0, 0, 0.1),
+                0 0 40px rgba(229, 0, 0, 0.1);
+        }
+
+        /* Image loading animation */
+        .news-image-loading {
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
         }
     </style>
 
@@ -1355,5 +2124,8 @@
             updateClock();
         });
     </script>
+
+    <!-- Theme Toggle Script -->
+    <script src="js/theme.js"></script>
 </body>
 </html>

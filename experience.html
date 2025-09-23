@@ -20,6 +20,7 @@
         }
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/bento-grid.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
 
@@ -31,12 +32,12 @@
         }
 
         .animated-gradient {
-            background: linear-gradient(270deg, #e50000, #000000, #e50000);
-            background-size: 300% 300%;
+            background: linear-gradient(270deg, #e50000, #ff3333, #e50000, #cc0000, #e50000);
+            background-size: 400% 400%;
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            animation: gradient-animation 4s ease infinite;
+            animation: gradient-animation 3s ease infinite;
         }
 
         @keyframes gradient-animation {
@@ -326,7 +327,7 @@
 
         .sidebar-header {
             padding: 20px;
-            border-bottom: 1px solid rgba(229, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(229, 0, 0, 0.3);
             margin-bottom: 20px;
         }
 
@@ -517,6 +518,114 @@
             text-shadow: 0 0 10px rgba(229, 0, 0, 0.5);
         }
 
+        /* Gift glowing highlight effects */
+        .gift-glow {
+            position: relative;
+            overflow: visible;
+        }
+
+        .gift-glow::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(45deg, #e50000, #ff3333, #e50000, #cc0000);
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            animation: gift-pulse 3s ease-in-out infinite;
+            filter: blur(10px);
+        }
+
+        .gift-glow:hover::after {
+            opacity: 0.4;
+        }
+
+        @keyframes gift-pulse {
+            0%, 100% {
+                opacity: 0.2;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.6;
+                transform: scale(1.05);
+            }
+        }
+
+        /* Enhanced floating icons with better animations */
+        .floating-icon {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(0, 0, 0, 0.9);
+            text-shadow: 0 0 15px rgba(229, 0, 0, 0.8);
+            z-index: 1;
+            animation: enhanced-float 8s ease-in-out infinite;
+            filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.8));
+            transition: all 0.3s ease;
+        }
+
+        .floating-icon:hover {
+            color: #000000;
+            text-shadow: 0 0 25px rgba(229, 0, 0, 1);
+            transform: scale(1.2);
+            filter: drop-shadow(0 0 10px rgba(0, 0, 0, 1));
+        }
+
+        @keyframes enhanced-float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg) scale(1);
+            }
+            25% {
+                transform: translateY(-15px) rotate(5deg) scale(1.05);
+            }
+            50% {
+                transform: translateY(-10px) rotate(0deg) scale(1.1);
+            }
+            75% {
+                transform: translateY(-20px) rotate(-5deg) scale(1.05);
+            }
+        }
+
+        /* Fix floating icon positions */
+        .floating-icon:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: -2s;
+        }
+
+        .floating-icon:nth-child(2) {
+            top: 30%;
+            right: 15%;
+            animation-delay: -5s;
+        }
+
+        .floating-icon:nth-child(3) {
+            bottom: 25%;
+            left: 20%;
+            animation-delay: -8s;
+        }
+
+        .floating-icon:nth-child(4) {
+            bottom: 35%;
+            right: 10%;
+            animation-delay: -11s;
+        }
+
+        .floating-icon:nth-child(5) {
+            top: 15%;
+            right: 25%;
+            animation-delay: -14s;
+        }
+
+        .floating-icon:nth-child(6) {
+            bottom: 20%;
+            right: 30%;
+            animation-delay: -17s;
+        }
+
         /* Social Icons */
         .social-icon {
             background: rgba(255, 255, 255, 0.15) !important;
@@ -685,6 +794,385 @@
         .card-glass:hover .glowing-line {
             opacity: 1;
         }
+
+
+        /* Enhanced Skill Items */
+        .skill-item {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-8px);
+        }
+
+        .skill-item:hover div {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .skill-item:hover h3 {
+            color: #e50000;
+            transform: translateX(5px);
+        }
+
+        .skill-item:hover p {
+            color: #e50000;
+        }
+
+        /* Skill level bars animation */
+        .bg-gray-200 {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-gradient-to-r {
+            position: relative;
+            animation: skillBarFill 2s ease-out forwards;
+        }
+
+        @keyframes skillBarFill {
+            from {
+                width: 0%;
+            }
+            to {
+                width: var(--skill-width, 85%);
+            }
+        }
+
+        /* Enhanced card shadows */
+        .shadow-2xl {
+            box-shadow:
+                0 25px 50px -12px rgba(0, 0, 0, 0.25),
+                0 0 0 1px rgba(255, 255, 255, 0.05);
+        }
+
+        /* Enhanced glow effects */
+        .enhanced-glow {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .enhanced-glow::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #e50000, #ff3333, #e50000, #cc0000);
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            animation: glow-pulse 2s ease-in-out infinite alternate;
+        }
+
+        .enhanced-glow:hover::before {
+            opacity: 0.3;
+        }
+
+        @keyframes glow-pulse {
+            0% {
+                opacity: 0.2;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0.4;
+                transform: scale(1.02);
+            }
+        }
+
+        /* Neon border effect */
+        .neon-border {
+            position: relative;
+            border: 2px solid transparent;
+            background: linear-gradient(45deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.9)) padding-box,
+                        linear-gradient(45deg, #e50000, #ff3333, #e50000) border-box;
+        }
+
+        /* Gradient text enhancement */
+        .gradient-text-enhanced {
+            background: linear-gradient(135deg, #e50000 0%, #ff3333 25%, #e50000 50%, #cc0000 75%, #e50000 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradient-flow 3s ease infinite;
+        }
+
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50% }
+            50% { background-position: 100% 50% }
+            100% { background-position: 0% 50% }
+        }
+
+        /* Floating animation for decorative elements */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(5deg);
+            }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Radial Orbital Skills Design */
+        .orbital-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border: 1px solid rgba(229, 0, 0, 0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .ring-1 {
+            width: 80px;
+            height: 80px;
+            animation: rotate 20s linear infinite;
+        }
+
+        .ring-2 {
+            width: 120px;
+            height: 120px;
+            animation: rotate 25s linear infinite reverse;
+        }
+
+        .ring-3 {
+            width: 160px;
+            height: 160px;
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .skill-orb {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform-origin: center;
+            animation: orbit 15s linear infinite;
+        }
+
+        .orb-1 {
+            transform: translate(-50%, -50%) translate(40px, 0);
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            transform: translate(-50%, -50%) translate(0, -60px);
+            animation-delay: -2s;
+        }
+
+        .orb-3 {
+            transform: translate(-50%, -50%) translate(-40px, 0);
+            animation-delay: -4s;
+        }
+
+        .orb-4 {
+            transform: translate(-50%, -50%) translate(0, 60px);
+            animation-delay: -6s;
+        }
+
+        .orb-5 {
+            transform: translate(-50%, -50%) translate(60px, 0);
+            animation-delay: -8s;
+        }
+
+        .orb-6 {
+            transform: translate(-50%, -50%) translate(0, -80px);
+            animation-delay: -10s;
+        }
+
+        @keyframes orbit {
+            from { transform: translate(-50%, -50%) rotate(0deg) translateX(var(--orbit-radius, 40px)) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg) translateX(var(--orbit-radius, 40px)) rotate(-360deg); }
+        }
+
+        .orb-label {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            margin-top: 8px;
+        }
+
+        .skill-orb:hover .orb-label {
+            opacity: 1;
+        }
+
+        .skill-orb:hover {
+            animation-play-state: paused;
+        }
+
+        .skill-orb:hover div {
+            transform: scale(1.2);
+            box-shadow: 0 0 15px rgba(229, 0, 0, 0.4);
+        }
+
+        /* Responsive adjustments for orbital design */
+        @media (max-width: 768px) {
+            .orbital-ring {
+                display: none;
+            }
+
+            .skill-orb {
+                position: static;
+                transform: none;
+                animation: none;
+                display: inline-block;
+                margin: 8px;
+            }
+
+            .orb-label {
+                position: static;
+                display: block;
+                opacity: 1;
+                transform: none;
+                margin: 4px 0 0 0;
+                background: rgba(229, 0, 0, 0.1);
+                color: #e50000;
+            }
+        }
+
+        /* Enhanced card animations */
+        .card-glass {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-glass::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(229, 0, 0, 0.1), transparent);
+            transition: left 0.5s ease;
+            z-index: 1;
+        }
+
+        .card-glass:hover::before {
+            left: 100%;
+        }
+
+        /* Enhanced timeline effects */
+        .timeline-item {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+        }
+
+        .timeline-item::before {
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover::before {
+            transform: scale(1.5);
+            box-shadow: 0 0 15px rgba(229, 0, 0, 0.5);
+        }
+
+        /* Pulsing glow effect for main title */
+        .main-title-glow {
+            animation: title-glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes title-glow {
+            0% {
+                text-shadow:
+                    0 0 5px rgba(229, 0, 0, 0.5),
+                    0 0 10px rgba(229, 0, 0, 0.5),
+                    0 0 15px rgba(229, 0, 0, 0.5),
+                    0 0 20px rgba(229, 0, 0, 0.5);
+            }
+            100% {
+                text-shadow:
+                    0 0 2px rgba(229, 0, 0, 0.3),
+                    0 0 5px rgba(229, 0, 0, 0.3),
+                    0 0 10px rgba(229, 0, 0, 0.3),
+                    0 0 15px rgba(229, 0, 0, 0.3),
+                    0 0 25px rgba(229, 0, 0, 0.6);
+            }
+        }
+
+        /* Enhanced project cards */
+        .project-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(229, 0, 0, 0.05), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover::after {
+            opacity: 1;
+        }
+
+        /* Enhanced skill cards with better hover effects */
+        .skill-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px) rotateX(5deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Certification cards enhancement */
+        .cert-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .cert-card::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            background: linear-gradient(45deg, #e50000, #ff3333, #e50000, #cc0000);
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .cert-card:hover::before {
+            opacity: 0.2;
+        }
     </style>
 </head>
 </head>
@@ -730,149 +1218,232 @@
     </aside>
 
     <!-- Experience Section -->
-    <section id="experience" class="py-20 bg-white relative overflow-hidden pt-32">
+    <section id="experience" class="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-black relative overflow-hidden pt-32">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 animated-gradient">My Experience</h2>
-                <div class="section-divider"></div>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white glowing-red-title">My Experience</h2>
+                <div class="section-divider bg-gradient-to-r from-red-500 to-red-600 w-20 h-1 mx-auto"></div>
+                <p class="text-gray-300 max-w-3xl mx-auto mt-4">
+                    Explore my professional journey through this interactive timeline showcasing career milestones, educational achievements, and key projects.
+                </p>
             </div>
-            
-            <!-- Education Section -->
-            <div class="card-glass p-8 rounded-2xl hover-3d mb-12 transform transition-all duration-500 hover:scale-[1.02] spin-border-container glowing-line-container">
-                <div class="spin-border"></div>
-                <div class="glowing-line glowing-line-top"></div>
-                <div class="glowing-line glowing-line-bottom"></div>
-                <div class="glowing-line glowing-line-left"></div>
-                <div class="glowing-line glowing-line-right"></div>
-                <div class="flex items-center mb-6">
-                    <div class="w-12 h-12 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mr-4 red-glow floating">
-                        <i class="fas fa-graduation-cap text-primary text-xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-primary">Education</h3>
-                </div>
-                
-                <div class="ml-16 relative">
-                    <div class="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-red-400 to-transparent"></div>
-                    <div class="relative pl-8 pb-8">
-                        <div class="absolute left-0 top-2 w-4 h-4 rounded-full bg-primary animate-pulse"></div>
-                        <h4 class="text-lg font-semibold text-black">Universitas Siber Indonesia</h4>
-                        <p class="text-sm text-gray-400 mb-2">2022 – Present | Bachelor of Digital Business</p>
-                        <div class="card-glass p-4 rounded-lg mt-3 transform transition-all duration-300 hover:translate-x-2">
-                            <p class="text-accent text-sm">Pursuing a comprehensive education in digital business strategies, marketing, and technology integration.</p>
+
+            <!-- Professional Experience Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+                <!-- Work Experience Column -->
+                <div class="bento-large bento-card bento-card-primary featured">
+                    <div class="card-glass rounded-3xl p-8 hover-3d transform transition-all duration-500 hover:scale-[1.02] relative overflow-hidden group">
+                        <div class="floating-label">Featured</div>
+                        <div class="professional-glow"></div>
+                        <div class="absolute inset-0 bg-gradient-to-br from-red-500/10 to-transparent"></div>
+                        <div class="relative z-10">
+                            <div class="flex items-center mb-8">
+                                <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center mr-4 shadow-xl group-hover:shadow-red-400/50 transition-all duration-500">
+                                    <i class="fas fa-briefcase text-white text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-white mb-2">Professional Experience</h3>
+                                    <p class="text-gray-300 text-sm">Career milestones & achievements</p>
+                                </div>
+                            </div>
+
+                        <div class="space-y-6">
+                            <!-- Experience 1 -->
+                            <div class="flex items-start space-x-4 p-4 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-red-500/50 transition-all duration-300 group/item">
+                                <div class="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-building text-white"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="text-white font-semibold text-lg mb-1">Salesman</h4>
+                                    <p class="text-red-400 text-sm mb-2">PT Sentul City Tbk • Mar 2025 – Present</p>
+                                    <p class="text-gray-300 text-sm">Property consultation and sales expertise</p>
+                                </div>
+                            </div>
+
+                            <!-- Experience 2 -->
+                            <div class="flex items-start space-x-4 p-4 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-red-500/50 transition-all duration-300 group/item">
+                                <div class="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-store text-white"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="text-white font-semibold text-lg mb-1">Business Owner</h4>
+                                    <p class="text-red-400 text-sm mb-2">Gegaiaan • Feb 2025 – Present</p>
+                                    <p class="text-gray-300 text-sm">Fashion brand entrepreneurship</p>
+                                </div>
+                            </div>
+
+                            <!-- Experience 3 -->
+                            <div class="flex items-start space-x-4 p-4 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-red-500/50 transition-all duration-300 group/item">
+                                <div class="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-camera text-white"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="text-white font-semibold text-lg mb-1">Content Creator</h4>
+                                    <p class="text-red-400 text-sm mb-2">Instagram • 2023 – Present</p>
+                                    <p class="text-gray-300 text-sm">Digital content production</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Experience Section -->
-            <div class="card-glass p-8 rounded-2xl hover-3d mb-12 transform transition-all duration-500 hover:scale-[1.02] spin-border-container glowing-line-container">
-                <div class="spin-border"></div>
-                <div class="glowing-line glowing-line-top"></div>
-                <div class="glowing-line glowing-line-bottom"></div>
-                <div class="glowing-line glowing-line-left"></div>
-                <div class="glowing-line glowing-line-right"></div>
-                <div class="flex items-center mb-6">
-                    <div class="w-12 h-12 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mr-4 red-glow floating">
-                        <i class="fas fa-briefcase text-primary text-xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-primary">Experience</h3>
-                </div>
-                
-                <div class="ml-16 relative">
-                    <div class="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-red-400 to-transparent"></div>
-                    
-                    <!-- Experience Item 1 -->
-                    <div class="relative pl-8 pb-12 group">
-                        <div class="absolute left-0 top-2 w-4 h-4 rounded-full bg-primary group-hover:animate-ping"></div>
-                        <h4 class="text-lg font-semibold text-black group-hover:text-primary transition-colors duration-300">Salesman</h4>
-                        <p class="text-sm text-gray-400 mb-2">PT Sentul City Tbk | Mar 2025 – Present | Sentul City, Bogor</p>
-                        <div class="card-glass p-4 rounded-lg mt-3 transform transition-all duration-300 group-hover:translate-x-2">
-                            <ul class="text-accent text-sm list-disc pl-5 space-y-2">
-                                <li class="transform transition-all duration-300 hover:translate-x-1">Membantu klien menemukan properti sesuai kebutuhan dan anggaran</li>
-                                <li class="transform transition-all duration-300 hover:translate-x-1">Memberikan informasi menyeluruh terkait legalitas, nilai investasi, dan proses pembelian properti</li>
-                                <li class="transform transition-all duration-300 hover:translate-x-1">Pendekatan konsultatif dan personal untuk pengalaman pembelian yang nyaman</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <!-- Experience Item 2 -->
-                    <div class="relative pl-8 pb-12 group">
-                        <div class="absolute left-0 top-2 w-4 h-4 rounded-full bg-primary group-hover:animate-ping"></div>
-                        <h4 class="text-lg font-semibold text-white group-hover:text-primary transition-colors duration-300">Business Owner</h4>
-                        <p class="text-sm text-gray-400 mb-2">Gegaiaan | Feb 2025 – Present | Kota Bogor, Indonesia</p>
-                        <div class="card-glass p-4 rounded-lg mt-3 transform transition-all duration-300 group-hover:translate-x-2">
-                            <ul class="text-accent text-sm list-disc pl-5 space-y-2">
-                                <li class="transform transition-all duration-300 hover:translate-x-1">Mendirikan brand fashion lokal yang menekankan nilai berani, autentik, dan ekspresif</li>
-                                <li class="transform transition-all duration-300 hover:translate-x-1">Menghadirkan koleksi streetwear dan casualwear untuk generasi muda</li>
-                                <li class="transform transition-all duration-300 hover:translate-x-1">Fokus pada kualitas bahan, keunikan desain, dan pengalaman berbelanja personal</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <!-- Experience Item 3 -->
-                    <div class="relative pl-8 pb-12 group">
-                        <div class="absolute left-0 top-2 w-4 h-4 rounded-full bg-primary group-hover:animate-ping"></div>
-                        <h4 class="text-lg font-semibold text-white group-hover:text-primary transition-colors duration-300">Content Creator</h4>
-                        <p class="text-sm text-gray-400 mb-2">Instagram Pribadi | 2023 – Present | Jakarta Selatan</p>
-                        <div class="card-glass p-4 rounded-lg mt-3 transform transition-all duration-300 group-hover:translate-x-2">
-                            <ul class="text-accent text-sm list-disc pl-5 space-y-2">
-                                <li class="transform transition-all duration-300 hover:translate-x-1">Membuat konten kreatif untuk membangun audiens dan awareness</li>
-                                <li class="transform transition-all duration-300 hover:translate-x-1">Mengelola media sosial dan kampanye digital</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <!-- Experience Item 4 -->
-                    <div class="relative pl-8 pb-12 group">
-                        <div class="absolute left-0 top-2 w-4 h-4 rounded-full bg-primary group-hover:animate-ping"></div>
-                        <h4 class="text-lg font-semibold text-white group-hover:text-primary transition-colors duration-300">Head of PRP Unit Coding</h4>
-                        <p class="text-sm text-gray-400 mb-2">Universitas Siber Indonesia | Des 2024 – Present</p>
-                        <div class="card-glass p-4 rounded-lg mt-3 transform transition-all duration-300 group-hover:translate-x-2">
-                            <ul class="text-accent text-sm list-disc pl-5 space-y-2">
-                                <li class="transform transition-all duration-300 hover:translate-x-1">Memimpin unit kegiatan mahasiswa seputar coding dan pengembangan</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <!-- Experience Item 5 -->
-                    <div class="relative pl-8 pb-12 group">
-                        <div class="absolute left-0 top-2 w-4 h-4 rounded-full bg-primary group-hover:animate-ping"></div>
-                        <h4 class="text-lg font-semibold text-white group-hover:text-primary transition-colors duration-300">Campus Ambassador</h4>
-                        <p class="text-sm text-gray-400 mb-2">Kontrak | Nov 2023 – Present | South Jakarta</p>
-                        <div class="card-glass p-4 rounded-lg mt-3 transform transition-all duration-300 group-hover:translate-x-2">
-                            <ul class="text-accent text-sm list-disc pl-5 space-y-2">
-                                <li class="transform transition-all duration-300 hover:translate-x-1">Mewakili brand di kampus</li>
-                                <li class="transform transition-all duration-300 hover:translate-x-1">Menjalankan promosi dan kampanye edukatif</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <!-- Experience Item 6 -->
-                    <div class="relative pl-8 pb-12 group">
-                        <div class="absolute left-0 top-2 w-4 h-4 rounded-full bg-primary group-hover:animate-ping"></div>
-                        <h4 class="text-lg font-semibold text-white group-hover:text-primary transition-colors duration-300">Member of Medinfo BEM</h4>
-                        <p class="text-sm text-gray-400 mb-2">Nov 2023 – Mar 2025 | Jakarta</p>
-                        <div class="card-glass p-4 rounded-lg mt-3 transform transition-all duration-300 group-hover:translate-x-2">
-                            <ul class="text-accent text-sm list-disc pl-5 space-y-2">
-                                <li class="transform transition-all duration-300 hover:translate-x-1">Bertanggung jawab pada desain grafis dan komunikasi informasi internal dan eksternal</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <!-- Experience Item 7 -->
-                    <div class="relative pl-8 pb-8 group">
-                        <div class="absolute left-0 top-2 w-4 h-4 rounded-full bg-primary group-hover:animate-ping"></div>
-                        <h4 class="text-lg font-semibold text-white group-hover:text-primary transition-colors duration-300">Video Editor (Intern)</h4>
-                        <p class="text-sm text-gray-400 mb-2">Sekolah Fasilitasi | Nov 2024 – Des 2024 | Jakarta</p>
-                        <div class="card-glass p-4 rounded-lg mt-3 transform transition-all duration-300 group-hover:translate-x-2">
-                            <ul class="text-accent text-sm list-disc pl-5 space-y-2">
-                                <li class="transform transition-all duration-300 hover:translate-x-1">Mengedit materi video edukatif</li>
-                            </ul>
+
+                <!-- Leadership & Education Column -->
+                <div class="bento-large bento-card bento-card-secondary">
+                    <div class="card-glass rounded-3xl p-8 hover-3d transform transition-all duration-500 hover:scale-[1.02] relative overflow-hidden group">
+                        <div class="floating-label">Academic</div>
+                        <div class="professional-glow"></div>
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent"></div>
+                        <div class="relative z-10">
+                            <div class="flex items-center mb-8">
+                                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mr-4 shadow-xl group-hover:shadow-blue-400/50 transition-all duration-500">
+                                    <i class="fas fa-graduation-cap text-white text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-white mb-2">Leadership & Education</h3>
+                                    <p class="text-gray-300 text-sm">Academic & organizational roles</p>
+                                </div>
+                            </div>
+
+                        <div class="space-y-6">
+                            <!-- Leadership 1 -->
+                            <div class="flex items-start space-x-4 p-4 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 group/item">
+                                <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-users text-white"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="text-white font-semibold text-lg mb-1">Head of PRP Unit Coding</h4>
+                                    <p class="text-blue-400 text-sm mb-2">Universitas Siber Indonesia • Dec 2024 – Present</p>
+                                    <p class="text-gray-300 text-sm">Leading coding unit activities</p>
+                                </div>
+                            </div>
+
+                            <!-- Leadership 2 -->
+                            <div class="flex items-start space-x-4 p-4 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 group/item">
+                                <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-bullhorn text-white"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="text-white font-semibold text-lg mb-1">Campus Ambassador</h4>
+                                    <p class="text-blue-400 text-sm mb-2">Kontrak • Nov 2023 – Present</p>
+                                    <p class="text-gray-300 text-sm">Brand representation & promotion</p>
+                                </div>
+                            </div>
+
+                            <!-- Education -->
+                            <div class="flex items-start space-x-4 p-4 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 group/item">
+                                <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-university text-white"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="text-white font-semibold text-lg mb-1">Digital Business Student</h4>
+                                    <p class="text-blue-400 text-sm mb-2">Universitas Siber Indonesia • 2022 – Present</p>
+                                    <p class="text-gray-300 text-sm">Bachelor's degree in progress</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
+            <!-- Skills & Certifications Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+                <!-- Technical Skills -->
+                <div class="bento-large bento-card bento-card-success">
+                    <div class="card-glass rounded-3xl p-8 hover-3d transform transition-all duration-500 hover:scale-[1.02] relative overflow-hidden group">
+                        <div class="floating-label">Skills</div>
+                        <div class="professional-glow"></div>
+                        <div class="absolute inset-0 bg-gradient-to-br from-green-500/10 to-transparent"></div>
+                        <div class="relative z-10">
+                            <div class="flex items-center mb-8">
+                                <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mr-4 shadow-xl group-hover:shadow-green-400/50 transition-all duration-500">
+                                    <i class="fas fa-tools text-white text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-white mb-2">Technical Skills</h3>
+                                    <p class="text-gray-300 text-sm">Core competencies</p>
+                                </div>
+                            </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="text-center p-4 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-green-500/50 transition-all duration-300 group/item">
+                                <i class="fas fa-bullhorn text-green-400 text-2xl mb-2 group-hover:animate-bounce"></i>
+                                <h4 class="text-white font-semibold text-sm">Digital Marketing</h4>
+                                <div class="w-full bg-gray-700 rounded-full h-1 mt-2">
+                                    <div class="w-5/6 h-full bg-gradient-to-r from-green-500 to-green-600 rounded-full"></div>
+                                </div>
+                            </div>
+                            <div class="text-center p-4 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-green-500/50 transition-all duration-300 group/item">
+                                <i class="fas fa-chart-line text-green-400 text-2xl mb-2 group-hover:animate-bounce"></i>
+                                <h4 class="text-white font-semibold text-sm">Data Analysis</h4>
+                                <div class="w-full bg-gray-700 rounded-full h-1 mt-2">
+                                    <div class="w-4/5 h-full bg-gradient-to-r from-green-500 to-green-600 rounded-full"></div>
+                                </div>
+                            </div>
+                            <div class="text-center p-4 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-green-500/50 transition-all duration-300 group/item">
+                                <i class="fas fa-film text-green-400 text-2xl mb-2 group-hover:animate-bounce"></i>
+                                <h4 class="text-white font-semibold text-sm">Video Production</h4>
+                                <div class="w-full bg-gray-700 rounded-full h-1 mt-2">
+                                    <div class="w-5/6 h-full bg-gradient-to-r from-green-500 to-green-600 rounded-full"></div>
+                                </div>
+                            </div>
+                            <div class="text-center p-4 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-green-500/50 transition-all duration-300 group/item">
+                                <i class="fas fa-users text-green-400 text-2xl mb-2 group-hover:animate-bounce"></i>
+                                <h4 class="text-white font-semibold text-sm">Leadership</h4>
+                                <div class="w-full bg-gray-700 rounded-full h-1 mt-2">
+                                    <div class="w-5/6 h-full bg-gradient-to-r from-green-500 to-green-600 rounded-full"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certifications -->
+                <div class="bento-large bento-card bento-card-warning">
+                    <div class="card-glass rounded-3xl p-8 hover-3d transform transition-all duration-500 hover:scale-[1.02] relative overflow-hidden group">
+                        <div class="floating-label">Certified</div>
+                        <div class="professional-glow"></div>
+                        <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent"></div>
+                        <div class="relative z-10">
+                            <div class="flex items-center mb-8">
+                                <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mr-4 shadow-xl group-hover:shadow-purple-400/50 transition-all duration-500">
+                                    <i class="fas fa-certificate text-white text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-white mb-2">Certifications</h3>
+                                    <p class="text-gray-300 text-sm">Professional credentials</p>
+                                </div>
+                            </div>
+
+                        <div class="space-y-4">
+                            <div class="p-4 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300 group/item">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-video text-purple-400 text-lg mr-3"></i>
+                                    <h4 class="text-white font-semibold">Content Creator</h4>
+                                </div>
+                                <p class="text-purple-400 text-sm">Mentorbox Indonesia</p>
+                                <p class="text-gray-300 text-sm mt-1">Social Media & Content Strategy</p>
+                            </div>
+                            <div class="p-4 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300 group/item">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-bullhorn text-purple-400 text-lg mr-3"></i>
+                                    <h4 class="text-white font-semibold">Digital Marketing</h4>
+                                </div>
+                                <p class="text-purple-400 text-sm">Mentorbox Indonesia</p>
+                                <p class="text-gray-300 text-sm mt-1">SEO & Campaign Management</p>
+                            </div>
+                            <div class="p-4 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300 group/item">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-database text-purple-400 text-lg mr-3"></i>
+                                    <h4 class="text-white font-semibold">Data Science</h4>
+                                </div>
+                                <p class="text-purple-400 text-sm">Green Academy</p>
+                                <p class="text-gray-300 text-sm mt-1">Analytics & Machine Learning</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Certifications Section -->
             <div class="card-glass p-8 rounded-2xl hover-3d mb-12 transform transition-all duration-500 hover:scale-[1.02] spin-border-container glowing-line-container">
                 <div class="spin-border"></div>
@@ -884,41 +1455,41 @@
                     <div class="w-12 h-12 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mr-4 red-glow floating">
                         <i class="fas fa-certificate text-primary text-xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-primary">Certifications</h3>
+                    <h3 class="text-2xl font-bold text-primary gift-glow">Certifications</h3>
                 </div>
-                
+
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
                     <!-- Certification 1 -->
-                    <div class="card-glass p-5 rounded-lg transform transition-all duration-300 hover:translate-y-[-5px] hover:shadow-[0_0_15px_rgba(229,0,0,0.3)]">
+                    <div class="card-glass p-5 rounded-lg transform transition-all duration-300 hover:translate-y-[-5px] hover:shadow-[0_0_15px_rgba(229,0,0,0.3)] cert-card">
                         <div class="flex items-center mb-3">
                             <div class="w-10 h-10 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mr-3">
                                 <i class="fas fa-video text-primary"></i>
                             </div>
                             <h4 class="text-lg font-semibold text-black">Content Creator</h4>
                         </div>
-                        <p class="text-sm text-gray-400 mb-1">Mentorbox Indonesia</p>
+                        <p class="text-sm text-gray-700 mb-1">Mentorbox Indonesia</p>
                         <ul class="text-accent text-sm list-disc pl-5 space-y-1">
                             <li>Social Media Content Creation</li>
                             <li>Engagement & Awareness Strategy</li>
                         </ul>
                     </div>
-                    
+
                     <!-- Certification 2 -->
-                    <div class="card-glass p-5 rounded-lg transform transition-all duration-300 hover:translate-y-[-5px] hover:shadow-[0_0_15px_rgba(229,0,0,0.3)]">
+                    <div class="card-glass p-5 rounded-lg transform transition-all duration-300 hover:translate-y-[-5px] hover:shadow-[0_0_15px_rgba(229,0,0,0.3)] cert-card">
                         <div class="flex items-center mb-3">
                             <div class="w-10 h-10 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mr-3">
                                 <i class="fas fa-bullhorn text-primary"></i>
                             </div>
                             <h4 class="text-lg font-semibold text-black">Digital Marketing</h4>
                         </div>
-                        <p class="text-sm text-gray-400 mb-1">Mentorbox Indonesia</p>
+                        <p class="text-sm text-gray-700 mb-1">Mentorbox Indonesia</p>
                         <ul class="text-accent text-sm list-disc pl-5 space-y-1">
                             <li>Google Site Development</li>
                             <li>Keyword Research</li>
                             <li>Produk Knowledge Presentation</li>
                         </ul>
                     </div>
-                    
+
                     <!-- Certification 3 -->
                     <div class="card-glass p-5 rounded-lg transform transition-all duration-300 hover:translate-y-[-5px] hover:shadow-[0_0_15px_rgba(229,0,0,0.3)]">
                         <div class="flex items-center mb-3">
@@ -927,7 +1498,7 @@
                             </div>
                             <h4 class="text-lg font-semibold text-black">Data Science</h4>
                         </div>
-                        <p class="text-sm text-gray-400 mb-1">Green Academy</p>
+                        <p class="text-sm text-gray-700 mb-1">Green Academy</p>
                         <ul class="text-accent text-sm list-disc pl-5 space-y-1">
                             <li>Data Analysis, Data Mining, Entry</li>
                             <li>Web Application Development (Healthcare prediction)</li>
@@ -936,7 +1507,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Skills Section -->
             <div class="card-glass p-8 rounded-2xl hover-3d transform transition-all duration-500 hover:scale-[1.02] spin-border-container glowing-line-container">
                 <div class="spin-border"></div>
@@ -948,9 +1519,9 @@
                     <div class="w-12 h-12 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mr-4 red-glow floating">
                         <i class="fas fa-tools text-primary text-xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-primary">Skills</h3>
+                    <h3 class="text-2xl font-bold text-primary gift-glow">Skills</h3>
                 </div>
-                
+
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
                     <div class="skill-card group">
                         <div class="card-glass p-4 rounded-lg relative overflow-hidden transform transition-all duration-300 group-hover:translate-y-[-5px]">
@@ -961,7 +1532,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="skill-card group">
                         <div class="card-glass p-4 rounded-lg relative overflow-hidden transform transition-all duration-300 group-hover:translate-y-[-5px]">
                             <div class="absolute inset-0 bg-gradient-to-r from-primary to-transparent opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
@@ -971,7 +1542,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="skill-card group">
                         <div class="card-glass p-4 rounded-lg relative overflow-hidden transform transition-all duration-300 group-hover:translate-y-[-5px]">
                             <div class="absolute inset-0 bg-gradient-to-r from-primary to-transparent opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
@@ -981,7 +1552,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="skill-card group">
                         <div class="card-glass p-4 rounded-lg relative overflow-hidden transform transition-all duration-300 group-hover:translate-y-[-5px]">
                             <div class="absolute inset-0 bg-gradient-to-r from-primary to-transparent opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
@@ -991,7 +1562,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="skill-card group">
                         <div class="card-glass p-4 rounded-lg relative overflow-hidden transform transition-all duration-300 group-hover:translate-y-[-5px]">
                             <div class="absolute inset-0 bg-gradient-to-r from-primary to-transparent opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
@@ -1001,7 +1572,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="skill-card group">
                         <div class="card-glass p-4 rounded-lg relative overflow-hidden transform transition-all duration-300 group-hover:translate-y-[-5px]">
                             <div class="absolute inset-0 bg-gradient-to-r from-primary to-transparent opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
@@ -1013,99 +1584,391 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- Projects Section -->
-            <div class="mt-16">
-                <h3 class="text-2xl font-bold mb-8 text-center animated-gradient">Featured Projects</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Project 1 -->
-                    <div class="card-glass rounded-2xl overflow-hidden hover-3d">
-                        <div class="h-48 bg-gray-800 relative overflow-hidden">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent z-10"></div>
-                            <img src="https://via.placeholder.com/600x400/151518/e50000?text=Project+1" alt="Project 1" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-lg font-semibold text-primary mb-2">Cardiovascular Disease Detection</h4>
-                            <p class="text-gray-400 text-sm mb-4">A machine learning project to predict cardiovascular diseases from patient data.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Python</span>
-                                <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Machine Learning</span>
-                                <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Data Analysis</span>
+
+            <!-- Featured Projects Showcase -->
+            <div class="bento-xl bento-card bento-card-dark featured">
+                <div class="card-glass rounded-3xl p-8 hover-3d transform transition-all duration-500 hover:scale-[1.02] relative overflow-hidden group mb-16">
+                    <div class="floating-label">Portfolio</div>
+                    <div class="professional-glow"></div>
+                    <div class="absolute inset-0 bg-gradient-to-br from-pink-500/10 to-transparent"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center mb-8">
+                            <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl flex items-center justify-center mr-4 shadow-xl group-hover:shadow-pink-400/50 transition-all duration-500">
+                                <i class="fas fa-project-diagram text-white text-2xl"></i>
                             </div>
-                            <a href="#" class="text-primary text-sm hover:underline flex items-center">
-                                <span>View Project</span>
-                                <i class="fas fa-arrow-right ml-2"></i>
+                            <div>
+                                <h3 class="text-2xl font-bold text-white mb-2">Featured Projects</h3>
+                                <p class="text-gray-300 text-sm">Real-world applications & innovations</p>
+                            </div>
+                        </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Project 1 -->
+                        <div class="bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-pink-500/50 transition-all duration-300 group/item p-6 interactive-element cursor-pointer" data-project="cardiovascular">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center mr-4">
+                                    <i class="fas fa-heartbeat text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-semibold">Cardiovascular Disease Detection</h4>
+                                    <p class="text-pink-400 text-sm">Machine Learning Project</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-sm mb-4">AI-powered prediction system for cardiovascular diseases using patient data analysis.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-2 py-1 bg-pink-500/20 text-pink-400 rounded text-xs">Python</span>
+                                <span class="px-2 py-1 bg-pink-500/20 text-pink-400 rounded text-xs">ML</span>
+                                <span class="px-2 py-1 bg-pink-500/20 text-pink-400 rounded text-xs">Healthcare</span>
+                            </div>
+                            <a href="#" class="text-pink-400 text-sm hover:text-pink-300 transition-colors flex items-center">
+                                <span>View Details</span>
+                                <i class="fas fa-arrow-right ml-2 group-hover/item:translate-x-1 transition-transform"></i>
                             </a>
                         </div>
-                    </div>
-                    
-                    <!-- Project 2 -->
-                    <div class="card-glass rounded-2xl overflow-hidden hover-3d">
-                        <div class="h-48 bg-gray-800 relative overflow-hidden">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent z-10"></div>
-                            <img src="https://via.placeholder.com/600x400/151518/e50000?text=Project+2" alt="Project 2" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-lg font-semibold text-primary mb-2">Digital Marketing Campaign</h4>
-                            <p class="text-gray-400 text-sm mb-4">Comprehensive marketing strategy for a local business that increased engagement by 45%.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Marketing</span>
-                                <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Social Media</span>
-                                <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Analytics</span>
+
+                        <!-- Project 2 -->
+                        <div class="bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-pink-500/50 transition-all duration-300 group/item p-6 interactive-element cursor-pointer" data-project="analytics">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center mr-4">
+                                    <i class="fas fa-chart-line text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-semibold">Marketing Analytics Dashboard</h4>
+                                    <p class="text-pink-400 text-sm">Business Intelligence</p>
+                                </div>
                             </div>
-                            <a href="#" class="text-primary text-sm hover:underline flex items-center">
-                                <span>View Project</span>
-                                <i class="fas fa-arrow-right ml-2"></i>
+                            <p class="text-gray-300 text-sm mb-4">Comprehensive analytics platform for tracking marketing performance and ROI.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-2 py-1 bg-pink-500/20 text-pink-400 rounded text-xs">Analytics</span>
+                                <span class="px-2 py-1 bg-pink-500/20 text-pink-400 rounded text-xs">Dashboard</span>
+                                <span class="px-2 py-1 bg-pink-500/20 text-pink-400 rounded text-xs">Business</span>
+                            </div>
+                            <a href="#" class="text-pink-400 text-sm hover:text-pink-300 transition-colors flex items-center">
+                                <span>View Details</span>
+                                <i class="fas fa-arrow-right ml-2 group-hover/item:translate-x-1 transition-transform"></i>
                             </a>
                         </div>
-                    </div>
-                    
-                    <!-- Project 3 -->
-                    <div class="card-glass rounded-2xl overflow-hidden hover-3d">
-                        <div class="h-48 bg-gray-800 relative overflow-hidden">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent z-10"></div>
-                            <img src="https://via.placeholder.com/600x400/151518/e50000?text=Project+3" alt="Project 3" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-lg font-semibold text-primary mb-2">Video Production Series</h4>
-                            <p class="text-gray-400 text-sm mb-4">Educational video series about digital business trends and technologies.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Video Editing</span>
-                                <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Content Creation</span>
-                                <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Storytelling</span>
+
+                        <!-- Project 3 -->
+                        <div class="bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-pink-500/50 transition-all duration-300 group/item p-6 interactive-element cursor-pointer" data-project="canvas">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center mr-4">
+                                    <i class="fas fa-palette text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-semibold">Interactive Digital Canvas</h4>
+                                    <p class="text-pink-400 text-sm">Creative Web App</p>
+                                </div>
                             </div>
-                            <a href="#" class="text-primary text-sm hover:underline flex items-center">
-                                <span>View Project</span>
-                                <i class="fas fa-arrow-right ml-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <!-- Project 4 - Digital Canvas -->
-                    <div class="card-glass rounded-2xl overflow-hidden hover-3d">
-                        <div class="h-48 bg-gray-800 relative overflow-hidden">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent z-10"></div>
-                            <img src="https://via.placeholder.com/600x400/151518/00ff88?text=Digital+Canvas" alt="Digital Canvas Project" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-lg font-semibold text-primary mb-2">Interactive Digital Canvas</h4>
-                            <p class="text-gray-400 text-sm mb-4">A creative web-based drawing application with real-time drawing tools and effects.</p>
+                            <p class="text-gray-300 text-sm mb-4">Real-time collaborative drawing application with advanced brush tools and effects.</p>
                             <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">HTML5</span>
-                                <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">CSS3</span>
-                                <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">JavaScript</span>
-                                <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Canvas API</span>
+                                <span class="px-2 py-1 bg-pink-500/20 text-pink-400 rounded text-xs">HTML5</span>
+                                <span class="px-2 py-1 bg-pink-500/20 text-pink-400 rounded text-xs">Canvas API</span>
+                                <span class="px-2 py-1 bg-pink-500/20 text-pink-400 rounded text-xs">JavaScript</span>
                             </div>
-                            <a href="Canvas.html" class="text-primary text-sm hover:underline flex items-center group">
+                            <a href="canvas.html" class="text-pink-400 text-sm hover:text-pink-300 transition-colors flex items-center group">
                                 <span>Try Canvas</span>
-                                <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                                <i class="fas fa-arrow-right ml-2 group-hover/item:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
+
+                        <!-- Project 4 -->
+                        <div class="bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-pink-500/50 transition-all duration-300 group/item p-6 interactive-element cursor-pointer" data-project="video-series">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center mr-4">
+                                    <i class="fas fa-video text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-semibold">Educational Video Series</h4>
+                                    <p class="text-pink-400 text-sm">Content Production</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-sm mb-4">Professional video content series explaining digital business concepts and trends.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-2 py-1 bg-pink-500/20 text-pink-400 rounded text-xs">Video</span>
+                                <span class="px-2 py-1 bg-pink-500/20 text-pink-400 rounded text-xs">Education</span>
+                                <span class="px-2 py-1 bg-pink-500/20 text-pink-400 rounded text-xs">Production</span>
+                            </div>
+                            <a href="#" class="text-pink-400 text-sm hover:text-pink-300 transition-colors flex items-center">
+                                <span>View Series</span>
+                                <i class="fas fa-arrow-right ml-2 group-hover/item:translate-x-1 transition-transform"></i>
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Fixed Floating Action Button -->
+            <div class="fixed bottom-8 right-8 z-50">
+                <button id="experienceFAB" class="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center shadow-2xl hover:shadow-red-400/50 transition-all duration-500 hover:scale-110 group floating">
+                    <i class="fas fa-rocket text-white text-xl group-hover:rotate-12 transition-transform duration-300"></i>
+                </button>
+                <div class="absolute bottom-20 right-0 bg-gray-800 text-white p-4 rounded-xl shadow-xl opacity-0 pointer-events-none transition-all duration-300 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 whitespace-nowrap">
+                    <p class="text-sm font-semibold">Quick Actions</p>
+                    <div class="flex flex-col space-y-2 mt-2">
+                        <button class="text-left text-xs hover:text-red-400 transition-colors">View Portfolio</button>
+                        <button class="text-left text-xs hover:text-red-400 transition-colors">Download Resume</button>
+                        <button class="text-left text-xs hover:text-red-400 transition-colors">Contact Me</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
+
+    <!-- News Section -->
+    <section id="news" class="py-20 bg-white relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 animated-gradient">Latest News</h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <!-- News Carousel -->
+            <div class="relative max-w-6xl mx-auto">
+                <div class="carousel-container overflow-hidden rounded-2xl">
+                    <div class="carousel-wrapper flex transition-transform duration-500 ease-in-out" id="carouselWrapper">
+                        <!-- News Item 1 -->
+                        <div class="carousel-slide flex-shrink-0 w-full relative">
+                            <div class="card-glass p-6 rounded-2xl hover-3d h-96 relative overflow-hidden group">
+                                <div class="absolute inset-0 bg-gradient-to-br from-red-500/10 to-transparent"></div>
+                                <div class="relative z-10 h-full flex flex-col">
+                                    <!-- Image Section -->
+                                    <div class="mb-4 flex-shrink-0">
+                                        <div class="w-full h-40 bg-gradient-to-br from-red-100 to-red-200 rounded-xl flex items-center justify-center relative overflow-hidden">
+                                            <div class="absolute inset-0 bg-gradient-to-br from-red-500/20 to-transparent"></div>
+                                            <div class="text-center relative z-10">
+                                                <i class="fas fa-trophy text-red-500 text-4xl mb-2"></i>
+                                                <p class="text-red-600 font-semibold text-sm">Competition Victory</p>
+                                            </div>
+                                            <!-- Placeholder for actual image -->
+                                            <div class="absolute inset-0 bg-gradient-to-br from-red-400/10 to-red-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Content Section -->
+                                    <div class="flex-1 flex flex-col justify-between">
+                                        <div>
+                                            <h3 class="text-xl font-bold text-primary mb-3">Fintech Competition Victory</h3>
+                                            <p class="text-accent text-sm mb-4 leading-relaxed">
+                                                Cyber University student successfully dominates international fintech competition in Malaysia, showcasing exceptional talent in financial technology innovation.
+                                            </p>
+                                        </div>
+                                        <div class="flex justify-between items-center">
+                                            <a href="https://news.republika.co.id/berita/t2vmwr472/mahasiswa-cyber-university-ini-sukses-gebrak-kompetisi-fintech-internasional-di-malaysia"
+                                               target="_blank" class="glowing-button px-4 py-2 bg-primary text-white rounded-lg font-medium hover:bg-opacity-90 transition text-sm">
+                                                Read Full Story
+                                            </a>
+                                            <span class="text-xs text-gray-400">2024</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Enhanced Overlay -->
+                                <div class="news-overlay absolute inset-0 bg-black bg-opacity-85 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                                    <div class="text-center text-white p-6 max-w-md">
+                                        <h4 class="text-lg font-bold mb-3 text-red-400">🏆 Breaking News!</h4>
+                                        <p class="text-sm leading-relaxed">Zefanya Williams from Cyber University wins international fintech competition in Malaysia, showcasing exceptional talent in financial technology innovation and establishing valuable international connections.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- News Item 2 -->
+                        <div class="carousel-slide flex-shrink-0 w-full relative">
+                            <div class="card-glass p-6 rounded-2xl hover-3d h-96 relative overflow-hidden group">
+                                <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent"></div>
+                                <div class="relative z-10 h-full flex flex-col">
+                                    <!-- Image Section -->
+                                    <div class="mb-4 flex-shrink-0">
+                                        <div class="w-full h-40 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl flex items-center justify-center relative overflow-hidden">
+                                            <div class="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-transparent"></div>
+                                            <div class="text-center relative z-10">
+                                                <img src="assets/sidonews.png" alt="Sindo News" class="w-16 h-16 object-contain mb-2">
+                                                <p class="text-blue-600 font-semibold text-sm">Networking</p>
+                                            </div>
+                                            <!-- Placeholder for actual image -->
+                                            <div class="absolute inset-0 bg-gradient-to-br from-blue-400/10 to-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Content Section -->
+                                    <div class="flex-1 flex flex-col justify-between">
+                                        <div>
+                                            <h3 class="text-xl font-bold text-primary mb-3">International Networking Success</h3>
+                                            <p class="text-accent text-sm mb-4 leading-relaxed">
+                                                Beyond winning, Cyber University student builds valuable international connections in Malaysia, establishing professional networks for future collaborations.
+                                            </p>
+                                        </div>
+                                        <div class="flex justify-between items-center">
+                                            <a href="https://edukasi.sindonews.com/read/1623473/211/tak-hanya-gelar-juara-mahasiswa-cyber-university-ini-sukses-bangun-jejaring-internasional-di-malaysia-1758528568"
+                                               target="_blank" class="glowing-button px-4 py-2 bg-primary text-white rounded-lg font-medium hover:bg-opacity-90 transition text-sm">
+                                                Read Full Story
+                                            </a>
+                                            <span class="text-xs text-gray-400">2024</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Enhanced Overlay -->
+                                <div class="news-overlay absolute inset-0 bg-black bg-opacity-85 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                                    <div class="text-center text-white p-6 max-w-md">
+                                        <h4 class="text-lg font-bold mb-3 text-blue-400">🌐 Networking Achievement!</h4>
+                                        <p class="text-sm leading-relaxed">Not only securing victory, Zefanya Williams successfully establishes international professional networks during the Malaysia fintech competition, opening doors for future collaborations.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- News Item 3 -->
+                        <div class="carousel-slide flex-shrink-0 w-full relative">
+                            <div class="card-glass p-6 rounded-2xl hover-3d h-96 relative overflow-hidden group">
+                                <div class="absolute inset-0 bg-gradient-to-br from-green-500/10 to-transparent"></div>
+                                <div class="relative z-10 h-full flex flex-col">
+                                    <!-- Image Section -->
+                                    <div class="mb-4 flex-shrink-0">
+                                        <div class="w-full h-40 bg-gradient-to-br from-green-100 to-green-200 rounded-xl flex items-center justify-center relative overflow-hidden">
+                                            <div class="absolute inset-0 bg-gradient-to-br from-green-500/20 to-transparent"></div>
+                                            <div class="text-center relative z-10">
+                                                <img src="assets/milenial.png" alt="Milenial News" class="w-16 h-16 object-contain mb-2">
+                                                <p class="text-green-600 font-semibold text-sm">Recognition</p>
+                                            </div>
+                                            <!-- Placeholder for actual image -->
+                                            <div class="absolute inset-0 bg-gradient-to-br from-green-400/10 to-green-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Content Section -->
+                                    <div class="flex-1 flex flex-col justify-between">
+                                        <div>
+                                            <h3 class="text-xl font-bold text-primary mb-3">Outstanding Achievement</h3>
+                                            <p class="text-accent text-sm mb-4 leading-relaxed">
+                                                Cyber University student's remarkable success in international fintech competition highlighted across multiple media outlets and platforms.
+                                            </p>
+                                        </div>
+                                        <div class="flex justify-between items-center">
+                                            <a href="https://milenianews.com/news/tak-hanya-gelar-juara-mahasiswa-cyber-university-ini-sukses-bangun-jejaring-internasional-di-malaysia/"
+                                               target="_blank" class="glowing-button px-4 py-2 bg-primary text-white rounded-lg font-medium hover:bg-opacity-90 transition text-sm">
+                                                Read Full Story
+                                            </a>
+                                            <span class="text-xs text-gray-400">2024</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Enhanced Overlay -->
+                                <div class="news-overlay absolute inset-0 bg-black bg-opacity-85 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                                    <div class="text-center text-white p-6 max-w-md">
+                                        <h4 class="text-lg font-bold mb-3 text-green-400">⭐ Featured Achievement!</h4>
+                                        <p class="text-sm leading-relaxed">Zefanya Williams' outstanding performance in the Malaysia fintech competition earns widespread recognition and builds lasting international connections in the industry.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <button class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 text-primary p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110" id="prevBtn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 text-primary p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110" id="nextBtn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+
+                <!-- Indicators -->
+                <div class="flex justify-center mt-6 space-x-2">
+                    <button class="carousel-indicator w-3 h-3 rounded-full bg-gray-300 hover:bg-primary transition-colors duration-300" data-slide="0"></button>
+                    <button class="carousel-indicator w-3 h-3 rounded-full bg-gray-300 hover:bg-primary transition-colors duration-300" data-slide="1"></button>
+                    <button class="carousel-indicator w-3 h-3 rounded-full bg-primary transition-colors duration-300" data-slide="2"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Carousel Styles -->
+    <style>
+        .carousel-container {
+            position: relative;
+        }
+
+        .carousel-wrapper {
+            width: 300%; /* 3 slides */
+        }
+
+        .carousel-slide {
+            width: calc(100% / 3); /* Each slide takes 1/3 of container */
+        }
+
+        .carousel-indicator.active {
+            background-color: #e50000 !important;
+        }
+
+        .news-overlay {
+            backdrop-filter: blur(5px);
+        }
+
+        @media (max-width: 768px) {
+            .carousel-slide {
+                width: 100%;
+            }
+
+            .carousel-wrapper {
+                width: 300%;
+            }
+        }
+    </style>
+
+    <!-- News Carousel Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const carouselWrapper = document.getElementById('carouselWrapper');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const indicators = document.querySelectorAll('.carousel-indicator');
+
+            let currentSlide = 0;
+            const totalSlides = 3;
+
+            function updateCarousel() {
+                const translateX = -currentSlide * (100 / totalSlides);
+                carouselWrapper.style.transform = `translateX(${translateX}%)`;
+
+                // Update indicators
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === currentSlide);
+                });
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateCarousel();
+            }
+
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                updateCarousel();
+            }
+
+            function goToSlide(slideIndex) {
+                currentSlide = slideIndex;
+                updateCarousel();
+            }
+
+            // Event listeners
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => goToSlide(index));
+            });
+
+            // Auto-play (optional)
+            setInterval(nextSlide, 5000);
+
+            // Initialize
+            updateCarousel();
+        });
+    </script>
 
     <!-- Floating Icons -->
     <div class="floating-icon" style="top: 20%; left: 10%; animation-delay: -2s;">
@@ -1128,36 +1991,36 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-white py-10 relative overflow-hidden">
+    <footer class="py-10 relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
-                    <div class="text-2xl font-bold animated-gradient">Zefanya Williams</div>
-                    <p class="text-gray-600 text-sm mt-2">Digital Business Student & Content Creator</p>
+                    <div class="text-2xl font-bold text-white glowing-red-title">Zefanya Williams</div>
+                    <p class="text-gray-300 text-sm mt-2">Digital Business Student & Content Creator</p>
                 </div>
 
                 <div class="flex space-x-6">
-                    <a href="#" class="text-gray-600 hover:text-primary transition">
-                        <i class="fab fa-linkedin-in"></i>
+                    <a href="https://www.linkedin.com/in/zefanya-williams" target="_blank" class="text-gray-300 hover:text-red-400 transition-colors">
+                        <i class="fab fa-linkedin-in text-xl"></i>
                     </a>
-                    <a href="#" class="text-gray-600 hover:text-primary transition">
-                        <i class="fab fa-github"></i>
+                    <a href="https://github.com/zefanya-williams" target="_blank" class="text-gray-300 hover:text-red-400 transition-colors">
+                        <i class="fab fa-github text-xl"></i>
                     </a>
-                    <a href="#" class="text-gray-600 hover:text-primary transition">
-                        <i class="fab fa-instagram"></i>
+                    <a href="https://www.instagram.com/zefanya.williams/" target="_blank" class="text-gray-300 hover:text-red-400 transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
                     </a>
-                    <a href="#" class="text-gray-600 hover:text-primary transition">
-                        <i class="fab fa-youtube"></i>
+                    <a href="https://www.youtube.com/@zefanya-williams" target="_blank" class="text-gray-300 hover:text-red-400 transition-colors">
+                        <i class="fab fa-youtube text-xl"></i>
                     </a>
                 </div>
             </div>
 
-            <div class="border-t border-gray-300 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-600 text-sm mb-4 md:mb-0"> 2025 Zefanya Williams. All rights reserved.</p>
+            <div class="border-t border-gray-700 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-300 text-sm mb-4 md:mb-0">© 2025 Zefanya Williams. All rights reserved.</p>
                 <div class="flex space-x-6">
-                    <a href="#" class="text-gray-600 hover:text-primary text-sm transition">Privacy Policy</a>
-                    <a href="#" class="text-gray-600 hover:text-primary text-sm transition">Terms of Service</a>
-                    <a href="#" class="text-gray-600 hover:text-primary text-sm transition">Sitemap</a>
+                    <a href="#" class="text-gray-300 hover:text-red-400 text-sm transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-gray-300 hover:text-red-400 text-sm transition-colors">Terms of Service</a>
+                    <a href="#" class="text-gray-300 hover:text-red-400 text-sm transition-colors">Sitemap</a>
                 </div>
             </div>
         </div>
@@ -1258,7 +2121,136 @@
 
             // Jalankan saat di-scroll
             window.addEventListener('scroll', handleScrollAnimation);
+
+            // Floating Action Button functionality
+            const experienceFAB = document.getElementById('experienceFAB');
+            if (experienceFAB) {
+                experienceFAB.addEventListener('click', function() {
+                    // Smooth scroll to top
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+
+            // Add entrance animations to cards
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all main cards
+            const mainCards = document.querySelectorAll('.card-glass');
+            mainCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = `all 0.6s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.1}s`;
+                observer.observe(card);
+            });
+
+            // Add hover effects to project cards
+            const projectCards = document.querySelectorAll('[class*="group/item"]');
+            projectCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px) scale(1.02)';
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Interactive elements functionality for experience page
+            const interactiveElements = document.querySelectorAll('.interactive-element');
+            interactiveElements.forEach(element => {
+                element.addEventListener('click', function() {
+                    // Add click animation
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+
+                    // Get data attribute
+                    const projectType = this.getAttribute('data-project');
+
+                    if (projectType) {
+                        // Show feedback
+                        showInteractiveFeedback(projectType, this);
+                    }
+                });
+
+                // Add keyboard support
+                element.setAttribute('tabindex', '0');
+                element.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+            });
+
+            // Function to show interactive feedback for experience page
+            function showInteractiveFeedback(type, element) {
+                const feedbackMessages = {
+                    'cardiovascular': '🫀 AI-powered healthcare innovation project',
+                    'analytics': '📊 Business intelligence and analytics platform',
+                    'canvas': '🎨 Interactive web-based drawing application',
+                    'video-series': '🎬 Professional educational content production'
+                };
+
+                const message = feedbackMessages[type] || 'Interactive element clicked!';
+
+                // Create temporary feedback element
+                const feedback = document.createElement('div');
+                feedback.textContent = message;
+                feedback.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: rgba(236, 72, 153, 0.9);
+                    color: white;
+                    padding: 20px 30px;
+                    border-radius: 10px;
+                    font-size: 16px;
+                    font-weight: 600;
+                    z-index: 10000;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                    animation: fadeInOut 2s ease-in-out;
+                `;
+
+                document.body.appendChild(feedback);
+
+                // Remove feedback after animation
+                setTimeout(() => {
+                    feedback.remove();
+                }, 2000);
+            }
+
+            // Add CSS for feedback animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeInOut {
+                    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+                    20% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                    80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                    100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+                }
+            `;
+            document.head.appendChild(style);
         });
     </script>
+
+    <script src="js/theme.js"></script>
 </body>
 </html>
