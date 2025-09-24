@@ -4,403 +4,238 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zefanya Williams - Experience</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        dark: '#ffffff',
-                        primary: '#e50000',
-                        secondary: '#f5f5f5',
-                        accent: '#000000'
-                    }
-                }
-            }
-        }
-    </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="css/bento-grid.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: #ffffff;
-            color: #000000;
+            background: url('assets/2.png') center/cover no-repeat fixed;
+            color: #ffffff;
             overflow-x: hidden;
-        }
-
-        .animated-gradient {
-            background: linear-gradient(270deg, #e50000, #ff3333, #e50000, #cc0000, #e50000);
-            background-size: 400% 400%;
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            animation: gradient-animation 3s ease infinite;
-        }
-
-        @keyframes gradient-animation {
-            0% { background-position: 0% 50% }
-            50% { background-position: 100% 50% }
-            100% { background-position: 0% 50% }
-        }
-
-        .floating {
-            animation: floating 6s ease-in-out infinite;
-        }
-
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-
-        .glowing-button {
             position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(229, 0, 0, 0.3);
         }
 
-        .glowing-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 20px rgba(229, 0, 0, 0.5);
-        }
-
-        .glowing-button::after {
+        /* Decorative background overlays */
+        body::before {
             content: '';
-            position: absolute;
-            top: -10%;
-            left: -100%;
-            width: 50%;
-            height: 120%;
-            background: rgba(255, 255, 255, 0.2);
-            transform: rotate(45deg);
-            transition: all 0.5s ease;
-        }
-
-        .glowing-button:hover::after {
-            left: 150%;
-        }
-
-        .red-glow {
-            box-shadow: 0 0 15px rgba(229, 0, 0, 0.5);
-            transition: box-shadow 0.3s ease;
-        }
-
-        .red-glow:hover {
-            box-shadow: 0 0 25px rgba(229, 0, 0, 0.8);
-        }
-
-        .particle-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .particle {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(229, 0, 0, 0.1);
-            animation: float 15s infinite linear;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-1000px) rotate(720deg);
-                opacity: 0;
-            }
-        }
-
-        .grid-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            background:
-                linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="rgba(229,0,0,0.03)" stroke-width="1"/></svg>');
-            background-size: 50px 50px;
-        }
-
-        .scanline {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: linear-gradient(
-                to bottom,
-                rgba(255, 255, 255, 0) 0%,
-                rgba(229, 0, 0, 0.02) 50%,
-                rgba(255, 255, 255, 0) 100%
-            );
-            background-size: 100% 8px;
-            animation: scanline 4s linear infinite;
+            background: url('assets/3.png') center/cover no-repeat;
+            mix-blend-mode: overlay;
+            opacity: 0.1;
+            z-index: -3;
             pointer-events: none;
         }
 
-        @keyframes scanline {
-            0% {
-                background-position: 0 0;
-            }
-            100% {
-                background-position: 0 100%;
-            }
-        }
-
-        .glow-effect {
+        body::after {
+            content: '';
             position: fixed;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(229, 0, 0, 0.1) 0%, rgba(229, 0, 0, 0) 70%);
-            filter: blur(20px);
-            animation: moveGlow 20s infinite alternate ease-in-out;
-            z-index: -1;
-        }
-
-        @keyframes moveGlow {
-            0% {
-                transform: translate(10%, 10%);
-            }
-            25% {
-                transform: translate(80%, 30%);
-            }
-            50% {
-                transform: translate(50%, 70%);
-            }
-            75% {
-                transform: translate(20%, 40%);
-            }
-            100% {
-                transform: translate(70%, 20%);
-            }
-        }
-
-        .logo-circle:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 25px rgba(229, 0, 0, 0.8);
-        }
-
-        /* Profile Image Circle with Particles */
-        .profile-circle {
-            position: relative;
-            width: 280px;
-            height: 280px;
-            border-radius: 50%;
-            overflow: visible;
-        }
-
-        .profile-image {
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #e50000;
-            box-shadow: 0 0 25px rgba(229, 0, 0, 0.6);
-            z-index: 2;
-            position: relative;
-            transition: all 0.5s ease;
+            background: url('assets/4.png') center/cover no-repeat;
+            mix-blend-mode: multiply;
+            opacity: 0.05;
+            z-index: -2;
+            pointer-events: none;
         }
 
-        .profile-image:hover {
-            box-shadow: 0 0 35px rgba(229, 0, 0, 0.9);
-            transform: scale(1.03);
-        }
-
-        .profile-particles {
-            position: absolute;
-            top: -20px;
-            left: -20px;
-            width: calc(100% + 40px);
-            height: calc(100% + 40px);
-            z-index: 1;
-        }
-
-        .profile-particle {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: radial-gradient(circle, rgba(229, 0, 0, 0.8) 0%, rgba(229, 0, 0, 0) 70%);
-            border-radius: 50%;
-            filter: blur(1px);
-            animation: orbit 8s linear infinite;
-        }
-
-        @keyframes orbit {
-            0% {
-                transform: rotate(0deg) translateX(140px) rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg) translateX(140px) rotate(-360deg);
-            }
-        }
-
-        .glow-ring {
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            width: calc(100% + 20px);
-            height: calc(100% + 20px);
-            border-radius: 50%;
-            border: 2px solid rgba(229, 0, 0, 0.3);
-            box-shadow: 0 0 20px rgba(229, 0, 0, 0.5), inset 0 0 20px rgba(229, 0, 0, 0.5);
-            z-index: 1;
-            animation: pulse-ring 2s ease-out infinite;
-        }
-
-        @keyframes pulse-ring {
-            0% {
-                transform: scale(1);
-                opacity: 0.8;
-            }
-            50% {
-                opacity: 0.4;
-            }
-            100% {
-                transform: scale(1.05);
-                opacity: 0.8;
-            }
-        }
-
-        .digital-clock {
-            position: fixed;
-            top: 30px;
-            right: 30px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #000;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 10px 20px;
-            border-radius: 30px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-            font-family: 'Montserrat', sans-serif;
-            text-shadow: 0 0 10px rgba(229, 0, 0, 0.7);
-        }
-
-        .digital-clock .time {
-            letter-spacing: 2px;
-        }
-
-        .digital-clock .timezone {
-            font-size: 0.8em;
-            opacity: 0.8;
-            margin-left: 5px;
-        }
-
-        /* Sidebar Menu */
-        .sidebar {
+        /* Red bar decorative element */
+        .red-bar {
             position: fixed;
             top: 0;
-            left: -300px;
-            width: 280px;
-            height: 100vh;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 5px 0 25px rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            transition: all 0.3s ease-in-out;
-            padding: 20px 0;
-            overflow-y: auto;
-            padding-top: 90px;
-        }
-
-        .sidebar.open {
             left: 0;
+            width: 100%;
+            height: 8px;
+            background: url('assets/7.png') repeat-x;
+            background-size: cover;
+            z-index: 10;
         }
 
-        .sidebar-header {
-            padding: 20px;
-            border-bottom: 1px solid rgba(229, 0, 0, 0.3);
-            margin-bottom: 20px;
-        }
-
-        .sidebar-menu {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .sidebar-menu li {
-            padding: 0;
-            margin: 0;
-        }
-
-        .sidebar-menu a {
-            display: flex;
-            align-items: center;
-            padding: 15px 25px;
-            color: #000000;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 16px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .sidebar-menu a i {
-            margin-right: 15px;
-            width: 24px;
-            text-align: center;
-            color: #e50000;
-        }
-
-        .sidebar-menu a:hover {
-            background: rgba(229, 0, 0, 0.1);
+        /* Glowing text effect */
+        .glow-text {
             color: #ffffff;
-            padding-left: 30px;
+            text-shadow:
+                0 0 10px rgba(255, 255, 255, 0.8),
+                0 0 20px rgba(255, 255, 255, 0.6),
+                0 0 30px rgba(255, 255, 255, 0.4);
         }
 
-        .sidebar-menu a::before {
+        /* Floating Icons */
+        .floating-icon {
+            position: fixed;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.3);
+            text-shadow: 0 0 15px rgba(229, 0, 0, 0.5);
+            z-index: 1;
+            animation: float-around 12s ease-in-out infinite;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .floating-icon:hover {
+            color: rgba(255, 255, 255, 0.8);
+            text-shadow: 0 0 25px rgba(229, 0, 0, 1);
+            transform: scale(1.3);
+        }
+
+        @keyframes float-around {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(90deg); }
+            50% { transform: translateY(-10px) rotate(180deg); }
+            75% { transform: translateY(-30px) rotate(270deg); }
+        }
+
+        /* Timeline styles */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .timeline::after {
             content: '';
             position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
             width: 4px;
+            background: linear-gradient(to bottom, #e50000, #ff6b6b);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 2px;
+            box-shadow: 0 0 10px rgba(229, 0, 0, 0.5);
+        }
+
+        .timeline-item {
+            padding: 20px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        .timeline-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
             background: #e50000;
-            transform: scaleY(0);
-            transition: transform 0.3s ease;
+            border: 4px solid #ffffff;
+            top: 30px;
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 15px rgba(229, 0, 0, 0.7);
         }
 
-        .sidebar-menu a:hover::before {
-            transform: scaleY(1);
+        .timeline-item.left {
+            left: 0;
         }
 
-        .sidebar-menu a.active {
-            background: rgba(229, 0, 0, 0.2);
-            color: #ffffff;
-            border-left: 4px solid #e50000;
+        .timeline-item.right {
+            left: 50%;
         }
 
-        .sidebar-menu a.active i {
-            color: #ffffff;
+        .timeline-item.right::after {
+            left: -10px;
         }
 
+        .timeline-content {
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+            border-color: rgba(229, 0, 0, 0.3);
+        }
+
+        .timeline-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content .company {
+            color: #e50000;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .timeline-content .date {
+            color: #cccccc;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .timeline-content p {
+            line-height: 1.6;
+            color: #e0e0e0;
+        }
+
+        /* Mobile responsive */
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item::before {
+                left: 60px;
+                border: medium solid white;
+                border-width: 10px 10px 10px 0;
+                border-color: transparent white transparent transparent;
+            }
+
+            .timeline-item.left::after,
+            .timeline-item.right::after {
+                left: 21px;
+            }
+
+            .timeline-item.right {
+                left: 0%;
+            }
+        }
+
+        /* Navigation styles */
         .menu-toggle {
             position: fixed;
             top: 30px;
             left: 30px;
             z-index: 1100;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(0, 0, 0, 0.8);
             border: 1px solid rgba(229, 0, 0, 0.3);
-            color: #000000;
+            color: #ffffff;
             width: 50px;
             height: 50px;
             border-radius: 50%;
@@ -414,6 +249,61 @@
         .menu-toggle:hover {
             background: #e50000;
             transform: scale(1.1);
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 280px;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 5px 0 25px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            transition: all 0.3s ease-in-out;
+            padding: 20px 0;
+            overflow-y: auto;
+            padding-top: 90px;
+        }
+
+        .sidebar.open {
+            left: 0;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            padding: 15px 25px;
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        .sidebar-menu a i {
+            margin-right: 15px;
+            width: 24px;
+            text-align: center;
+            color: #e50000;
+        }
+
+        .sidebar-menu a:hover {
+            background: rgba(229, 0, 0, 0.3);
+            color: #ffffff;
+            padding-left: 30px;
+        }
+
+        .sidebar-menu a.active {
+            background: rgba(229, 0, 0, 0.5);
+            color: #ffffff;
+            border-left: 4px solid #e50000;
         }
 
         .overlay {
@@ -434,6 +324,206 @@
             visibility: visible;
         }
 
+        .digital-clock {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #ffffff;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .digital-clock .time {
+            letter-spacing: 2px;
+        }
+
+        .digital-clock .timezone {
+            font-size: 0.8em;
+            opacity: 0.8;
+            margin-left: 5px;
+        }
+
+        /* Header section */
+        .header-section {
+            text-align: center;
+            padding: 120px 20px 80px;
+            position: relative;
+        }
+
+        .header-section h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+
+        .header-section p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Section divider */
+        .section-divider {
+            width: 100%;
+            height: 20px;
+            background: url('assets/7.png') repeat-x;
+            background-size: contain;
+            margin: 40px 0;
+            opacity: 0.8;
+        }
+
+        /* Texture overlay */
+        .texture-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('assets/5.png') center/cover no-repeat;
+            mix-blend-mode: soft-light;
+            opacity: 0.08;
+            pointer-events: none;
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* News section styles */
+        .news-card {
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .news-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.7),
+                0 0 30px rgba(229, 0, 0, 0.3);
+            border-color: rgba(229, 0, 0, 0.5);
+        }
+
+        .news-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .news-card a:hover {
+            color: #ff6b6b;
+            transform: translateX(5px);
+        }
+
+        /* Project section styles */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .project-card {
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.7),
+                0 0 30px rgba(229, 0, 0, 0.3);
+            border-color: rgba(229, 0, 0, 0.5);
+        }
+
+        .project-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .project-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.3));
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .project-description {
+            color: #e0e0e0;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            color: #e50000;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: #ff6b6b;
+            transform: translateX(5px);
+        }
+
+        /* Social links */
         .social-links {
             display: flex;
             justify-content: center;
@@ -444,7 +534,7 @@
         }
 
         .social-icon {
-            color: #000000;
+            color: #ffffff;
             font-size: 20px;
             transition: all 0.3s ease;
             width: 40px;
@@ -453,737 +543,65 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(229, 0, 0, 0.1);
+            background: rgba(229, 0, 0, 0.3);
         }
 
         .social-icon:hover {
             background: #e50000;
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(229, 0, 0, 0.3);
+            box-shadow: 0 5px 15px rgba(229, 0, 0, 0.5);
         }
 
-        .social-icon i {
-            margin: 0;
+        /* Education & Certifications hover effects */
+        .certification-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(229, 0, 0, 0.2);
+            border-color: rgba(229, 0, 0, 0.5);
         }
 
-        /* Floating Animation */
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-
-        .floating {
-            animation: floating 6s ease-in-out infinite;
-        }
-
-        /* Floating Icons */
-        .floating-icon {
-            position: absolute;
-            font-size: 2rem;
-            color: rgba(0, 0, 0, 0.9);
-            text-shadow: 0 0 15px rgba(229, 0, 0, 0.8);
-            z-index: 1;
-            animation: float 6s ease-in-out infinite;
-            filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.8));
-        }
-
-        .floating-icon:hover {
-            color: #000000;
-            text-shadow: 0 0 25px rgba(229, 0, 0, 1);
-            transform: scale(1.2);
-            filter: drop-shadow(0 0 10px rgba(0, 0, 0, 1));
-        }
-
-        /* Hero Section */
-        #home {
-            position: relative;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 245, 245, 0.95) 100%);
-            backdrop-filter: blur(5px);
-        }
-
-        /* Hero Text */
-        .animated-gradient {
-            background: linear-gradient(270deg, #e50000, #ff6666, #e50000);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            animation: gradient-animation 4s ease infinite;
-            text-shadow: 0 0 15px rgba(229, 0, 0, 0.3);
-        }
-
-        .text-accent {
-            color: #000000 !important;
-            text-shadow: 0 0 10px rgba(229, 0, 0, 0.5);
-        }
-
-        /* Gift glowing highlight effects */
-        .gift-glow {
-            position: relative;
-            overflow: visible;
-        }
-
-        .gift-glow::after {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            background: linear-gradient(45deg, #e50000, #ff3333, #e50000, #cc0000);
-            border-radius: inherit;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            animation: gift-pulse 3s ease-in-out infinite;
-            filter: blur(10px);
-        }
-
-        .gift-glow:hover::after {
-            opacity: 0.4;
-        }
-
-        @keyframes gift-pulse {
-            0%, 100% {
-                opacity: 0.2;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.6;
-                transform: scale(1.05);
-            }
-        }
-
-        /* Enhanced floating icons with better animations */
-        .floating-icon {
-            position: absolute;
-            font-size: 2rem;
-            color: rgba(0, 0, 0, 0.9);
-            text-shadow: 0 0 15px rgba(229, 0, 0, 0.8);
-            z-index: 1;
-            animation: enhanced-float 8s ease-in-out infinite;
-            filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.8));
-            transition: all 0.3s ease;
-        }
-
-        .floating-icon:hover {
-            color: #000000;
-            text-shadow: 0 0 25px rgba(229, 0, 0, 1);
-            transform: scale(1.2);
-            filter: drop-shadow(0 0 10px rgba(0, 0, 0, 1));
-        }
-
-        @keyframes enhanced-float {
-            0%, 100% {
-                transform: translateY(0px) rotate(0deg) scale(1);
-            }
-            25% {
-                transform: translateY(-15px) rotate(5deg) scale(1.05);
-            }
-            50% {
-                transform: translateY(-10px) rotate(0deg) scale(1.1);
-            }
-            75% {
-                transform: translateY(-20px) rotate(-5deg) scale(1.05);
-            }
-        }
-
-        /* Fix floating icon positions */
-        .floating-icon:nth-child(1) {
-            top: 20%;
-            left: 10%;
-            animation-delay: -2s;
-        }
-
-        .floating-icon:nth-child(2) {
-            top: 30%;
-            right: 15%;
-            animation-delay: -5s;
-        }
-
-        .floating-icon:nth-child(3) {
-            bottom: 25%;
-            left: 20%;
-            animation-delay: -8s;
-        }
-
-        .floating-icon:nth-child(4) {
-            bottom: 35%;
-            right: 10%;
-            animation-delay: -11s;
-        }
-
-        .floating-icon:nth-child(5) {
-            top: 15%;
-            right: 25%;
-            animation-delay: -14s;
-        }
-
-        .floating-icon:nth-child(6) {
-            bottom: 20%;
-            right: 30%;
-            animation-delay: -17s;
-        }
-
-        /* Social Icons */
-        .social-icon {
-            background: rgba(255, 255, 255, 0.15) !important;
-            backdrop-filter: blur(5px);
-            transition: all 0.3s ease;
-        }
-
-        .social-icon:hover {
-            background: rgba(229, 0, 0, 0.7) !important;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(229, 0, 0, 0.4);
-        }
-
-        .social-icon i {
-            color: #000000 !important;
-            text-shadow: 0 0 10px rgba(229, 0, 0, 0.7);
-        }
-
-        /* Card Glass Effect */
-        .card-glass {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(229, 0, 0, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .card-glass:hover {
+        .featured-education-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(229, 0, 0, 0.3);
+            border-color: rgba(229, 0, 0, 0.5);
         }
 
-        /* Hover 3D Effect */
-        .hover-3d {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .hover-3d:hover {
-            transform: perspective(1000px) rotateX(5deg) rotateY(-5deg) translateZ(10px);
-        }
-
-        /* Section Divider */
-        .section-divider {
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(90deg, #e50000, #ff6666);
-            margin: 0 auto;
-            border-radius: 2px;
-        }
-
-        /* Skill Pills */
-        .skill-pill {
-            background: rgba(229, 0, 0, 0.1);
-            color: #e50000;
-            border: 1px solid rgba(229, 0, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .skill-pill:hover {
-            background: #e50000;
-            color: white;
-            transform: scale(1.05);
-        }
-
-        /* Timeline Items */
-        .timeline-item {
-            position: relative;
-            padding-left: 20px;
-            margin-bottom: 20px;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -25px;
-            top: 5px;
-            width: 10px;
-            height: 10px;
-            background: #e50000;
-            border-radius: 50%;
-            border: 2px solid white;
-            box-shadow: 0 0 0 2px rgba(229, 0, 0, 0.3);
-        }
-
-        /* Animasi fade-in */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Smooth scroll */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Spin Border Effect */
-        .spin-border-container {
-            position: relative;
-        }
-
-        .spin-border {
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            border: 2px solid transparent;
-            border-top: 2px solid #e50000;
-            border-radius: 50%;
-            animation: spin 2s linear infinite;
-            z-index: -1;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Glowing Line Effect */
-        .glowing-line-container {
-            position: relative;
-        }
-
-        .glowing-line {
-            position: absolute;
-            background: linear-gradient(45deg, #e50000, #ff6666, #e50000);
-            border-radius: 2px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .glowing-line-top {
-            top: -2px;
-            left: 0;
-            right: 0;
-            height: 2px;
-        }
-
-        .glowing-line-bottom {
-            bottom: -2px;
-            left: 0;
-            right: 0;
-            height: 2px;
-        }
-
-        .glowing-line-left {
-            top: 0;
-            bottom: 0;
-            left: -2px;
-            width: 2px;
-        }
-
-        .glowing-line-right {
-            top: 0;
-            bottom: 0;
-            right: -2px;
-            width: 2px;
-        }
-
-        .card-glass:hover .glowing-line {
-            opacity: 1;
-        }
-
-
-        /* Enhanced Skill Items */
-        .skill-item {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-        }
-
-        .skill-item:hover {
+        .secondary-education-card:hover {
             transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(6, 182, 212, 0.3);
+            border-color: rgba(6, 182, 212, 0.5);
         }
 
-        .skill-item:hover div {
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .skill-item:hover h3 {
-            color: #e50000;
-            transform: translateX(5px);
-        }
-
-        .skill-item:hover p {
-            color: #e50000;
-        }
-
-        /* Skill level bars animation */
-        .bg-gray-200 {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .bg-gradient-to-r {
-            position: relative;
-            animation: skillBarFill 2s ease-out forwards;
-        }
-
-        @keyframes skillBarFill {
-            from {
-                width: 0%;
-            }
-            to {
-                width: var(--skill-width, 85%);
-            }
-        }
-
-        /* Enhanced card shadows */
-        .shadow-2xl {
-            box-shadow:
-                0 25px 50px -12px rgba(0, 0, 0, 0.25),
-                0 0 0 1px rgba(255, 255, 255, 0.05);
-        }
-
-        /* Enhanced glow effects */
-        .enhanced-glow {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .enhanced-glow::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #e50000, #ff3333, #e50000, #cc0000);
-            border-radius: inherit;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            animation: glow-pulse 2s ease-in-out infinite alternate;
-        }
-
-        .enhanced-glow:hover::before {
-            opacity: 0.3;
-        }
-
-        @keyframes glow-pulse {
-            0% {
-                opacity: 0.2;
-                transform: scale(1);
-            }
-            100% {
-                opacity: 0.4;
-                transform: scale(1.02);
-            }
-        }
-
-        /* Neon border effect */
-        .neon-border {
-            position: relative;
-            border: 2px solid transparent;
-            background: linear-gradient(45deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.9)) padding-box,
-                        linear-gradient(45deg, #e50000, #ff3333, #e50000) border-box;
-        }
-
-        /* Gradient text enhancement */
-        .gradient-text-enhanced {
-            background: linear-gradient(135deg, #e50000 0%, #ff3333 25%, #e50000 50%, #cc0000 75%, #e50000 100%);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            animation: gradient-flow 3s ease infinite;
-        }
-
-        @keyframes gradient-flow {
-            0% { background-position: 0% 50% }
-            50% { background-position: 100% 50% }
-            100% { background-position: 0% 50% }
-        }
-
-        /* Floating animation for decorative elements */
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-10px) rotate(5deg);
-            }
-        }
-
-        .animate-float {
-            animation: float 6s ease-in-out infinite;
-        }
-
-        /* Radial Orbital Skills Design */
-        .orbital-ring {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            border: 1px solid rgba(229, 0, 0, 0.1);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .ring-1 {
-            width: 80px;
-            height: 80px;
-            animation: rotate 20s linear infinite;
-        }
-
-        .ring-2 {
-            width: 120px;
-            height: 120px;
-            animation: rotate 25s linear infinite reverse;
-        }
-
-        .ring-3 {
-            width: 160px;
-            height: 160px;
-            animation: rotate 30s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-
-        .skill-orb {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform-origin: center;
-            animation: orbit 15s linear infinite;
-        }
-
-        .orb-1 {
-            transform: translate(-50%, -50%) translate(40px, 0);
-            animation-delay: 0s;
-        }
-
-        .orb-2 {
-            transform: translate(-50%, -50%) translate(0, -60px);
-            animation-delay: -2s;
-        }
-
-        .orb-3 {
-            transform: translate(-50%, -50%) translate(-40px, 0);
-            animation-delay: -4s;
-        }
-
-        .orb-4 {
-            transform: translate(-50%, -50%) translate(0, 60px);
-            animation-delay: -6s;
-        }
-
-        .orb-5 {
-            transform: translate(-50%, -50%) translate(60px, 0);
-            animation-delay: -8s;
-        }
-
-        .orb-6 {
-            transform: translate(-50%, -50%) translate(0, -80px);
-            animation-delay: -10s;
-        }
-
-        @keyframes orbit {
-            from { transform: translate(-50%, -50%) rotate(0deg) translateX(var(--orbit-radius, 40px)) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(360deg) translateX(var(--orbit-radius, 40px)) rotate(-360deg); }
-        }
-
-        .orb-label {
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 10px;
-            white-space: nowrap;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            margin-top: 8px;
-        }
-
-        .skill-orb:hover .orb-label {
-            opacity: 1;
-        }
-
-        .skill-orb:hover {
-            animation-play-state: paused;
-        }
-
-        .skill-orb:hover div {
-            transform: scale(1.2);
-            box-shadow: 0 0 15px rgba(229, 0, 0, 0.4);
-        }
-
-        /* Responsive adjustments for orbital design */
-        @media (max-width: 768px) {
-            .orbital-ring {
-                display: none;
+        @media screen and (max-width: 768px) {
+            .news-grid, .project-grid, .certifications-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
 
-            .skill-orb {
-                position: static;
-                transform: none;
-                animation: none;
-                display: inline-block;
-                margin: 8px;
+            .header-section h1 {
+                font-size: 2.5rem;
             }
 
-            .orb-label {
-                position: static;
-                display: block;
-                opacity: 1;
-                transform: none;
-                margin: 4px 0 0 0;
-                background: rgba(229, 0, 0, 0.1);
-                color: #e50000;
+            .header-section p {
+                font-size: 1rem;
             }
-        }
 
-        /* Enhanced card animations */
-        .card-glass {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card-glass::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(229, 0, 0, 0.1), transparent);
-            transition: left 0.5s ease;
-            z-index: 1;
-        }
-
-        .card-glass:hover::before {
-            left: 100%;
-        }
-
-        /* Enhanced timeline effects */
-        .timeline-item {
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .timeline-item:hover {
-            transform: translateX(10px);
-        }
-
-        .timeline-item::before {
-            transition: all 0.3s ease;
-        }
-
-        .timeline-item:hover::before {
-            transform: scale(1.5);
-            box-shadow: 0 0 15px rgba(229, 0, 0, 0.5);
-        }
-
-        /* Pulsing glow effect for main title */
-        .main-title-glow {
-            animation: title-glow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes title-glow {
-            0% {
-                text-shadow:
-                    0 0 5px rgba(229, 0, 0, 0.5),
-                    0 0 10px rgba(229, 0, 0, 0.5),
-                    0 0 15px rgba(229, 0, 0, 0.5),
-                    0 0 20px rgba(229, 0, 0, 0.5);
+            .featured-education-card {
+                padding: 30px;
             }
-            100% {
-                text-shadow:
-                    0 0 2px rgba(229, 0, 0, 0.3),
-                    0 0 5px rgba(229, 0, 0, 0.3),
-                    0 0 10px rgba(229, 0, 0, 0.3),
-                    0 0 15px rgba(229, 0, 0, 0.3),
-                    0 0 25px rgba(229, 0, 0, 0.6);
+
+            .certification-card {
+                padding: 25px;
             }
-        }
-
-        /* Enhanced project cards */
-        .project-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent, rgba(229, 0, 0, 0.05), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .project-card:hover::after {
-            opacity: 1;
-        }
-
-        /* Enhanced skill cards with better hover effects */
-        .skill-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            transform-style: preserve-3d;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-8px) rotateX(5deg);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Certification cards enhancement */
-        .cert-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-        }
-
-        .cert-card::before {
-            content: '';
-            position: absolute;
-            top: -1px;
-            left: -1px;
-            right: -1px;
-            bottom: -1px;
-            background: linear-gradient(45deg, #e50000, #ff3333, #e50000, #cc0000);
-            border-radius: inherit;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .cert-card:hover::before {
-            opacity: 0.2;
         }
     </style>
 </head>
-</head>
 <body>
-    <!-- Background Elements -->
-    <div class="grid-bg"></div>
-    <div class="particle-bg" id="particle-bg"></div>
-    <div class="scanline"></div>
-    <div class="glow-effect"></div>
-    <div class="glow-effect" style="animation-delay: -10s; left: 30%; top: 60%;"></div>
+    <!-- Red bar decorative element -->
+    <div class="red-bar"></div>
     
+    <!-- Texture overlay -->
+    <div class="texture-overlay"></div>
+
     <!-- Menu Toggle Button -->
     <button class="menu-toggle" id="menuToggle">
         <i class="fas fa-bars text-xl"></i>
@@ -1197,8 +615,8 @@
 
     <!-- Sidebar Menu -->
     <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <h2 class="text-2xl font-bold text-black">Menu</h2>
+        <div class="sidebar-header" style="padding: 20px; border-bottom: 1px solid rgba(229, 0, 0, 0.3); margin-bottom: 20px;">
+            <h2 style="font-size: 1.5rem; font-weight: bold; color: white;">Menu</h2>
         </div>
         <ul class="sidebar-menu">
             <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
@@ -1207,879 +625,484 @@
             <li><a href="experience.html" class="active"><i class="fas fa-briefcase"></i> Experience</a></li>
             <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
             <li class="social-links">
-                <a href="https://www.instagram.com/zefanya.williams/" target="_blank" class="social-icon instagram">
+                <a href="https://www.instagram.com/zefanya.williams/" target="_blank" class="social-icon">
                     <i class="fab fa-instagram"></i>
                 </a>
-                <a href="https://www.tiktok.com/@zefanya.williams" target="_blank" class="social-icon tiktok">
+                <a href="https://www.tiktok.com/@zefanya.williams" target="_blank" class="social-icon">
                     <i class="fab fa-tiktok"></i>
                 </a>
             </li>
         </ul>
     </aside>
 
-    <!-- Experience Section -->
-    <section id="experience" class="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-black relative overflow-hidden pt-32">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white glowing-red-title">My Experience</h2>
-                <div class="section-divider bg-gradient-to-r from-red-500 to-red-600 w-20 h-1 mx-auto"></div>
-                <p class="text-gray-300 max-w-3xl mx-auto mt-4">
-                    Explore my professional journey through this interactive timeline showcasing career milestones, educational achievements, and key projects.
-                </p>
+    <!-- Floating Icons -->
+    <a href="expertise.html" class="floating-icon" style="top: 20%; left: 10%; animation-delay: -2s;">
+        <i class="fab fa-html5"></i>
+    </a>
+    <a href="expertise.html" class="floating-icon" style="top: 30%; right: 15%; animation-delay: -5s;">
+        <i class="fab fa-css3-alt"></i>
+    </a>
+    <a href="expertise.html" class="floating-icon" style="bottom: 25%; left: 20%; animation-delay: -8s;">
+        <i class="fab fa-js"></i>
+    </a>
+    <a href="expertise.html" class="floating-icon" style="bottom: 35%; right: 10%; animation-delay: -11s;">
+        <i class="fas fa-code"></i>
+    </a>
+    <a href="expertise.html" class="floating-icon" style="top: 15%; right: 25%; animation-delay: -14s;">
+        <i class="fas fa-laptop-code"></i>
+    </a>
+    <a href="contact.html" class="floating-icon" style="bottom: 20%; right: 30%; animation-delay: -17s;">
+        <i class="fas fa-envelope"></i>
+    </a>
+
+    <!-- Header Section -->
+    <section class="header-section">
+        <h1 class="glow-text">My Experience</h1>
+        <p>Explore my professional journey through career milestones and achievements</p>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <!-- Timeline Section -->
+    <section class="timeline fade-in">
+        <!-- Experience 1 - BEM -->
+        <div class="timeline-item left">
+            <div class="timeline-content">
+                <h3 class="glow-text">Badan Executive Mahasiswa</h3>
+                <div class="company">Student Organization</div>
+                <div class="date">2023 - Present</div>
+                <p>Best member bulan september, Ketua pengurus Sponsorship, Mengikuti Kegiatan PPKM ke pulau seribu, Intern Sekolah Fasilitasi</p>
             </div>
+        </div>
 
-            <!-- Professional Experience Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-                <!-- Work Experience Column -->
-                <div class="bento-large bento-card bento-card-primary featured">
-                    <div class="card-glass rounded-3xl p-8 hover-3d transform transition-all duration-500 hover:scale-[1.02] relative overflow-hidden group">
-                        <div class="floating-label">Featured</div>
-                        <div class="professional-glow"></div>
-                        <div class="absolute inset-0 bg-gradient-to-br from-red-500/10 to-transparent"></div>
-                        <div class="relative z-10">
-                            <div class="flex items-center mb-8">
-                                <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center mr-4 shadow-xl group-hover:shadow-red-400/50 transition-all duration-500">
-                                    <i class="fas fa-briefcase text-white text-2xl"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-2xl font-bold text-white mb-2">Professional Experience</h3>
-                                    <p class="text-gray-300 text-sm">Career milestones & achievements</p>
-                                </div>
-                            </div>
-
-                        <div class="space-y-6">
-                            <!-- Experience 1 -->
-                            <div class="flex items-start space-x-4 p-4 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-red-500/50 transition-all duration-300 group/item">
-                                <div class="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                                    <i class="fas fa-building text-white"></i>
-                                </div>
-                                <div class="flex-1">
-                                    <h4 class="text-white font-semibold text-lg mb-1">Salesman</h4>
-                                    <p class="text-red-400 text-sm mb-2">PT Sentul City Tbk • Mar 2025 – Present</p>
-                                    <p class="text-gray-300 text-sm">Property consultation and sales expertise</p>
-                                </div>
-                            </div>
-
-                            <!-- Experience 2 -->
-                            <div class="flex items-start space-x-4 p-4 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-red-500/50 transition-all duration-300 group/item">
-                                <div class="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                                    <i class="fas fa-store text-white"></i>
-                                </div>
-                                <div class="flex-1">
-                                    <h4 class="text-white font-semibold text-lg mb-1">Business Owner</h4>
-                                    <p class="text-red-400 text-sm mb-2">Gegaiaan • Feb 2025 – Present</p>
-                                    <p class="text-gray-300 text-sm">Fashion brand entrepreneurship</p>
-                                </div>
-                            </div>
-
-                            <!-- Experience 3 -->
-                            <div class="flex items-start space-x-4 p-4 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-red-500/50 transition-all duration-300 group/item">
-                                <div class="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                                    <i class="fas fa-camera text-white"></i>
-                                </div>
-                                <div class="flex-1">
-                                    <h4 class="text-white font-semibold text-lg mb-1">Content Creator</h4>
-                                    <p class="text-red-400 text-sm mb-2">Instagram • 2023 – Present</p>
-                                    <p class="text-gray-300 text-sm">Digital content production</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Leadership & Education Column -->
-                <div class="bento-large bento-card bento-card-secondary">
-                    <div class="card-glass rounded-3xl p-8 hover-3d transform transition-all duration-500 hover:scale-[1.02] relative overflow-hidden group">
-                        <div class="floating-label">Academic</div>
-                        <div class="professional-glow"></div>
-                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent"></div>
-                        <div class="relative z-10">
-                            <div class="flex items-center mb-8">
-                                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mr-4 shadow-xl group-hover:shadow-blue-400/50 transition-all duration-500">
-                                    <i class="fas fa-graduation-cap text-white text-2xl"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-2xl font-bold text-white mb-2">Leadership & Education</h3>
-                                    <p class="text-gray-300 text-sm">Academic & organizational roles</p>
-                                </div>
-                            </div>
-
-                        <div class="space-y-6">
-                            <!-- Leadership 1 -->
-                            <div class="flex items-start space-x-4 p-4 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 group/item">
-                                <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                                    <i class="fas fa-users text-white"></i>
-                                </div>
-                                <div class="flex-1">
-                                    <h4 class="text-white font-semibold text-lg mb-1">Head of PRP Unit Coding</h4>
-                                    <p class="text-blue-400 text-sm mb-2">Universitas Siber Indonesia • Dec 2024 – Present</p>
-                                    <p class="text-gray-300 text-sm">Leading coding unit activities</p>
-                                </div>
-                            </div>
-
-                            <!-- Leadership 2 -->
-                            <div class="flex items-start space-x-4 p-4 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 group/item">
-                                <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                                    <i class="fas fa-bullhorn text-white"></i>
-                                </div>
-                                <div class="flex-1">
-                                    <h4 class="text-white font-semibold text-lg mb-1">Campus Ambassador</h4>
-                                    <p class="text-blue-400 text-sm mb-2">Kontrak • Nov 2023 – Present</p>
-                                    <p class="text-gray-300 text-sm">Brand representation & promotion</p>
-                                </div>
-                            </div>
-
-                            <!-- Education -->
-                            <div class="flex items-start space-x-4 p-4 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 group/item">
-                                <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                                    <i class="fas fa-university text-white"></i>
-                                </div>
-                                <div class="flex-1">
-                                    <h4 class="text-white font-semibold text-lg mb-1">Digital Business Student</h4>
-                                    <p class="text-blue-400 text-sm mb-2">Universitas Siber Indonesia • 2022 – Present</p>
-                                    <p class="text-gray-300 text-sm">Bachelor's degree in progress</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <!-- Experience 2 - Video Editor -->
+        <div class="timeline-item right">
+            <div class="timeline-content">
+                <h3 class="glow-text">Video Editor</h3>
+                <div class="company">Freelance</div>
+                <div class="date">2024 - 2025</div>
+                <p>Menghasilkan Konten-konten reels dan berhasil meningkatkan engagement dengan kualitas video profesional</p>
             </div>
+        </div>
 
-            <!-- Skills & Certifications Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-                <!-- Technical Skills -->
-                <div class="bento-large bento-card bento-card-success">
-                    <div class="card-glass rounded-3xl p-8 hover-3d transform transition-all duration-500 hover:scale-[1.02] relative overflow-hidden group">
-                        <div class="floating-label">Skills</div>
-                        <div class="professional-glow"></div>
-                        <div class="absolute inset-0 bg-gradient-to-br from-green-500/10 to-transparent"></div>
-                        <div class="relative z-10">
-                            <div class="flex items-center mb-8">
-                                <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mr-4 shadow-xl group-hover:shadow-green-400/50 transition-all duration-500">
-                                    <i class="fas fa-tools text-white text-2xl"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-2xl font-bold text-white mb-2">Technical Skills</h3>
-                                    <p class="text-gray-300 text-sm">Core competencies</p>
-                                </div>
-                            </div>
-
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="text-center p-4 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-green-500/50 transition-all duration-300 group/item">
-                                <i class="fas fa-bullhorn text-green-400 text-2xl mb-2 group-hover:animate-bounce"></i>
-                                <h4 class="text-white font-semibold text-sm">Digital Marketing</h4>
-                                <div class="w-full bg-gray-700 rounded-full h-1 mt-2">
-                                    <div class="w-5/6 h-full bg-gradient-to-r from-green-500 to-green-600 rounded-full"></div>
-                                </div>
-                            </div>
-                            <div class="text-center p-4 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-green-500/50 transition-all duration-300 group/item">
-                                <i class="fas fa-chart-line text-green-400 text-2xl mb-2 group-hover:animate-bounce"></i>
-                                <h4 class="text-white font-semibold text-sm">Data Analysis</h4>
-                                <div class="w-full bg-gray-700 rounded-full h-1 mt-2">
-                                    <div class="w-4/5 h-full bg-gradient-to-r from-green-500 to-green-600 rounded-full"></div>
-                                </div>
-                            </div>
-                            <div class="text-center p-4 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-green-500/50 transition-all duration-300 group/item">
-                                <i class="fas fa-film text-green-400 text-2xl mb-2 group-hover:animate-bounce"></i>
-                                <h4 class="text-white font-semibold text-sm">Video Production</h4>
-                                <div class="w-full bg-gray-700 rounded-full h-1 mt-2">
-                                    <div class="w-5/6 h-full bg-gradient-to-r from-green-500 to-green-600 rounded-full"></div>
-                                </div>
-                            </div>
-                            <div class="text-center p-4 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-green-500/50 transition-all duration-300 group/item">
-                                <i class="fas fa-users text-green-400 text-2xl mb-2 group-hover:animate-bounce"></i>
-                                <h4 class="text-white font-semibold text-sm">Leadership</h4>
-                                <div class="w-full bg-gray-700 rounded-full h-1 mt-2">
-                                    <div class="w-5/6 h-full bg-gradient-to-r from-green-500 to-green-600 rounded-full"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Certifications -->
-                <div class="bento-large bento-card bento-card-warning">
-                    <div class="card-glass rounded-3xl p-8 hover-3d transform transition-all duration-500 hover:scale-[1.02] relative overflow-hidden group">
-                        <div class="floating-label">Certified</div>
-                        <div class="professional-glow"></div>
-                        <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent"></div>
-                        <div class="relative z-10">
-                            <div class="flex items-center mb-8">
-                                <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mr-4 shadow-xl group-hover:shadow-purple-400/50 transition-all duration-500">
-                                    <i class="fas fa-certificate text-white text-2xl"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-2xl font-bold text-white mb-2">Certifications</h3>
-                                    <p class="text-gray-300 text-sm">Professional credentials</p>
-                                </div>
-                            </div>
-
-                        <div class="space-y-4">
-                            <div class="p-4 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300 group/item">
-                                <div class="flex items-center mb-2">
-                                    <i class="fas fa-video text-purple-400 text-lg mr-3"></i>
-                                    <h4 class="text-white font-semibold">Content Creator</h4>
-                                </div>
-                                <p class="text-purple-400 text-sm">Mentorbox Indonesia</p>
-                                <p class="text-gray-300 text-sm mt-1">Social Media & Content Strategy</p>
-                            </div>
-                            <div class="p-4 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300 group/item">
-                                <div class="flex items-center mb-2">
-                                    <i class="fas fa-bullhorn text-purple-400 text-lg mr-3"></i>
-                                    <h4 class="text-white font-semibold">Digital Marketing</h4>
-                                </div>
-                                <p class="text-purple-400 text-sm">Mentorbox Indonesia</p>
-                                <p class="text-gray-300 text-sm mt-1">SEO & Campaign Management</p>
-                            </div>
-                            <div class="p-4 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300 group/item">
-                                <div class="flex items-center mb-2">
-                                    <i class="fas fa-database text-purple-400 text-lg mr-3"></i>
-                                    <h4 class="text-white font-semibold">Data Science</h4>
-                                </div>
-                                <p class="text-purple-400 text-sm">Green Academy</p>
-                                <p class="text-gray-300 text-sm mt-1">Analytics & Machine Learning</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <!-- Experience 3 - Content Creator -->
+        <div class="timeline-item left">
+            <div class="timeline-content">
+                <h3 class="glow-text">Content Creator</h3>
+                <div class="company">Digital Media</div>
+                <div class="date">2024 - Present</div>
+                <p>Menyajikan Video berkualitas dan membuat content planner. Mampu menggunakan Meta Business untuk strategi pemasaran digital</p>
             </div>
+        </div>
 
-            <!-- Certifications Section -->
-            <div class="card-glass p-8 rounded-2xl hover-3d mb-12 transform transition-all duration-500 hover:scale-[1.02] spin-border-container glowing-line-container">
-                <div class="spin-border"></div>
-                <div class="glowing-line glowing-line-top"></div>
-                <div class="glowing-line glowing-line-bottom"></div>
-                <div class="glowing-line glowing-line-left"></div>
-                <div class="glowing-line glowing-line-right"></div>
-                <div class="flex items-center mb-6">
-                    <div class="w-12 h-12 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mr-4 red-glow floating">
-                        <i class="fas fa-certificate text-primary text-xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-primary gift-glow">Certifications</h3>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                    <!-- Certification 1 -->
-                    <div class="card-glass p-5 rounded-lg transform transition-all duration-300 hover:translate-y-[-5px] hover:shadow-[0_0_15px_rgba(229,0,0,0.3)] cert-card">
-                        <div class="flex items-center mb-3">
-                            <div class="w-10 h-10 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mr-3">
-                                <i class="fas fa-video text-primary"></i>
-                            </div>
-                            <h4 class="text-lg font-semibold text-black">Content Creator</h4>
-                        </div>
-                        <p class="text-sm text-gray-700 mb-1">Mentorbox Indonesia</p>
-                        <ul class="text-accent text-sm list-disc pl-5 space-y-1">
-                            <li>Social Media Content Creation</li>
-                            <li>Engagement & Awareness Strategy</li>
-                        </ul>
-                    </div>
-
-                    <!-- Certification 2 -->
-                    <div class="card-glass p-5 rounded-lg transform transition-all duration-300 hover:translate-y-[-5px] hover:shadow-[0_0_15px_rgba(229,0,0,0.3)] cert-card">
-                        <div class="flex items-center mb-3">
-                            <div class="w-10 h-10 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mr-3">
-                                <i class="fas fa-bullhorn text-primary"></i>
-                            </div>
-                            <h4 class="text-lg font-semibold text-black">Digital Marketing</h4>
-                        </div>
-                        <p class="text-sm text-gray-700 mb-1">Mentorbox Indonesia</p>
-                        <ul class="text-accent text-sm list-disc pl-5 space-y-1">
-                            <li>Google Site Development</li>
-                            <li>Keyword Research</li>
-                            <li>Produk Knowledge Presentation</li>
-                        </ul>
-                    </div>
-
-                    <!-- Certification 3 -->
-                    <div class="card-glass p-5 rounded-lg transform transition-all duration-300 hover:translate-y-[-5px] hover:shadow-[0_0_15px_rgba(229,0,0,0.3)]">
-                        <div class="flex items-center mb-3">
-                            <div class="w-10 h-10 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mr-3">
-                                <i class="fas fa-database text-primary"></i>
-                            </div>
-                            <h4 class="text-lg font-semibold text-black">Data Science</h4>
-                        </div>
-                        <p class="text-sm text-gray-700 mb-1">Green Academy</p>
-                        <ul class="text-accent text-sm list-disc pl-5 space-y-1">
-                            <li>Data Analysis, Data Mining, Entry</li>
-                            <li>Web Application Development (Healthcare prediction)</li>
-                            <li>Flowchart & Visualization Tools</li>
-                        </ul>
-                    </div>
-                </div>
+        <!-- Experience 4 - Church Multimedia -->
+        <div class="timeline-item right">
+            <div class="timeline-content">
+                <h3 class="glow-text">Church Multimedia Team</h3>
+                <div class="company">Music & Multimedia Ministry</div>
+                <div class="date">2023 - Present</div>
+                <p>Bagian dari multimedia dan pemusik Gereja, mengelola sistem audio visual dan produksi konten spiritual</p>
             </div>
+        </div>
 
-            <!-- Skills Section -->
-            <div class="card-glass p-8 rounded-2xl hover-3d transform transition-all duration-500 hover:scale-[1.02] spin-border-container glowing-line-container">
-                <div class="spin-border"></div>
-                <div class="glowing-line glowing-line-top"></div>
-                <div class="glowing-line glowing-line-bottom"></div>
-                <div class="glowing-line glowing-line-left"></div>
-                <div class="glowing-line glowing-line-right"></div>
-                <div class="flex items-center mb-6">
-                    <div class="w-12 h-12 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mr-4 red-glow floating">
-                        <i class="fas fa-tools text-primary text-xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-primary gift-glow">Skills</h3>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
-                    <div class="skill-card group">
-                        <div class="card-glass p-4 rounded-lg relative overflow-hidden transform transition-all duration-300 group-hover:translate-y-[-5px]">
-                            <div class="absolute inset-0 bg-gradient-to-r from-primary to-transparent opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-                            <div class="flex items-center">
-                                <i class="fas fa-bullhorn text-primary mr-3 text-xl group-hover:animate-bounce"></i>
-                                <span class="text-accent">Digital Marketing & Campaigning</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="skill-card group">
-                        <div class="card-glass p-4 rounded-lg relative overflow-hidden transform transition-all duration-300 group-hover:translate-y-[-5px]">
-                            <div class="absolute inset-0 bg-gradient-to-r from-primary to-transparent opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-                            <div class="flex items-center">
-                                <i class="fas fa-hashtag text-primary mr-3 text-xl group-hover:animate-bounce"></i>
-                                <span class="text-accent">Social Media Management</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="skill-card group">
-                        <div class="card-glass p-4 rounded-lg relative overflow-hidden transform transition-all duration-300 group-hover:translate-y-[-5px]">
-                            <div class="absolute inset-0 bg-gradient-to-r from-primary to-transparent opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-                            <div class="flex items-center">
-                                <i class="fas fa-pen-fancy text-primary mr-3 text-xl group-hover:animate-bounce"></i>
-                                <span class="text-accent">Copywriting & Visual Storytelling</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="skill-card group">
-                        <div class="card-glass p-4 rounded-lg relative overflow-hidden transform transition-all duration-300 group-hover:translate-y-[-5px]">
-                            <div class="absolute inset-0 bg-gradient-to-r from-primary to-transparent opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-                            <div class="flex items-center">
-                                <i class="fas fa-chart-line text-primary mr-3 text-xl group-hover:animate-bounce"></i>
-                                <span class="text-accent">Data Analysis</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="skill-card group">
-                        <div class="card-glass p-4 rounded-lg relative overflow-hidden transform transition-all duration-300 group-hover:translate-y-[-5px]">
-                            <div class="absolute inset-0 bg-gradient-to-r from-primary to-transparent opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-                            <div class="flex items-center">
-                                <i class="fas fa-users text-primary mr-3 text-xl group-hover:animate-bounce"></i>
-                                <span class="text-accent">Team Leadership & Creative Direction</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="skill-card group">
-                        <div class="card-glass p-4 rounded-lg relative overflow-hidden transform transition-all duration-300 group-hover:translate-y-[-5px]">
-                            <div class="absolute inset-0 bg-gradient-to-r from-primary to-transparent opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-                            <div class="flex items-center">
-                                <i class="fas fa-film text-primary mr-3 text-xl group-hover:animate-bounce"></i>
-                                <span class="text-accent">Video Production & Editing</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <!-- Experience 5 - Data Entry -->
+        <div class="timeline-item left">
+            <div class="timeline-content">
+                <h3 class="glow-text">Data Entry Specialist</h3>
+                <div class="company">Amartha Greentech Consultant</div>
+                <div class="date">2024</div>
+                <p>Menjadi Data entrier dari survei ke excel dengan akurasi tinggi dan efisiensi dalam pengolahan data</p>
             </div>
+        </div>
 
-            <!-- Featured Projects Showcase -->
-            <div class="bento-xl bento-card bento-card-dark featured">
-                <div class="card-glass rounded-3xl p-8 hover-3d transform transition-all duration-500 hover:scale-[1.02] relative overflow-hidden group mb-16">
-                    <div class="floating-label">Portfolio</div>
-                    <div class="professional-glow"></div>
-                    <div class="absolute inset-0 bg-gradient-to-br from-pink-500/10 to-transparent"></div>
-                    <div class="relative z-10">
-                        <div class="flex items-center mb-8">
-                            <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl flex items-center justify-center mr-4 shadow-xl group-hover:shadow-pink-400/50 transition-all duration-500">
-                                <i class="fas fa-project-diagram text-white text-2xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold text-white mb-2">Featured Projects</h3>
-                                <p class="text-gray-300 text-sm">Real-world applications & innovations</p>
-                            </div>
-                        </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Project 1 -->
-                        <div class="bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-pink-500/50 transition-all duration-300 group/item p-6 interactive-element cursor-pointer" data-project="cardiovascular">
-                            <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center mr-4">
-                                    <i class="fas fa-heartbeat text-white"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-white font-semibold">Cardiovascular Disease Detection</h4>
-                                    <p class="text-pink-400 text-sm">Machine Learning Project</p>
-                                </div>
-                            </div>
-                            <p class="text-gray-300 text-sm mb-4">AI-powered prediction system for cardiovascular diseases using patient data analysis.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2 py-1 bg-pink-500/20 text-pink-400 rounded text-xs">Python</span>
-                                <span class="px-2 py-1 bg-pink-500/20 text-pink-400 rounded text-xs">ML</span>
-                                <span class="px-2 py-1 bg-pink-500/20 text-pink-400 rounded text-xs">Healthcare</span>
-                            </div>
-                            <a href="#" class="text-pink-400 text-sm hover:text-pink-300 transition-colors flex items-center">
-                                <span>View Details</span>
-                                <i class="fas fa-arrow-right ml-2 group-hover/item:translate-x-1 transition-transform"></i>
-                            </a>
-                        </div>
-
-                        <!-- Project 2 -->
-                        <div class="bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-pink-500/50 transition-all duration-300 group/item p-6 interactive-element cursor-pointer" data-project="analytics">
-                            <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center mr-4">
-                                    <i class="fas fa-chart-line text-white"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-white font-semibold">Marketing Analytics Dashboard</h4>
-                                    <p class="text-pink-400 text-sm">Business Intelligence</p>
-                                </div>
-                            </div>
-                            <p class="text-gray-300 text-sm mb-4">Comprehensive analytics platform for tracking marketing performance and ROI.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2 py-1 bg-pink-500/20 text-pink-400 rounded text-xs">Analytics</span>
-                                <span class="px-2 py-1 bg-pink-500/20 text-pink-400 rounded text-xs">Dashboard</span>
-                                <span class="px-2 py-1 bg-pink-500/20 text-pink-400 rounded text-xs">Business</span>
-                            </div>
-                            <a href="#" class="text-pink-400 text-sm hover:text-pink-300 transition-colors flex items-center">
-                                <span>View Details</span>
-                                <i class="fas fa-arrow-right ml-2 group-hover/item:translate-x-1 transition-transform"></i>
-                            </a>
-                        </div>
-
-                        <!-- Project 3 -->
-                        <div class="bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-pink-500/50 transition-all duration-300 group/item p-6 interactive-element cursor-pointer" data-project="canvas">
-                            <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center mr-4">
-                                    <i class="fas fa-palette text-white"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-white font-semibold">Interactive Digital Canvas</h4>
-                                    <p class="text-pink-400 text-sm">Creative Web App</p>
-                                </div>
-                            </div>
-                            <p class="text-gray-300 text-sm mb-4">Real-time collaborative drawing application with advanced brush tools and effects.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2 py-1 bg-pink-500/20 text-pink-400 rounded text-xs">HTML5</span>
-                                <span class="px-2 py-1 bg-pink-500/20 text-pink-400 rounded text-xs">Canvas API</span>
-                                <span class="px-2 py-1 bg-pink-500/20 text-pink-400 rounded text-xs">JavaScript</span>
-                            </div>
-                            <a href="canvas.html" class="text-pink-400 text-sm hover:text-pink-300 transition-colors flex items-center group">
-                                <span>Try Canvas</span>
-                                <i class="fas fa-arrow-right ml-2 group-hover/item:translate-x-1 transition-transform"></i>
-                            </a>
-                        </div>
-
-                        <!-- Project 4 -->
-                        <div class="bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-pink-500/50 transition-all duration-300 group/item p-6 interactive-element cursor-pointer" data-project="video-series">
-                            <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center mr-4">
-                                    <i class="fas fa-video text-white"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-white font-semibold">Educational Video Series</h4>
-                                    <p class="text-pink-400 text-sm">Content Production</p>
-                                </div>
-                            </div>
-                            <p class="text-gray-300 text-sm mb-4">Professional video content series explaining digital business concepts and trends.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2 py-1 bg-pink-500/20 text-pink-400 rounded text-xs">Video</span>
-                                <span class="px-2 py-1 bg-pink-500/20 text-pink-400 rounded text-xs">Education</span>
-                                <span class="px-2 py-1 bg-pink-500/20 text-pink-400 rounded text-xs">Production</span>
-                            </div>
-                            <a href="#" class="text-pink-400 text-sm hover:text-pink-300 transition-colors flex items-center">
-                                <span>View Series</span>
-                                <i class="fas fa-arrow-right ml-2 group-hover/item:translate-x-1 transition-transform"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+        <!-- Experience 6 - Sales Property -->
+        <div class="timeline-item right">
+            <div class="timeline-content">
+                <h3 class="glow-text">Sales Property</h3>
+                <div class="company">Sentul</div>
+                <div class="date">2025 - Present</div>
+                <p>Property sales and marketing in Sentul area dengan fokus pada strategi penjualan dan customer relationship</p>
             </div>
+        </div>
 
-            <!-- Fixed Floating Action Button -->
-            <div class="fixed bottom-8 right-8 z-50">
-                <button id="experienceFAB" class="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center shadow-2xl hover:shadow-red-400/50 transition-all duration-500 hover:scale-110 group floating">
-                    <i class="fas fa-rocket text-white text-xl group-hover:rotate-12 transition-transform duration-300"></i>
-                </button>
-                <div class="absolute bottom-20 right-0 bg-gray-800 text-white p-4 rounded-xl shadow-xl opacity-0 pointer-events-none transition-all duration-300 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 whitespace-nowrap">
-                    <p class="text-sm font-semibold">Quick Actions</p>
-                    <div class="flex flex-col space-y-2 mt-2">
-                        <button class="text-left text-xs hover:text-red-400 transition-colors">View Portfolio</button>
-                        <button class="text-left text-xs hover:text-red-400 transition-colors">Download Resume</button>
-                        <button class="text-left text-xs hover:text-red-400 transition-colors">Contact Me</button>
-                    </div>
-                </div>
+        <!-- Experience 7 - Leader Public and Relationship UKM CODING -->
+        <div class="timeline-item left">
+            <div class="timeline-content">
+                <h3 class="glow-text">Leader Public and Relationship UKM CODING</h3>
+                <div class="company">Organization</div>
+                <div class="date">2024-2025</div>
+                <p>Leading public relations and relationship management initiatives</p>
+            </div>
+        </div>
+
+        <!-- Experience 8 - Leader UKM Music -->
+        <div class="timeline-item right">
+            <div class="timeline-content">
+                <h3 class="glow-text">Leader UKM Music</h3>
+                <div class="company">Organization</div>
+                <div class="date">2024-2025</div>
+                <p>Leading the university music community and organizing musical activities</p>
             </div>
         </div>
     </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <!-- Education & Certifications Highlight Section -->
+    <section class="education-highlight fade-in" style="padding: 80px 20px; max-width: 1400px; margin: 0 auto;">
+        <div style="text-align: center; margin-bottom: 80px;">
+            <h2 class="glow-text" style="font-size: 3rem; font-weight: 900; margin-bottom: 20px;">Education & Certifications</h2>
+            <p style="font-size: 1.2rem; opacity: 0.9; max-width: 700px; margin: 0 auto;">Building a strong foundation through continuous learning and professional development</p>
+            <div style="width: 100px; height: 4px; background: linear-gradient(90deg, #e50000, #ff6b6b); margin: 30px auto; border-radius: 2px;"></div>
+        </div>
+
+        <!-- Featured Education Card -->
+        <div class="featured-education-card" style="background: rgba(0, 0, 0, 0.9); border-radius: 25px; padding: 50px; border: 2px solid rgba(229, 0, 0, 0.3); backdrop-filter: blur(15px); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(229, 0, 0, 0.2); margin-bottom: 60px; position: relative; overflow: hidden;">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('assets/5.png') center/cover no-repeat; mix-blend-mode: soft-light; opacity: 0.05; pointer-events: none;"></div>
+            <div style="display: flex; align-items: center; margin-bottom: 30px; position: relative; z-index: 2;">
+                <div style="width: 80px; height: 80px; background: linear-gradient(45deg, #e50000, #ff6b6b); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin-right: 25px; box-shadow: 0 10px 25px rgba(229, 0, 0, 0.3);">
+                    <i class="fas fa-graduation-cap" style="color: white; font-size: 2.5rem;"></i>
+                </div>
+                <div>
+                    <h3 class="glow-text" style="font-size: 2.5rem; font-weight: 800; margin-bottom: 5px;">Universitas Siber Indonesia</h3>
+                    <p style="color: #e50000; font-weight: 600; font-size: 1.2rem;">Digital Business Student</p>
+                </div>
+            </div>
+            <div style="color: #e0e0e0; line-height: 1.8; font-size: 1.1rem; position: relative; z-index: 2;">
+                <p style="margin-bottom: 20px;">Currently pursuing a comprehensive education in digital business strategies, marketing, and technology integration at one of Indonesia's leading cyber universities. Focused on developing expertise in AI, data analytics, and digital transformation.</p>
+                <div style="display: flex; align-items: center; margin-top: 25px;">
+                    <span style="color: #cccccc; font-weight: 600;">Duration:</span>
+                    <span style="color: #e50000; font-weight: 700; margin-left: 10px;">2022 - Present</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Secondary Education -->
+        <div class="secondary-education-card" style="background: rgba(0, 0, 0, 0.8); border-radius: 20px; padding: 35px; border: 1px solid rgba(6, 182, 212, 0.3); backdrop-filter: blur(10px); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); transition: all 0.3s ease; position: relative; overflow: hidden; margin-bottom: 60px;">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('assets/5.png') center/cover no-repeat; mix-blend-mode: soft-light; opacity: 0.03; pointer-events: none;"></div>
+            <div style="display: flex; align-items: center; margin-bottom: 20px; position: relative; z-index: 2;">
+                <div style="width: 70px; height: 70px; background: linear-gradient(45deg, #06b6d4, #22d3ee); border-radius: 15px; display: flex; align-items: center; justify-content: center; margin-right: 25px; box-shadow: 0 8px 20px rgba(6, 182, 212, 0.3);">
+                    <i class="fas fa-school" style="color: white; font-size: 2rem;"></i>
+                </div>
+                <div>
+                    <h3 class="glow-text" style="font-size: 1.8rem; font-weight: 700;">SMA Xaverius</h3>
+                    <p style="color: #06b6d4; font-weight: 600; font-size: 1rem;">Bandarlampung • 2020-2023</p>
+                </div>
+            </div>
+            <p style="color: #e0e0e0; line-height: 1.6; font-size: 1rem; position: relative; z-index: 2;">Secondary education focusing on academic excellence, character development, and comprehensive learning at SMA Xaverius Bandarlampung.</p>
+        </div>
+
+        <!-- Certifications Grid -->
+        <div class="certifications-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
+            <!-- Green Academy -->
+            <div class="certification-card" style="background: rgba(0, 0, 0, 0.8); border-radius: 20px; padding: 35px; border: 1px solid rgba(16, 185, 129, 0.3); backdrop-filter: blur(10px); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); transition: all 0.3s ease; position: relative; overflow: hidden;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('assets/5.png') center/cover no-repeat; mix-blend-mode: soft-light; opacity: 0.03; pointer-events: none;"></div>
+                <div style="display: flex; align-items: center; margin-bottom: 20px; position: relative; z-index: 2;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(45deg, #10b981, #34d399); border-radius: 15px; display: flex; align-items: center; justify-content: center; margin-right: 20px; box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);">
+                        <i class="fas fa-brain" style="color: white; font-size: 1.8rem;"></i>
+                    </div>
+                    <div>
+                        <h4 class="glow-text" style="font-size: 1.4rem; font-weight: 700;">Green Academy</h4>
+                        <p style="color: #10b981; font-weight: 600; font-size: 0.9rem;">Data Science Program</p>
+                    </div>
+                </div>
+                <p style="color: #e0e0e0; line-height: 1.6; position: relative; z-index: 2;">Professional education in data science, mastering machine learning and data analysis techniques for advanced business intelligence.</p>
+            </div>
+
+            <!-- Student Exchange -->
+            <div class="certification-card" style="background: rgba(0, 0, 0, 0.8); border-radius: 20px; padding: 35px; border: 1px solid rgba(59, 130, 246, 0.3); backdrop-filter: blur(10px); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); transition: all 0.3s ease; position: relative; overflow: hidden;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('assets/5.png') center/cover no-repeat; mix-blend-mode: soft-light; opacity: 0.03; pointer-events: none;"></div>
+                <div style="display: flex; align-items: center; margin-bottom: 20px; position: relative; z-index: 2;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(45deg, #3b82f6, #60a5fa); border-radius: 15px; display: flex; align-items: center; justify-content: center; margin-right: 20px; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);">
+                        <i class="fas fa-globe" style="color: white; font-size: 1.8rem;"></i>
+                    </div>
+                    <div>
+                        <h4 class="glow-text" style="font-size: 1.4rem; font-weight: 700;">Student Exchange</h4>
+                        <p style="color: #3b82f6; font-weight: 600; font-size: 0.9rem;">Malaysia 2024</p>
+                    </div>
+                </div>
+                <p style="color: #e0e0e0; line-height: 1.6; position: relative; z-index: 2;">International student exchange program enhancing global networking and cultural understanding in Malaysia.</p>
+            </div>
+
+            <!-- Mentorbox.id -->
+            <div class="certification-card" style="background: rgba(0, 0, 0, 0.8); border-radius: 20px; padding: 35px; border: 1px solid rgba(245, 158, 11, 0.3); backdrop-filter: blur(10px); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); transition: all 0.3s ease; position: relative; overflow: hidden;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('assets/5.png') center/cover no-repeat; mix-blend-mode: soft-light; opacity: 0.03; pointer-events: none;"></div>
+                <div style="display: flex; align-items: center; margin-bottom: 20px; position: relative; z-index: 2;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(45deg, #f59e0b, #fbbf24); border-radius: 15px; display: flex; align-items: center; justify-content: center; margin-right: 20px; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);">
+                        <i class="fas fa-bullhorn" style="color: white; font-size: 1.8rem;"></i>
+                    </div>
+                    <div>
+                        <h4 class="glow-text" style="font-size: 1.4rem; font-weight: 700;">Mentorbox.id</h4>
+                        <p style="color: #f59e0b; font-weight: 600; font-size: 0.9rem;">Digital Marketing & Content Creator</p>
+                    </div>
+                </div>
+                <p style="color: #e0e0e0; line-height: 1.6; position: relative; z-index: 2;">Professional certification in digital marketing and content creation strategies.</p>
+            </div>
+
+            <!-- Photography Certification -->
+            <div class="certification-card" style="background: rgba(0, 0, 0, 0.8); border-radius: 20px; padding: 35px; border: 1px solid rgba(139, 92, 246, 0.3); backdrop-filter: blur(10px); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); transition: all 0.3s ease; position: relative; overflow: hidden;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('assets/5.png') center/cover no-repeat; mix-blend-mode: soft-light; opacity: 0.03; pointer-events: none;"></div>
+                <div style="display: flex; align-items: center; margin-bottom: 20px; position: relative; z-index: 2;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(45deg, #8b5cf6, #a78bfa); border-radius: 15px; display: flex; align-items: center; justify-content: center; margin-right: 20px; box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);">
+                        <i class="fas fa-camera" style="color: white; font-size: 1.8rem;"></i>
+                    </div>
+                    <div>
+                        <h4 class="glow-text" style="font-size: 1.4rem; font-weight: 700;">Darwis Triadi Photography</h4>
+                        <p style="color: #8b5cf6; font-weight: 600; font-size: 0.9rem;">Photography Certification</p>
+                    </div>
+                </div>
+                <p style="color: #e0e0e0; line-height: 1.6; position: relative; z-index: 2;">Professional photography training and certification with industry-standard techniques.</p>
+            </div>
+
+            <!-- BNSP Certification -->
+            <div class="certification-card" style="background: rgba(0, 0, 0, 0.8); border-radius: 20px; padding: 35px; border: 1px solid rgba(229, 0, 0, 0.3); backdrop-filter: blur(10px); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); transition: all 0.3s ease; position: relative; overflow: hidden;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('assets/5.png') center/cover no-repeat; mix-blend-mode: soft-light; opacity: 0.03; pointer-events: none;"></div>
+                <div style="display: flex; align-items: center; margin-bottom: 20px; position: relative; z-index: 2;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(45deg, #e50000, #ff6b6b); border-radius: 15px; display: flex; align-items: center; justify-content: center; margin-right: 20px; box-shadow: 0 8px 20px rgba(229, 0, 0, 0.3);">
+                        <i class="fas fa-certificate" style="color: white; font-size: 1.8rem;"></i>
+                    </div>
+                    <div>
+                        <h4 class="glow-text" style="font-size: 1.4rem; font-weight: 700;">BNSP</h4>
+                        <p style="color: #e50000; font-weight: 600; font-size: 0.9rem;">Digital Marketing & Content Creator</p>
+                    </div>
+                </div>
+                <p style="color: #e0e0e0; line-height: 1.6; position: relative; z-index: 2;">National certification in digital marketing and content creation from BNSP.</p>
+            </div>
+
+            <!-- Multi Tasking Training -->
+            <div class="certification-card" style="background: rgba(0, 0, 0, 0.8); border-radius: 20px; padding: 35px; border: 1px solid rgba(34, 197, 94, 0.3); backdrop-filter: blur(10px); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); transition: all 0.3s ease; position: relative; overflow: hidden;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('assets/5.png') center/cover no-repeat; mix-blend-mode: soft-light; opacity: 0.03; pointer-events: none;"></div>
+                <div style="display: flex; align-items: center; margin-bottom: 20px; position: relative; z-index: 2;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(45deg, #22c55e, #4ade80); border-radius: 15px; display: flex; align-items: center; justify-content: center; margin-right: 20px; box-shadow: 0 8px 20px rgba(34, 197, 94, 0.3);">
+                        <i class="fas fa-users-cog" style="color: white; font-size: 1.8rem;"></i>
+                    </div>
+                    <div>
+                        <h4 class="glow-text" style="font-size: 1.4rem; font-weight: 700;">Multi Tasking Training</h4>
+                        <p style="color: #22c55e; font-weight: 600; font-size: 0.9rem;">Service Excellence 2025</p>
+                    </div>
+                </div>
+                <p style="color: #e0e0e0; line-height: 1.6; position: relative; z-index: 2;">Pelayanan PRIMA itu bukan sekadar S.O.P doang tapi harus jadi Budaya Perusahaan yg konsisten & menyatu dalam keseharian karyawan</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
 
     <!-- News Section -->
-    <section id="news" class="py-20 bg-white relative overflow-hidden">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 animated-gradient">Latest News</h2>
-                <div class="section-divider"></div>
+    <section class="news-section fade-in" style="padding: 80px 20px; max-width: 1200px; margin: 0 auto;">
+        <div style="text-align: center; margin-bottom: 60px;">
+            <h2 class="glow-text" style="font-size: 2.5rem; font-weight: 800; margin-bottom: 20px;">Media Coverage</h2>
+            <p style="font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 0 auto;">Featured in major publications for outstanding achievements and international recognition</p>
+        </div>
+
+        <div class="news-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
+            <!-- Sindo News Card -->
+            <div class="news-card">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <img src="assets/sidonews.png" alt="Sindo News" style="width: 80px; height: 80px; object-fit: contain; margin: 0 auto 15px; display: block;">
+                    <h3 class="glow-text" style="font-size: 1.3rem; font-weight: 700; margin-bottom: 10px;">Sindo News</h3>
+                    <p style="color: #e50000; font-weight: 600; font-size: 0.9rem;">International Achievement Coverage</p>
+                </div>
+                <p style="color: #e0e0e0; line-height: 1.6; margin-bottom: 20px; font-size: 0.95rem;">Networking and international achievements - Mahasiswa Cyber University sukses bangun jejaring internasional di Malaysia</p>
+                <a href="https://edukasi.sindonews.com/read/1623473/211/tak-hanya-gelar-juara-mahasiswa-cyber-university-ini-sukses-bangun-jejaring-internasional-di-malaysia-1758528568" target="_blank" style="display: inline-flex; align-items: center; color: #e50000; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">
+                    <span>Read Article</span>
+                    <i class="fas fa-external-link-alt" style="margin-left: 8px; font-size: 0.8rem;"></i>
+                </a>
             </div>
 
-            <!-- News Carousel -->
-            <div class="relative max-w-6xl mx-auto">
-                <div class="carousel-container overflow-hidden rounded-2xl">
-                    <div class="carousel-wrapper flex transition-transform duration-500 ease-in-out" id="carouselWrapper">
-                        <!-- News Item 1 -->
-                        <div class="carousel-slide flex-shrink-0 w-full relative">
-                            <div class="card-glass p-6 rounded-2xl hover-3d h-96 relative overflow-hidden group">
-                                <div class="absolute inset-0 bg-gradient-to-br from-red-500/10 to-transparent"></div>
-                                <div class="relative z-10 h-full flex flex-col">
-                                    <!-- Image Section -->
-                                    <div class="mb-4 flex-shrink-0">
-                                        <div class="w-full h-40 bg-gradient-to-br from-red-100 to-red-200 rounded-xl flex items-center justify-center relative overflow-hidden">
-                                            <div class="absolute inset-0 bg-gradient-to-br from-red-500/20 to-transparent"></div>
-                                            <div class="text-center relative z-10">
-                                                <i class="fas fa-trophy text-red-500 text-4xl mb-2"></i>
-                                                <p class="text-red-600 font-semibold text-sm">Competition Victory</p>
-                                            </div>
-                                            <!-- Placeholder for actual image -->
-                                            <div class="absolute inset-0 bg-gradient-to-br from-red-400/10 to-red-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Content Section -->
-                                    <div class="flex-1 flex flex-col justify-between">
-                                        <div>
-                                            <h3 class="text-xl font-bold text-primary mb-3">Fintech Competition Victory</h3>
-                                            <p class="text-accent text-sm mb-4 leading-relaxed">
-                                                Cyber University student successfully dominates international fintech competition in Malaysia, showcasing exceptional talent in financial technology innovation.
-                                            </p>
-                                        </div>
-                                        <div class="flex justify-between items-center">
-                                            <a href="https://news.republika.co.id/berita/t2vmwr472/mahasiswa-cyber-university-ini-sukses-gebrak-kompetisi-fintech-internasional-di-malaysia"
-                                               target="_blank" class="glowing-button px-4 py-2 bg-primary text-white rounded-lg font-medium hover:bg-opacity-90 transition text-sm">
-                                                Read Full Story
-                                            </a>
-                                            <span class="text-xs text-gray-400">2024</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Enhanced Overlay -->
-                                <div class="news-overlay absolute inset-0 bg-black bg-opacity-85 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                                    <div class="text-center text-white p-6 max-w-md">
-                                        <h4 class="text-lg font-bold mb-3 text-red-400">🏆 Breaking News!</h4>
-                                        <p class="text-sm leading-relaxed">Zefanya Williams from Cyber University wins international fintech competition in Malaysia, showcasing exceptional talent in financial technology innovation and establishing valuable international connections.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- News Item 2 -->
-                        <div class="carousel-slide flex-shrink-0 w-full relative">
-                            <div class="card-glass p-6 rounded-2xl hover-3d h-96 relative overflow-hidden group">
-                                <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent"></div>
-                                <div class="relative z-10 h-full flex flex-col">
-                                    <!-- Image Section -->
-                                    <div class="mb-4 flex-shrink-0">
-                                        <div class="w-full h-40 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl flex items-center justify-center relative overflow-hidden">
-                                            <div class="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-transparent"></div>
-                                            <div class="text-center relative z-10">
-                                                <img src="assets/sidonews.png" alt="Sindo News" class="w-16 h-16 object-contain mb-2">
-                                                <p class="text-blue-600 font-semibold text-sm">Networking</p>
-                                            </div>
-                                            <!-- Placeholder for actual image -->
-                                            <div class="absolute inset-0 bg-gradient-to-br from-blue-400/10 to-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Content Section -->
-                                    <div class="flex-1 flex flex-col justify-between">
-                                        <div>
-                                            <h3 class="text-xl font-bold text-primary mb-3">International Networking Success</h3>
-                                            <p class="text-accent text-sm mb-4 leading-relaxed">
-                                                Beyond winning, Cyber University student builds valuable international connections in Malaysia, establishing professional networks for future collaborations.
-                                            </p>
-                                        </div>
-                                        <div class="flex justify-between items-center">
-                                            <a href="https://edukasi.sindonews.com/read/1623473/211/tak-hanya-gelar-juara-mahasiswa-cyber-university-ini-sukses-bangun-jejaring-internasional-di-malaysia-1758528568"
-                                               target="_blank" class="glowing-button px-4 py-2 bg-primary text-white rounded-lg font-medium hover:bg-opacity-90 transition text-sm">
-                                                Read Full Story
-                                            </a>
-                                            <span class="text-xs text-gray-400">2024</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Enhanced Overlay -->
-                                <div class="news-overlay absolute inset-0 bg-black bg-opacity-85 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                                    <div class="text-center text-white p-6 max-w-md">
-                                        <h4 class="text-lg font-bold mb-3 text-blue-400">🌐 Networking Achievement!</h4>
-                                        <p class="text-sm leading-relaxed">Not only securing victory, Zefanya Williams successfully establishes international professional networks during the Malaysia fintech competition, opening doors for future collaborations.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- News Item 3 -->
-                        <div class="carousel-slide flex-shrink-0 w-full relative">
-                            <div class="card-glass p-6 rounded-2xl hover-3d h-96 relative overflow-hidden group">
-                                <div class="absolute inset-0 bg-gradient-to-br from-green-500/10 to-transparent"></div>
-                                <div class="relative z-10 h-full flex flex-col">
-                                    <!-- Image Section -->
-                                    <div class="mb-4 flex-shrink-0">
-                                        <div class="w-full h-40 bg-gradient-to-br from-green-100 to-green-200 rounded-xl flex items-center justify-center relative overflow-hidden">
-                                            <div class="absolute inset-0 bg-gradient-to-br from-green-500/20 to-transparent"></div>
-                                            <div class="text-center relative z-10">
-                                                <img src="assets/milenial.png" alt="Milenial News" class="w-16 h-16 object-contain mb-2">
-                                                <p class="text-green-600 font-semibold text-sm">Recognition</p>
-                                            </div>
-                                            <!-- Placeholder for actual image -->
-                                            <div class="absolute inset-0 bg-gradient-to-br from-green-400/10 to-green-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Content Section -->
-                                    <div class="flex-1 flex flex-col justify-between">
-                                        <div>
-                                            <h3 class="text-xl font-bold text-primary mb-3">Outstanding Achievement</h3>
-                                            <p class="text-accent text-sm mb-4 leading-relaxed">
-                                                Cyber University student's remarkable success in international fintech competition highlighted across multiple media outlets and platforms.
-                                            </p>
-                                        </div>
-                                        <div class="flex justify-between items-center">
-                                            <a href="https://milenianews.com/news/tak-hanya-gelar-juara-mahasiswa-cyber-university-ini-sukses-bangun-jejaring-internasional-di-malaysia/"
-                                               target="_blank" class="glowing-button px-4 py-2 bg-primary text-white rounded-lg font-medium hover:bg-opacity-90 transition text-sm">
-                                                Read Full Story
-                                            </a>
-                                            <span class="text-xs text-gray-400">2024</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Enhanced Overlay -->
-                                <div class="news-overlay absolute inset-0 bg-black bg-opacity-85 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                                    <div class="text-center text-white p-6 max-w-md">
-                                        <h4 class="text-lg font-bold mb-3 text-green-400">⭐ Featured Achievement!</h4>
-                                        <p class="text-sm leading-relaxed">Zefanya Williams' outstanding performance in the Malaysia fintech competition earns widespread recognition and builds lasting international connections in the industry.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <!-- Republika Card -->
+            <div class="news-card">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <img src="assets/republika.png" alt="Republika News" style="width: 80px; height: 80px; object-fit: contain; margin: 0 auto 15px; display: block;">
+                    <h3 class="glow-text" style="font-size: 1.3rem; font-weight: 700; margin-bottom: 10px;">Republika</h3>
+                    <p style="color: #e50000; font-weight: 600; font-size: 0.9rem;">Fintech Competition Success</p>
                 </div>
+                <p style="color: #e0e0e0; line-height: 1.6; margin-bottom: 20px; font-size: 0.95rem;">International fintech competition coverage - Mahasiswa Cyber University sukses gebrak kompetisi fintech internasional di Malaysia</p>
+                <a href="https://news.republika.co.id/berita/t2vmwr472/mahasiswa-cyber-university-ini-sukses-gebrak-kompetisi-fintech-internasional-di-malaysia" target="_blank" style="display: inline-flex; align-items: center; color: #e50000; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">
+                    <span>Read Article</span>
+                    <i class="fas fa-external-link-alt" style="margin-left: 8px; font-size: 0.8rem;"></i>
+                </a>
+            </div>
 
-                <!-- Navigation Buttons -->
-                <button class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 text-primary p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110" id="prevBtn">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 text-primary p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110" id="nextBtn">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
+            <!-- Milenial News Card -->
+            <div class="news-card">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <img src="assets/milenial.png" alt="Milenial News" style="width: 80px; height: 80px; object-fit: contain; margin: 0 auto 15px; display: block;">
+                    <h3 class="glow-text" style="font-size: 1.3rem; font-weight: 700; margin-bottom: 10px;">Milenial News</h3>
+                    <p style="color: #e50000; font-weight: 600; font-size: 0.9rem;">Outstanding Student Recognition</p>
+                </div>
+                <p style="color: #e0e0e0; line-height: 1.6; margin-bottom: 20px; font-size: 0.95rem;">Outstanding student achievement recognition - Tak hanya gelar juara, mahasiswa Cyber University sukses bangun jejaring internasional</p>
+                <a href="https://milenianews.com/news/tak-hanya-gelar-juara-mahasiswa-cyber-university-ini-sukses-bangun-jejaring-internasional-di-malaysia/" target="_blank" style="display: inline-flex; align-items: center; color: #e50000; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">
+                    <span>Read Article</span>
+                    <i class="fas fa-external-link-alt" style="margin-left: 8px; font-size: 0.8rem;"></i>
+                </a>
+            </div>
+        </div>
+    </section>
 
-                <!-- Indicators -->
-                <div class="flex justify-center mt-6 space-x-2">
-                    <button class="carousel-indicator w-3 h-3 rounded-full bg-gray-300 hover:bg-primary transition-colors duration-300" data-slide="0"></button>
-                    <button class="carousel-indicator w-3 h-3 rounded-full bg-gray-300 hover:bg-primary transition-colors duration-300" data-slide="1"></button>
-                    <button class="carousel-indicator w-3 h-3 rounded-full bg-primary transition-colors duration-300" data-slide="2"></button>
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <!-- Featured Projects Section -->
+    <section class="projects-section fade-in" style="padding: 80px 20px; max-width: 1200px; margin: 0 auto;">
+        <div style="text-align: center; margin-bottom: 60px;">
+            <h2 class="glow-text" style="font-size: 2.5rem; font-weight: 800; margin-bottom: 20px;">Featured Projects</h2>
+            <p style="font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 0 auto;">Showcase of my key projects and creative work</p>
+        </div>
+
+        <div class="project-grid">
+            <!-- Project 1 - Placeholder for user's image -->
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('assets/2.png');">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title glow-text">AI Healthcare Detection</h3>
+                    <p class="project-description">Machine learning project for cardiovascular disease detection using advanced algorithms and medical data analysis.</p>
+                    <a href="#" class="project-link">
+                        <span>View Project</span>
+                        <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 2 - Placeholder for user's image -->
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('assets/3.png');">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title glow-text">Web Development Tools</h3>
+                    <p class="project-description">Collection of utility web applications designed for productivity and efficiency in various business processes.</p>
+                    <a href="#" class="project-link">
+                        <span>View Project</span>
+                        <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 3 - Placeholder for user's image -->
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('assets/4.png');">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title glow-text">Content Creation Portfolio</h3>
+                    <p class="project-description">Professional video content and social media campaigns with strategic planning and high engagement rates.</p>
+                    <a href="#" class="project-link">
+                        <span>View Project</span>
+                        <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 4 - Placeholder for user's image -->
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('assets/5.png');">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title glow-text">Digital Marketing Campaign</h3>
+                    <p class="project-description">Comprehensive digital marketing strategies and campaign management with measurable results and ROI optimization.</p>
+                    <a href="#" class="project-link">
+                        <span>View Project</span>
+                        <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 5 - Calculator -->
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('assets/6.png');">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title glow-text">Interactive Calculator</h3>
+                    <p class="project-description">Advanced calculator application with modern UI design, supporting complex mathematical operations and user-friendly interface.</p>
+                    <a href="calcutalor.html" class="project-link">
+                        <span>View Project</span>
+                        <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 6 - Canvas -->
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('assets/8.png');">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title glow-text">Canvas Drawing Tool</h3>
+                    <p class="project-description">Interactive canvas application for digital drawing and creative expression with various tools and effects.</p>
+                    <a href="canvas.html" class="project-link">
+                        <span>View Project</span>
+                        <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 7 - Portfolio Website -->
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('assets/2.png');">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title glow-text">Portfolio Website</h3>
+                    <p class="project-description">Professional portfolio website showcasing expertise, experience, and projects with modern design and interactive elements.</p>
+                    <a href="index.html" class="project-link">
+                        <span>View Project</span>
+                        <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- News Carousel Styles -->
-    <style>
-        .carousel-container {
-            position: relative;
-        }
-
-        .carousel-wrapper {
-            width: 300%; /* 3 slides */
-        }
-
-        .carousel-slide {
-            width: calc(100% / 3); /* Each slide takes 1/3 of container */
-        }
-
-        .carousel-indicator.active {
-            background-color: #e50000 !important;
-        }
-
-        .news-overlay {
-            backdrop-filter: blur(5px);
-        }
-
-        @media (max-width: 768px) {
-            .carousel-slide {
-                width: 100%;
-            }
-
-            .carousel-wrapper {
-                width: 300%;
-            }
-        }
-    </style>
-
-    <!-- News Carousel Script -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const carouselWrapper = document.getElementById('carouselWrapper');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            const indicators = document.querySelectorAll('.carousel-indicator');
-
-            let currentSlide = 0;
-            const totalSlides = 3;
-
-            function updateCarousel() {
-                const translateX = -currentSlide * (100 / totalSlides);
-                carouselWrapper.style.transform = `translateX(${translateX}%)`;
-
-                // Update indicators
-                indicators.forEach((indicator, index) => {
-                    indicator.classList.toggle('active', index === currentSlide);
-                });
-            }
-
-            function nextSlide() {
-                currentSlide = (currentSlide + 1) % totalSlides;
-                updateCarousel();
-            }
-
-            function prevSlide() {
-                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-                updateCarousel();
-            }
-
-            function goToSlide(slideIndex) {
-                currentSlide = slideIndex;
-                updateCarousel();
-            }
-
-            // Event listeners
-            nextBtn.addEventListener('click', nextSlide);
-            prevBtn.addEventListener('click', prevSlide);
-
-            indicators.forEach((indicator, index) => {
-                indicator.addEventListener('click', () => goToSlide(index));
-            });
-
-            // Auto-play (optional)
-            setInterval(nextSlide, 5000);
-
-            // Initialize
-            updateCarousel();
-        });
-    </script>
-
-    <!-- Floating Icons -->
-    <div class="floating-icon" style="top: 20%; left: 10%; animation-delay: -2s;">
-        <i class="fab fa-html5"></i>
-    </div>
-    <div class="floating-icon" style="top: 30%; right: 15%; animation-delay: -5s;">
-        <i class="fab fa-css3-alt"></i>
-    </div>
-    <div class="floating-icon" style="bottom: 25%; left: 20%; animation-delay: -8s;">
-        <i class="fab fa-js"></i>
-    </div>
-    <div class="floating-icon" style="bottom: 35%; right: 10%; animation-delay: -11s;">
-        <i class="fas fa-code"></i>
-    </div>
-    <div class="floating-icon" style="top: 15%; right: 25%; animation-delay: -14s;">
-        <i class="fas fa-laptop-code"></i>
-    </div>
-    <div class="floating-icon" style="bottom: 20%; right: 30%; animation-delay: -17s;">
-        <i class="fas fa-mobile-alt"></i>
-    </div>
-
     <!-- Footer -->
-    <footer class="py-10 relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <div class="text-2xl font-bold text-white glowing-red-title">Zefanya Williams</div>
-                    <p class="text-gray-300 text-sm mt-2">Digital Business Student & Content Creator</p>
-                </div>
-
-                <div class="flex space-x-6">
-                    <a href="https://www.linkedin.com/in/zefanya-williams" target="_blank" class="text-gray-300 hover:text-red-400 transition-colors">
-                        <i class="fab fa-linkedin-in text-xl"></i>
-                    </a>
-                    <a href="https://github.com/zefanya-williams" target="_blank" class="text-gray-300 hover:text-red-400 transition-colors">
-                        <i class="fab fa-github text-xl"></i>
-                    </a>
-                    <a href="https://www.instagram.com/zefanya.williams/" target="_blank" class="text-gray-300 hover:text-red-400 transition-colors">
-                        <i class="fab fa-instagram text-xl"></i>
-                    </a>
-                    <a href="https://www.youtube.com/@zefanya-williams" target="_blank" class="text-gray-300 hover:text-red-400 transition-colors">
-                        <i class="fab fa-youtube text-xl"></i>
-                    </a>
-                </div>
+    <footer style="background: rgba(0, 0, 0, 0.9); padding: 40px 20px; text-align: center; margin-top: 80px;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h3 class="glow-text" style="font-size: 1.5rem; margin-bottom: 20px;">Zefanya Williams</h3>
+            <p style="color: #cccccc; margin-bottom: 20px;">Digital Business Student & Content Creator</p>
+            <div style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px;">
+                <a href="https://www.instagram.com/zefanya.williams/" target="_blank" class="social-icon">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.tiktok.com/@zefanya.williams" target="_blank" class="social-icon">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="fab fa-github"></i>
+                </a>
             </div>
-
-            <div class="border-t border-gray-700 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-300 text-sm mb-4 md:mb-0">© 2025 Zefanya Williams. All rights reserved.</p>
-                <div class="flex space-x-6">
-                    <a href="#" class="text-gray-300 hover:text-red-400 text-sm transition-colors">Privacy Policy</a>
-                    <a href="#" class="text-gray-300 hover:text-red-400 text-sm transition-colors">Terms of Service</a>
-                    <a href="#" class="text-gray-300 hover:text-red-400 text-sm transition-colors">Sitemap</a>
-                </div>
-            </div>
+            <p style="color: #888; font-size: 0.9rem;">&copy; 2025 Zefanya Williams. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Create floating particles
-            const particleBg = document.getElementById('particle-bg');
-
-            for (let i = 0; i < 100; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-
-                // Random size between 5px and 20px
-                const size = Math.random() * 15 + 5;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-
-                // Random position
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100}%`;
-
-                // Random animation duration between 15s and 30s
-                const duration = Math.random() * 15 + 15;
-                particle.style.animationDuration = `${duration}s`;
-
-                // Random delay
-                particle.style.animationDelay = `${Math.random() * 10}s`;
-
-                particleBg.appendChild(particle);
-            }
-
             // Toggle Sidebar
             const menuToggle = document.getElementById('menuToggle');
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('overlay');
 
-            menuToggle.addEventListener('click', () => {
+            menuToggle?.addEventListener('click', () => {
                 sidebar.classList.toggle('open');
                 overlay.classList.toggle('open');
                 document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : '';
             });
 
-            overlay.addEventListener('click', () => {
+            overlay?.addEventListener('click', () => {
                 sidebar.classList.remove('open');
                 overlay.classList.remove('open');
                 document.body.style.overflow = '';
             });
 
-            // Close sidebar when clicking on a menu item (for mobile)
+            // Close sidebar when clicking on a menu item
             const menuItems = document.querySelectorAll('.sidebar-menu a');
             menuItems.forEach(item => {
                 item.addEventListener('click', () => {
                     sidebar.classList.remove('open');
                     overlay.classList.remove('open');
                     document.body.style.overflow = '';
-
-                    // Update active state
                     menuItems.forEach(i => i.classList.remove('active'));
                     item.classList.add('active');
                 });
@@ -2090,167 +1113,63 @@
                 const now = new Date();
                 const time = now.toLocaleTimeString('en-US', { hour12: false });
                 const timezone = 'WIB';
-                document.getElementById('digitalClock').innerHTML = `<span class="time">${time}</span><span class="timezone">${timezone}</span>`;
+                const clockElement = document.getElementById('digitalClock');
+                if (clockElement) {
+                    clockElement.innerHTML = `<span class="time">${time}</span><span class="timezone">${timezone}</span>`;
+                }
             }
             setInterval(updateClock, 1000);
             updateClock();
 
-            // Fungsi untuk menangani animasi scroll
+            // Scroll animations
             function handleScrollAnimation() {
-                const elements = document.querySelectorAll('.fade-in');
+                const elements = document.querySelectorAll('.fade-in, .timeline-item, .news-card, .project-card, .certification-card, .featured-education-card, .secondary-education-card');
 
-                elements.forEach(element => {
+                elements.forEach((element, index) => {
                     const elementTop = element.getBoundingClientRect().top;
                     const windowHeight = window.innerHeight;
 
-                    // Jika elemen terlihat di viewport
-                    if (elementTop < windowHeight - 50) {
-                        element.classList.add('visible');
+                    if (elementTop < windowHeight - 100) {
+                        setTimeout(() => {
+                            element.classList.add('visible');
+                            element.classList.add('animate');
+                        }, index * 100);
                     }
                 });
             }
 
-            // Tambahkan class fade-in ke elemen yang ingin dianimasikan
-            const sections = document.querySelectorAll('section');
-            sections.forEach(section => {
-                section.classList.add('fade-in');
-            });
-
-            // Jalankan sekali di awal
+            // Run on load and scroll
             handleScrollAnimation();
-
-            // Jalankan saat di-scroll
             window.addEventListener('scroll', handleScrollAnimation);
 
-            // Floating Action Button functionality
-            const experienceFAB = document.getElementById('experienceFAB');
-            if (experienceFAB) {
-                experienceFAB.addEventListener('click', function() {
-                    // Smooth scroll to top
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                });
-            }
-
-            // Add entrance animations to cards
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-
-            // Observe all main cards
-            const mainCards = document.querySelectorAll('.card-glass');
-            mainCards.forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(30px)';
-                card.style.transition = `all 0.6s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.1}s`;
-                observer.observe(card);
-            });
-
-            // Add hover effects to project cards
-            const projectCards = document.querySelectorAll('[class*="group/item"]');
-            projectCards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-5px) scale(1.02)';
-                });
-
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0) scale(1)';
-                });
-            });
-
-            // Interactive elements functionality for experience page
-            const interactiveElements = document.querySelectorAll('.interactive-element');
-            interactiveElements.forEach(element => {
-                element.addEventListener('click', function() {
-                    // Add click animation
-                    this.style.transform = 'scale(0.95)';
-                    setTimeout(() => {
-                        this.style.transform = '';
-                    }, 150);
-
-                    // Get data attribute
-                    const projectType = this.getAttribute('data-project');
-
-                    if (projectType) {
-                        // Show feedback
-                        showInteractiveFeedback(projectType, this);
-                    }
-                });
-
-                // Add keyboard support
-                element.setAttribute('tabindex', '0');
-                element.addEventListener('keydown', function(e) {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        this.click();
+            // Smooth scroll for internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
                     }
                 });
             });
 
-            // Function to show interactive feedback for experience page
-            function showInteractiveFeedback(type, element) {
-                const feedbackMessages = {
-                    'cardiovascular': '🫀 AI-powered healthcare innovation project',
-                    'analytics': '📊 Business intelligence and analytics platform',
-                    'canvas': '🎨 Interactive web-based drawing application',
-                    'video-series': '🎬 Professional educational content production'
-                };
+            // Enhanced floating icon interactions
+            const floatingIcons = document.querySelectorAll('.floating-icon');
+            floatingIcons.forEach(icon => {
+                icon.addEventListener('mouseenter', function() {
+                    this.style.animationPlayState = 'paused';
+                    this.style.transform = 'scale(1.5) rotate(15deg)';
+                });
 
-                const message = feedbackMessages[type] || 'Interactive element clicked!';
-
-                // Create temporary feedback element
-                const feedback = document.createElement('div');
-                feedback.textContent = message;
-                feedback.style.cssText = `
-                    position: fixed;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    background: rgba(236, 72, 153, 0.9);
-                    color: white;
-                    padding: 20px 30px;
-                    border-radius: 10px;
-                    font-size: 16px;
-                    font-weight: 600;
-                    z-index: 10000;
-                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-                    animation: fadeInOut 2s ease-in-out;
-                `;
-
-                document.body.appendChild(feedback);
-
-                // Remove feedback after animation
-                setTimeout(() => {
-                    feedback.remove();
-                }, 2000);
-            }
-
-            // Add CSS for feedback animation
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes fadeInOut {
-                    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-                    20% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-                    80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-                    100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-                }
-            `;
-            document.head.appendChild(style);
+                icon.addEventListener('mouseleave', function() {
+                    this.style.animationPlayState = 'running';
+                    this.style.transform = '';
+                });
+            });
         });
     </script>
-
-    <script src="js/theme.js"></script>
 </body>
 </html>

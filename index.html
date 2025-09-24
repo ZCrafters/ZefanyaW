@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Loading Screen Styles -->
+    <!-- Enhanced Loading Screen Styles -->
     <style>
+        /* Simple Loading Screen */
         #loading-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: #ffffff;
             z-index: 9999;
             opacity: 1;
-            transition: opacity 0.5s ease-out;
+            transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
         }
 
         #loading-screen.hidden {
@@ -29,23 +30,52 @@
             left: 0;
         }
 
-        .loading-text {
-            position: fixed;
+        /* Loading Animation */
+        .loading-animation {
+            position: absolute;
             bottom: 50px;
             left: 50%;
             transform: translateX(-50%);
-            color: #ffffff;
-            font-size: 1.2rem;
-            font-weight: 600;
-            text-align: center;
-            animation: pulse 2s infinite;
             z-index: 10000;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+        .loading-bar {
+            width: 300px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .loading-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #e50000, #ff6b6b);
+            border-radius: 2px;
+            width: 0%;
+            animation: loading-progress 12s ease-out forwards;
+            box-shadow: 0 0 10px rgba(229, 0, 0, 0.5);
+        }
+
+        @keyframes loading-progress {
+            0% { width: 0%; }
+            90% { width: 100%; }
+            100% { width: 100%; }
+        }
+
+        .loading-text {
+            color: white;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: 500;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            animation: loading-text-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes loading-text-pulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
         }
     </style>
     <meta charset="UTF-8">
@@ -72,9 +102,73 @@
         
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: #ffffff;
-            color: #000000;
+            background: url('assets/2.png') center/cover no-repeat fixed;
+            color: #ffffff;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Decorative background overlays */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('assets/3.png') center/cover no-repeat;
+            mix-blend-mode: overlay;
+            opacity: 0.1;
+            z-index: -3;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('assets/4.png') center/cover no-repeat;
+            mix-blend-mode: multiply;
+            opacity: 0.05;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        /* Red bar decorative element */
+        .red-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: url('assets/7.png') repeat-x;
+            background-size: cover;
+            z-index: 10;
+        }
+
+        /* Glowing text effect */
+        .glow-text {
+            color: #ffffff;
+            text-shadow:
+                0 0 10px rgba(255, 255, 255, 0.8),
+                0 0 20px rgba(255, 255, 255, 0.6),
+                0 0 30px rgba(255, 255, 255, 0.4);
+        }
+
+        /* Texture overlay */
+        .texture-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('assets/5.png') center/cover no-repeat;
+            mix-blend-mode: soft-light;
+            opacity: 0.08;
+            pointer-events: none;
         }
         
         .animated-gradient {
@@ -145,102 +239,6 @@
             box-shadow: 0 0 25px rgba(229, 0, 0, 0.8);
         }
 
-        .particle-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .particle {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(229, 0, 0, 0.1);
-            animation: float 15s infinite linear;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-1000px) rotate(720deg);
-                opacity: 0;
-            }
-        }
-
-        .grid-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            background:
-                linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="rgba(229,0,0,0.03)" stroke-width="1"/></svg>');
-            background-size: 50px 50px;
-        }
-
-        .scanline {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: linear-gradient(
-                to bottom,
-                rgba(255, 255, 255, 0) 0%,
-                rgba(229, 0, 0, 0.02) 50%,
-                rgba(255, 255, 255, 0) 100%
-            );
-            background-size: 100% 8px;
-            animation: scanline 4s linear infinite;
-            pointer-events: none;
-        }
-
-        @keyframes scanline {
-            0% {
-                background-position: 0 0;
-            }
-            100% {
-                background-position: 0 100%;
-            }
-        }
-
-        .glow-effect {
-            position: fixed;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(229, 0, 0, 0.1) 0%, rgba(229, 0, 0, 0) 70%);
-            filter: blur(20px);
-            animation: moveGlow 20s infinite alternate ease-in-out;
-            z-index: -1;
-        }
-
-        @keyframes moveGlow {
-            0% {
-                transform: translate(10%, 10%);
-            }
-            25% {
-                transform: translate(80%, 30%);
-            }
-            50% {
-                transform: translate(50%, 70%);
-            }
-            75% {
-                transform: translate(20%, 40%);
-            }
-            100% {
-                transform: translate(70%, 20%);
-            }
-        }
 
         .logo-circle:hover {
             transform: scale(1.1);
@@ -341,7 +339,7 @@
             left: -300px;
             width: 280px;
             height: 100vh;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(10px);
             box-shadow: 5px 0 25px rgba(0, 0, 0, 0.5);
             z-index: 1000;
@@ -357,7 +355,7 @@
         
         .sidebar-header {
             padding: 20px;
-            border-bottom: 1px solid rgba(229, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(229, 0, 0, 0.3);
             margin-bottom: 20px;
         }
         
@@ -376,12 +374,10 @@
             display: flex;
             align-items: center;
             padding: 15px 25px;
-            color: #000000;
+            color: #ffffff;
             text-decoration: none;
             transition: all 0.3s ease;
             font-size: 16px;
-            position: relative;
-            overflow: hidden;
         }
         
         .sidebar-menu a i {
@@ -392,7 +388,7 @@
         }
         
         .sidebar-menu a:hover {
-            background: rgba(229, 0, 0, 0.1);
+            background: rgba(229, 0, 0, 0.3);
             color: #ffffff;
             padding-left: 30px;
         }
@@ -414,7 +410,7 @@
         }
         
         .sidebar-menu a.active {
-            background: rgba(229, 0, 0, 0.2);
+            background: rgba(229, 0, 0, 0.5);
             color: #ffffff;
             border-left: 4px solid #e50000;
         }
@@ -428,9 +424,9 @@
             top: 30px;
             left: 30px;
             z-index: 1100;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(0, 0, 0, 0.8);
             border: 1px solid rgba(229, 0, 0, 0.3);
-            color: #000000;
+            color: #ffffff;
             width: 50px;
             height: 50px;
             border-radius: 50%;
@@ -513,11 +509,11 @@
         .floating-icon {
             position: absolute;
             font-size: 2rem;
-            color: rgba(0, 0, 0, 0.9);
+            color: rgba(255, 255, 255, 0.9);
             text-shadow: 0 0 15px rgba(229, 0, 0, 0.8);
             z-index: 1;
             animation: float 6s ease-in-out infinite;
-            filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.8));
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
         }
 
         .floating-icon:hover {
@@ -530,8 +526,6 @@
         /* Hero Section */
         #home {
             position: relative;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 245, 245, 0.95) 100%);
-            backdrop-filter: blur(5px);
         }
 
         /* Hero Text */
@@ -588,24 +582,13 @@
             text-shadow: 0 0 10px rgba(229, 0, 0, 0.7);
         }
 
-        /* Expandable Sections */
-        #expandableSections {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        #expandableSections.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
 
         /* Card Glass Effect */
         .card-glass {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(229, 0, 0, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
             transition: all 0.3s ease;
         }
 
@@ -743,6 +726,292 @@
             transform: scale(0.95);
         }
 
+        /* Enhanced About Me Animations */
+        .animate-fade-in {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .animate-fade-in-delay {
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .animate-fade-in-delay-2 {
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .animate-fade-in-delay-3 {
+            animation: fadeInUp 1s ease-out 0.9s both;
+        }
+
+        .animate-slide-left {
+            animation: slideInLeft 1.2s ease-out;
+        }
+
+        .animate-slide-right {
+            animation: slideInRight 1.2s ease-out;
+        }
+
+        .animate-slide-up {
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        .hover-lift {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .animate-float-delayed {
+            animation: float 6s ease-in-out infinite 2s;
+        }
+
+        .animate-float-slow {
+            animation: float 8s ease-in-out infinite 1s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Enhanced Card Glass Effect for About Section */
+        #about-preview .card-glass {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow:
+                0 20px 40px rgba(0, 0, 0, 0.5),
+                0 0 20px rgba(229, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        #about-preview .card-glass:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow:
+                0 30px 60px rgba(0, 0, 0, 0.7),
+                0 0 30px rgba(229, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            border-color: rgba(229, 0, 0, 0.3);
+        }
+
+        /* Rectangular Profile Image with 3D Floating Animation - Enhanced Size */
+        .profile-rectangle {
+            position: relative;
+            width: 420px;
+            height: 520px;
+            border-radius: 25px;
+            overflow: visible;
+            perspective: 1200px;
+            animation: float-3d 5s ease-in-out infinite;
+            filter: drop-shadow(0 25px 50px rgba(229, 0, 0, 0.3));
+        }
+
+        @keyframes float-3d {
+            0% {
+                transform: translateY(0px) rotateX(0deg) rotateY(0deg) scale(1);
+            }
+            25% {
+                transform: translateY(-20px) rotateX(3deg) rotateY(3deg) scale(1.02);
+            }
+            50% {
+                transform: translateY(-35px) rotateX(0deg) rotateY(0deg) scale(1.05);
+            }
+            75% {
+                transform: translateY(-20px) rotateX(-3deg) rotateY(-3deg) scale(1.02);
+            }
+            100% {
+                transform: translateY(0px) rotateX(0deg) rotateY(0deg) scale(1);
+            }
+        }
+
+        .profile-image-rect {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 25px;
+            border: 5px solid #e50000;
+            box-shadow:
+                0 0 50px rgba(229, 0, 0, 0.6),
+                0 25px 50px rgba(0, 0, 0, 0.3),
+                0 0 100px rgba(229, 0, 0, 0.2),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            z-index: 2;
+            filter: brightness(1.05) contrast(1.1);
+        }
+
+        .profile-image-rect:hover {
+            transform: scale(1.08) rotate(2deg);
+            box-shadow:
+                0 0 80px rgba(229, 0, 0, 1),
+                0 40px 80px rgba(0, 0, 0, 0.4),
+                0 0 150px rgba(229, 0, 0, 0.4),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+            filter: brightness(1.15) saturate(1.3) contrast(1.2);
+        }
+
+        .profile-particles-rect {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: calc(100% + 40px);
+            height: calc(100% + 40px);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .profile-particle-rect {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, rgba(229, 0, 0, 1) 0%, rgba(229, 0, 0, 0.3) 50%, rgba(229, 0, 0, 0) 100%);
+            border-radius: 50%;
+            filter: blur(1px);
+            animation: orbit-rect 10s linear infinite;
+            box-shadow: 0 0 10px rgba(229, 0, 0, 0.8);
+        }
+
+        .profile-particle-rect:nth-child(odd) {
+            animation-duration: 12s;
+            animation-delay: -3s;
+        }
+
+        .profile-particle-rect:nth-child(3n) {
+            animation-duration: 15s;
+            animation-delay: -6s;
+            width: 6px;
+            height: 6px;
+        }
+
+        .profile-particle-rect:nth-child(5n) {
+            animation-duration: 8s;
+            animation-delay: -9s;
+            width: 10px;
+            height: 10px;
+            box-shadow: 0 0 15px rgba(229, 0, 0, 1);
+        }
+
+        @keyframes orbit-rect {
+            0% {
+                transform: rotate(0deg) translateX(210px) rotate(0deg) scale(1);
+                opacity: 0.8;
+            }
+            25% {
+                transform: rotate(90deg) translateX(210px) rotate(-90deg) scale(1.2);
+                opacity: 1;
+            }
+            50% {
+                transform: rotate(180deg) translateX(210px) rotate(-180deg) scale(0.8);
+                opacity: 0.6;
+            }
+            75% {
+                transform: rotate(270deg) translateX(210px) rotate(-270deg) scale(1.1);
+                opacity: 0.9;
+            }
+            100% {
+                transform: rotate(360deg) translateX(210px) rotate(-360deg) scale(1);
+                opacity: 0.8;
+            }
+        }
+
+        .glow-ring-rect {
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            width: calc(100% + 16px);
+            height: calc(100% + 16px);
+            border-radius: 20px;
+            border: 2px solid rgba(229, 0, 0, 0.4);
+            box-shadow:
+                0 0 30px rgba(229, 0, 0, 0.6),
+                inset 0 0 30px rgba(229, 0, 0, 0.3);
+            z-index: 1;
+            animation: pulse-ring-rect 3s ease-out infinite;
+        }
+
+        @keyframes pulse-ring-rect {
+            0% {
+                transform: scale(1);
+                opacity: 0.9;
+            }
+            50% {
+                transform: scale(1.03);
+                opacity: 0.6;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0.9;
+            }
+        }
+
+        /* Responsive adjustments for rectangular profile */
+        @media screen and (max-width: 1024px) {
+            .profile-rectangle {
+                width: 280px;
+                height: 350px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .profile-rectangle {
+                width: 250px;
+                height: 320px;
+            }
+        }
+
         /* Text Selection */
         ::selection {
             background: rgba(229, 0, 0, 0.3);
@@ -785,16 +1054,15 @@
             right: 30px;
             font-size: 1.2rem;
             font-weight: 600;
-            color: #000;
-            background: rgba(255, 255, 255, 0.9);
+            color: #ffffff;
+            background: rgba(0, 0, 0, 0.7);
             padding: 10px 20px;
             border-radius: 30px;
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             z-index: 1000;
             font-family: 'Montserrat', sans-serif;
-            text-shadow: 0 0 10px rgba(229, 0, 0, 0.7);
         }
         
         .digital-clock .time {
@@ -812,21 +1080,28 @@
     </style>
 </head>
 <body>
-    <!-- Loading Screen -->
+    <!-- Simple Loading Screen -->
     <div id="loading-screen">
         <video id="loading-video" autoplay playsinline>
             <source src="assets/loading.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-        <div class="loading-text">Welcome to Zefanya Williams' Portfolio</div>
+
+        <!-- Loading Animation -->
+        <div class="loading-animation">
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <div class="loading-text">Loading Experience...</div>
+        </div>
     </div>
 
-    <!-- Background Elements -->
-    <div class="grid-bg"></div>
-    <div class="particle-bg" id="particle-bg"></div>
-    <div class="scanline"></div>
-    <div class="glow-effect"></div>
-    <div class="glow-effect" style="animation-delay: -10s; left: 30%; top: 60%;"></div>
+    <!-- Red bar decorative element -->
+    <div class="red-bar"></div>
+
+    <!-- Texture overlay -->
+    <div class="texture-overlay"></div>
+
     
     <!-- Menu Toggle Button -->
     <button class="menu-toggle" id="menuToggle">
@@ -842,7 +1117,7 @@
     <!-- Sidebar Menu -->
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <h2 class="text-2xl font-bold text-black">Menu</h2>
+            <h2 class="text-2xl font-bold text-white glow-text">Menu</h2>
         </div>
         <ul class="sidebar-menu">
             <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
@@ -862,18 +1137,15 @@
     </aside>
 
     <!-- Hero Section -->
-    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-dark">
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-dark hero-highlight">
         <!-- Floating icons -->
-        <div class="floating-icon text-2xl sm:text-3xl md:text-4xl top-1/4 right-1/4" style="animation-delay: -2s;"><i class="fab fa-html5"></i></div>
-        <div class="floating-icon text-2xl sm:text-3xl md:text-4xl bottom-1/3 left-1/4" style="animation-delay: -7s;"><i class="fab fa-css3-alt"></i></div>
-        <div class="floating-icon text-2xl sm:text-3xl md:text-4xl top-1/3 right-1/3" style="animation-delay: -12s;"><i class="fab fa-js"></i></div>
-        <div class="floating-icon text-2xl sm:text-3xl md:text-4xl bottom-1/4 left-1/3" style="animation-delay: -15s;"><i class="fas fa-code"></i></div>
-        <div class="floating-icon text-2xl sm:text-3xl md:text-4xl top-1/6 right-1/6" style="animation-delay: -20s;"><i class="fab fa-python"></i></div>
-        <div class="floating-icon text-2xl sm:text-3xl md:text-4xl bottom-1/6 left-1/6" style="animation-delay: -25s;"><i class="fas fa-database"></i></div>
-        <div class="floating-icon text-2xl sm:text-3xl md:text-4xl top-2/3 right-2/3" style="animation-delay: -30s;"><i class="fab fa-react"></i></div>
-        <div class="floating-icon text-2xl sm:text-3xl md:text-4xl bottom-2/3 left-2/3" style="animation-delay: -35s;"><i class="fas fa-brain"></i></div>
+        <div class="floating-icon text-2xl sm:text-3xl md:text-4xl" style="top: 20%; left: 10%; animation-delay: -2s;"><i class="fab fa-html5"></i></div>
+        <div class="floating-icon text-2xl sm:text-3xl md:text-4xl" style="top: 30%; right: 15%; animation-delay: -7s;"><i class="fab fa-css3-alt"></i></div>
+        <div class="floating-icon text-2xl sm:text-3xl md:text-4xl" style="bottom: 25%; left: 20%; animation-delay: -12s;"><i class="fab fa-js"></i></div>
+        <div class="floating-icon text-2xl sm:text-3xl md:text-4xl" style="bottom: 35%; right: 10%; animation-delay: -15s;"><i class="fas fa-code"></i></div>
+        <div class="floating-icon text-2xl sm:text-3xl md:text-4xl" style="top: 15%; right: 25%; animation-delay: -20s;"><i class="fas fa-laptop-code"></i></div>
+        <div class="floating-icon text-2xl sm:text-3xl md:text-4xl" style="bottom: 20%; right: 30%; animation-delay: -25s;"><i class="fas fa-envelope"></i></div>
         
-        <div class="absolute inset-0 z-0 bg-gradient-to-b from-transparent to-secondary opacity-50"></div>
         
         <div class="container mx-auto px-4 sm:px-6 py-20 z-10">
             <div class="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12">
@@ -882,7 +1154,7 @@
                         <span class="animated-gradient">Zefanya Williams</span>
                     </h1>
                     <h2 class="text-lg sm:text-xl md:text-2xl text-accent mb-6 font-medium">Digital Business Student | Content Creator | AI Enthusiast</h2>
-                    <p class="text-gray-600 mb-8 max-w-2xl mx-auto lg:mx-0 text-sm sm:text-base leading-relaxed typing-effect">
+                    <p class="text-black mb-8 max-w-2xl mx-auto lg:mx-0 text-sm sm:text-base leading-relaxed bg-white bg-opacity-90 backdrop-blur-sm px-6 py-4 rounded-2xl border border-red-200 shadow-lg">
                         A dedicated <strong>digital business student</strong> specializing in content creation, digital marketing, and data science. Passionate about solving complex challenges and contributing to <em>innovative projects</em>.
                     </p>
                     <div class="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
@@ -905,401 +1177,113 @@
     </section>
 
 <!-- About Me Section -->
-<section id="about-preview" class="py-20 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+<section id="about-preview" class="py-20 relative overflow-hidden">
     <div class="container mx-auto px-4 sm:px-6">
         <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gradient">About Me</h2>
-            <div class="section-divider"></div>
-            <p class="text-gray-600 max-w-3xl mx-auto text-lg">
-                Get to know more about my journey, passions, and what drives me to create exceptional digital experiences.
+            <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gradient animate-fade-in">About Me</h2>
+            <div class="section-divider animate-slide-up"></div>
+            <p class="text-white max-w-3xl mx-auto text-lg leading-relaxed animate-fade-in-delay">
+                Passionate digital business student bridging technology and creativity to solve real-world challenges.
             </p>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
-            <div class="space-y-6">
-                <div class="card-glass p-8 rounded-2xl hover-3d">
-                    <div class="w-16 h-16 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mb-6 red-glow">
-                        <i class="fas fa-user-graduate text-2xl text-primary"></i>
+        <!-- Main About Content -->
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
+                <!-- Profile Image -->
+                <div class="text-center lg:text-left animate-slide-left">
+                    <div class="profile-rectangle inline-block">
+                        <img src="assets/DSC08129.JPG"
+                             alt="Zefanya Williams"
+                             class="profile-image-rect">
+                        <div class="profile-particles-rect" id="profile-particles-about"></div>
+                        <div class="glow-ring-rect"></div>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-black">Background & Education</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Currently pursuing a <strong>Bachelor's degree in Digital Business</strong> at Universitas Siber Indonesia (2022-Present).
-                        My academic journey has equipped me with comprehensive knowledge in digital marketing, business strategy, and technology integration.
-                        I'm passionate about leveraging technology to solve real-world business challenges.
-                    </p>
                 </div>
 
-                <div class="card-glass p-8 rounded-2xl hover-3d">
-                    <div class="w-16 h-16 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mb-6 red-glow">
-                        <i class="fas fa-heart text-2xl text-primary"></i>
+                <!-- About Text -->
+                <div class="space-y-8 animate-slide-right">
+                    <div class="card-glass p-8 rounded-3xl hover-lift">
+                        <div class="w-16 h-16 bg-gradient-to-br from-primary to-red-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                            <i class="fas fa-user text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 text-white glow-text">Who I Am</h3>
+                        <p class="text-gray-300 leading-relaxed text-lg">
+                            I'm a dedicated <strong class="text-primary">digital business student</strong> at Universitas Siber Indonesia,
+                            passionate about leveraging technology to create meaningful solutions. My journey combines academic excellence
+                            with practical experience in content creation, digital marketing, and innovative problem-solving.
+                        </p>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-black">Passion & Drive</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        I'm driven by curiosity and a desire to make a meaningful impact. Whether it's creating engaging content,
-                        developing innovative solutions, or helping businesses grow digitally, I approach every challenge with
-                        enthusiasm and dedication. My goal is to bridge the gap between technology and business to create
-                        solutions that truly matter.
-                    </p>
+
+                    <div class="card-glass p-8 rounded-3xl hover-lift">
+                        <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                            <i class="fas fa-lightbulb text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 text-white glow-text">My Passion</h3>
+                        <p class="text-gray-300 leading-relaxed text-lg">
+                            Driven by curiosity and innovation, I believe in the power of creative thinking combined with technical expertise.
+                            Whether developing AI solutions, creating engaging content, or building digital experiences, I approach every
+                            challenge with enthusiasm and dedication to make a positive impact.
+                        </p>
+                    </div>
                 </div>
             </div>
 
-            <div class="space-y-6">
-                <div class="card-glass p-8 rounded-2xl hover-3d">
-                    <div class="w-16 h-16 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mb-6 red-glow">
-                        <i class="fas fa-lightbulb text-2xl text-primary"></i>
+            <!-- Key Highlights -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <div class="card-glass p-8 rounded-3xl text-center hover-lift animate-fade-in">
+                    <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-xl">
+                        <i class="fas fa-graduation-cap text-3xl text-white"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-black">Innovation & Creativity</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        I believe in the power of creative thinking combined with technical expertise. My approach to problem-solving
-                        involves thinking outside the box while maintaining practicality. I'm constantly exploring new technologies
-                        and methodologies to stay ahead of the curve and deliver cutting-edge solutions.
-                    </p>
+                    <h4 class="text-xl font-bold mb-3 text-white glow-text">Education</h4>
+                    <p class="text-gray-300">Bachelor's in Digital Business<br><span class="text-primary font-semibold">Universitas Siber Indonesia</span></p>
                 </div>
 
-                <div class="card-glass p-8 rounded-2xl hover-3d">
-                    <div class="w-16 h-16 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mb-6 red-glow">
-                        <i class="fas fa-handshake text-2xl text-primary"></i>
+                <div class="card-glass p-8 rounded-3xl text-center hover-lift animate-fade-in-delay">
+                    <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-600 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-xl">
+                        <i class="fas fa-code text-3xl text-white"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-black">Collaboration & Growth</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        I value collaboration and believe that the best results come from diverse perspectives working together.
-                        I'm committed to continuous learning and growth, always seeking opportunities to expand my skills and
-                        contribute to meaningful projects. My entrepreneurial spirit drives me to create value and make a positive impact.
-                    </p>
+                    <h4 class="text-xl font-bold mb-3 text-white glow-text">Skills</h4>
+                    <p class="text-gray-300">Content Creation • Digital Marketing<br><span class="text-primary font-semibold">AI & Data Analysis</span></p>
+                </div>
+
+                <div class="card-glass p-8 rounded-3xl text-center hover-lift animate-fade-in-delay-2">
+                    <div class="w-20 h-20 bg-gradient-to-br from-orange-500 to-orange-600 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-xl">
+                        <i class="fas fa-rocket text-3xl text-white"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3 text-white glow-text">Vision</h4>
+                    <p class="text-gray-300">Bridging Technology & Business<br><span class="text-primary font-semibold">Creating Impact</span></p>
                 </div>
             </div>
-        </div>
 
-        <!-- Personal Values & Achievements -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            <div class="card-glass p-6 rounded-2xl text-center hover-3d">
-                <div class="w-20 h-20 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4 red-glow">
-                    <i class="fas fa-trophy text-3xl text-primary"></i>
-                </div>
-                <h4 class="text-xl font-bold mb-3 text-black">Achievements</h4>
-                <ul class="text-gray-600 text-sm space-y-2 text-left">
-                    <li>• Built successful fashion brand "Gegaiaan"</li>
-                    <li>• Experienced property sales professional</li>
-                    <li>• Content creator with growing audience</li>
-                    <li>• Machine learning project developer</li>
-                </ul>
-            </div>
-
-            <div class="card-glass p-6 rounded-2xl text-center hover-3d">
-                <div class="w-20 h-20 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4 red-glow">
-                    <i class="fas fa-star text-3xl text-primary"></i>
-                </div>
-                <h4 class="text-xl font-bold mb-3 text-black">Core Values</h4>
-                <ul class="text-gray-600 text-sm space-y-2 text-left">
-                    <li>• Innovation & Creativity</li>
-                    <li>• Integrity & Excellence</li>
-                    <li>• Continuous Learning</li>
-                    <li>• Collaboration & Growth</li>
-                </ul>
-            </div>
-
-            <div class="card-glass p-6 rounded-2xl text-center hover-3d">
-                <div class="w-20 h-20 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4 red-glow">
-                    <i class="fas fa-rocket text-3xl text-primary"></i>
-                </div>
-                <h4 class="text-xl font-bold mb-3 text-black">Future Goals</h4>
-                <ul class="text-gray-600 text-sm space-y-2 text-left">
-                    <li>• Lead digital transformation projects</li>
-                    <li>• Expand content creation business</li>
-                    <li>• Develop AI-powered solutions</li>
-                    <li>• Mentor aspiring entrepreneurs</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Fun Facts -->
-        <div class="card-glass p-8 rounded-2xl">
-            <h3 class="text-2xl font-bold mb-6 text-center text-primary">Fun Facts About Me</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-3 red-glow">
-                        <i class="fas fa-palette text-2xl text-primary"></i>
-                    </div>
-                    <h5 class="font-semibold mb-2">Creative Soul</h5>
-                    <p class="text-gray-600 text-sm">Passionate about photography, video editing, and digital art creation</p>
-                </div>
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-3 red-glow">
-                        <i class="fas fa-code text-2xl text-primary"></i>
-                    </div>
-                    <h5 class="font-semibold mb-2">Tech Enthusiast</h5>
-                    <p class="text-gray-600 text-sm">Love exploring new technologies and programming languages</p>
-                </div>
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-3 red-glow">
-                        <i class="fas fa-users text-2xl text-primary"></i>
-                    </div>
-                    <h5 class="font-semibold mb-2">Team Player</h5>
-                    <p class="text-gray-600 text-sm">Believe in the power of collaboration and diverse perspectives</p>
-                </div>
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-3 red-glow">
-                        <i class="fas fa-globe text-2xl text-primary"></i>
-                    </div>
-                    <h5 class="font-semibold mb-2">Global Mindset</h5>
-                    <p class="text-gray-600 text-sm">Aspire to work on international projects and make global impact</p>
+            <!-- Call to Action -->
+            <div class="text-center animate-fade-in-delay-3">
+                <div class="inline-flex flex-col sm:flex-row gap-4">
+                    <a href="about.html" class="px-8 py-4 bg-gradient-to-r from-primary to-red-600 rounded-full font-semibold text-white glowing-button hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                        <i class="fas fa-user mr-2"></i>Learn More About Me
+                    </a>
+                    <a href="contact.html" class="px-8 py-4 border-2 border-primary text-primary rounded-full font-semibold hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-105">
+                        <i class="fas fa-envelope mr-2"></i>Get In Touch
+                    </a>
                 </div>
             </div>
-        </div>
-
-        <div class="text-center mt-12">
-            <a href="about.html" class="px-8 py-3 bg-gradient-to-r from-primary to-red-600 rounded-full font-medium text-white glowing-button hover:shadow-lg transition-all duration-300">
-                Discover My Full Story
-            </a>
         </div>
     </div>
+
+    <!-- Background Elements -->
+    <div class="absolute top-20 left-10 w-32 h-32 bg-primary opacity-5 rounded-full animate-float"></div>
+    <div class="absolute bottom-20 right-10 w-24 h-24 bg-red-500 opacity-5 rounded-full animate-float-delayed"></div>
+    <div class="absolute top-1/2 left-1/4 w-16 h-16 bg-blue-500 opacity-5 rounded-full animate-float-slow"></div>
 </section>
 
-<!-- Expandable Sections -->
-    <div id="expandableSections" class="hidden">
-        <!-- Expertise Section -->
-        <section id="expertise-preview" class="py-20 bg-gray-50 relative overflow-hidden">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4 animated-gradient">My Expertise</h2>
-                    <div class="section-divider"></div>
-                    <p class="text-gray-600 max-w-3xl mx-auto">
-                        I specialize in various areas of digital business and content creation, bringing a unique blend of technical skills and creative vision to every project.
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Video Editing -->
-                    <div class="card-glass p-8 rounded-2xl hover-3d">
-                        <div class="w-16 h-16 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mb-6 red-glow">
-                            <i class="fas fa-video text-2xl text-primary"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3 text-black">Video Editing</h3>
-                        <p class="text-gray-600 mb-4">
-                            Professional video editing with attention to detail and storytelling. Proficient in creating engaging content for various platforms.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Adobe Premiere Pro</span>
-                            <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">After Effects</span>
-                            <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">DaVinci Resolve</span>
-                        </div>
-                    </div>
-
-                    <!-- Digital Marketing -->
-                    <div class="card-glass p-8 rounded-2xl hover-3d">
-                        <div class="w-16 h-16 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mb-6 red-glow">
-                            <i class="fas fa-bullhorn text-2xl text-primary"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3 text-black">Digital Marketing</h3>
-                        <p class="text-gray-600 mb-4">
-                            Strategic digital marketing with focus on ROI and brand growth. Experience in social media management and campaign planning.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Social Media</span>
-                            <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">SEO</span>
-                            <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Content Strategy</span>
-                        </div>
-                    </div>
-
-                    <!-- Data Analysis -->
-                    <div class="card-glass p-8 rounded-2xl hover-3d">
-                        <div class="w-16 h-16 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mb-6 red-glow">
-                            <i class="fas fa-chart-line text-2xl text-primary"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3 text-black">Data Analysis</h3>
-                        <p class="text-gray-600 mb-4">
-                            Data-driven decision making using modern analytics tools. Skilled in extracting insights and creating actionable recommendations.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Python</span>
-                            <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">SQL</span>
-                            <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Tableau</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="text-center mt-12">
-                    <a href="expertise.html" class="px-8 py-3 bg-gradient-to-r from-primary to-red-600 rounded-full font-medium text-white glowing-button hover:shadow-lg transition-all duration-300">
-                        View Full Expertise
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section id="experience-preview" class="py-20 bg-white relative overflow-hidden">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4 animated-gradient">My Experience</h2>
-                    <div class="section-divider"></div>
-                    <p class="text-gray-600 max-w-3xl mx-auto">
-                        A journey of growth and learning through various roles and projects in digital business and content creation.
-                    </p>
-                </div>
-
-                <div class="max-w-4xl mx-auto">
-                    <!-- Education -->
-                    <div class="card-glass p-8 rounded-2xl hover-3d mb-8">
-                        <div class="flex items-center mb-6">
-                            <div class="w-12 h-12 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mr-4 red-glow floating">
-                                <i class="fas fa-graduation-cap text-primary text-xl"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold text-primary">Education</h3>
-                        </div>
-
-                        <div class="ml-16 relative">
-                            <div class="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-red-400 to-transparent"></div>
-                            <div class="relative pl-8">
-                                <div class="absolute left-0 top-2 w-4 h-4 rounded-full bg-primary"></div>
-                                <h4 class="text-lg font-semibold text-black">Universitas Siber Indonesia</h4>
-                                <p class="text-sm text-gray-400 mb-2">2022 – Present | Bachelor of Digital Business</p>
-                                <div class="card-glass p-4 rounded-lg mt-3">
-                                    <p class="text-accent text-sm">Pursuing a comprehensive education in digital business strategies, marketing, and technology integration.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Recent Experience -->
-                    <div class="card-glass p-8 rounded-2xl hover-3d mb-8">
-                        <div class="flex items-center mb-6">
-                            <div class="w-12 h-12 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mr-4 red-glow floating">
-                                <i class="fas fa-briefcase text-primary text-xl"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold text-primary">Recent Experience</h3>
-                        </div>
-
-                        <div class="ml-16 relative">
-                            <div class="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-red-400 to-transparent"></div>
-
-                            <!-- Experience Item 1 -->
-                            <div class="relative pl-8 pb-8">
-                                <div class="absolute left-0 top-2 w-4 h-4 rounded-full bg-primary"></div>
-                                <h4 class="text-lg font-semibold text-black">Salesman</h4>
-                                <p class="text-sm text-gray-400 mb-2">PT Sentul City Tbk | Mar 2025 – Present | Sentul City, Bogor</p>
-                                <div class="card-glass p-4 rounded-lg mt-3">
-                                    <ul class="text-accent text-sm list-disc pl-5 space-y-2">
-                                        <li>Membantu klien menemukan properti sesuai kebutuhan dan anggaran</li>
-                                        <li>Memberikan informasi menyeluruh terkait legalitas, nilai investasi, dan proses pembelian properti</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <!-- Experience Item 2 -->
-                            <div class="relative pl-8 pb-8">
-                                <div class="absolute left-0 top-2 w-4 h-4 rounded-full bg-primary"></div>
-                                <h4 class="text-lg font-semibold text-black">Business Owner</h4>
-                                <p class="text-sm text-gray-400 mb-2">Gegaiaan | Feb 2025 – Present | Kota Bogor, Indonesia</p>
-                                <div class="card-glass p-4 rounded-lg mt-3">
-                                    <ul class="text-accent text-sm list-disc pl-5 space-y-2">
-                                        <li>Mendirikan brand fashion lokal yang menekankan nilai berani, autentik, dan ekspresif</li>
-                                        <li>Menghadirkan koleksi streetwear dan casualwear untuk generasi muda</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="text-center mt-12">
-                        <a href="experience.html" class="px-8 py-3 bg-gradient-to-r from-primary to-red-600 rounded-full font-medium text-white glowing-button hover:shadow-lg transition-all duration-300">
-                            View Full Experience
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- News/Projects Section -->
-        <section id="news-preview" class="py-20 bg-gray-50 relative overflow-hidden">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4 animated-gradient">Latest Projects</h2>
-                    <div class="section-divider"></div>
-                    <p class="text-gray-600 max-w-3xl mx-auto">
-                        Showcasing recent work and innovative projects that demonstrate technical skills and creative problem-solving.
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Project 1 -->
-                    <div class="card-glass rounded-2xl overflow-hidden hover-3d">
-                        <div class="h-48 bg-gray-300 relative overflow-hidden">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent z-10 opacity-30"></div>
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <i class="fas fa-heartbeat text-6xl text-primary opacity-50"></i>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-lg font-semibold text-primary mb-2">Cardiovascular Disease Detection</h4>
-                            <p class="text-gray-600 text-sm mb-4">A machine learning project to predict cardiovascular diseases from patient data.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Python</span>
-                                <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Machine Learning</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 2 -->
-                    <div class="card-glass rounded-2xl overflow-hidden hover-3d">
-                        <div class="h-48 bg-gray-300 relative overflow-hidden">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent z-10 opacity-30"></div>
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <i class="fas fa-bullhorn text-6xl text-primary opacity-50"></i>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-lg font-semibold text-primary mb-2">Digital Marketing Campaign</h4>
-                            <p class="text-gray-600 text-sm mb-4">Comprehensive marketing strategy for a local business that increased engagement significantly.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Marketing</span>
-                                <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Social Media</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 3 -->
-                    <div class="card-glass rounded-2xl overflow-hidden hover-3d">
-                        <div class="h-48 bg-gray-300 relative overflow-hidden">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent z-10 opacity-30"></div>
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <i class="fas fa-video text-6xl text-primary opacity-50"></i>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-lg font-semibold text-primary mb-2">Video Production Series</h4>
-                            <p class="text-gray-600 text-sm mb-4">Educational video series about digital business trends and technologies.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Video Editing</span>
-                                <span class="skill-pill px-3 py-1 rounded-full text-xs text-accent">Content Creation</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="text-center mt-12">
-                    <a href="experience.html" class="px-8 py-3 bg-gradient-to-r from-primary to-red-600 rounded-full font-medium text-white glowing-button hover:shadow-lg transition-all duration-300">
-                        View All Projects
-                    </a>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- Explore More Button -->
-    <div class="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 animate-bounce">
-        <button id="exploreBtn" class="flex flex-col items-center text-black hover:text-primary transition cursor-pointer bg-white bg-opacity-90 backdrop-blur-sm rounded-full px-6 py-3 shadow-lg hover:shadow-xl border border-gray-200">
-            <span class="text-sm font-medium mb-1">Explore More</span>
-            <i class="fas fa-chevron-down text-lg"></i>
-        </button>
-    </div>
 
     <!-- Footer -->
-    <footer class="bg-white py-10 relative overflow-hidden">
+    <footer class="bg-black py-10 relative overflow-hidden">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
                     <div class="text-2xl font-bold animated-gradient">Zefanya Williams</div>
-                    <p class="text-gray-600 mt-2">Digital Business Student & Content Creator</p>
+                    <p class="text-gray-300 mt-2">Digital Business Student & Content Creator</p>
                 </div>
                 <div class="flex space-x-4">
                     <a href="#" class="text-gray-600 hover:text-primary transition">
@@ -1316,7 +1300,7 @@
                     </a>
                 </div>
             </div>
-            <div class="mt-8 border-t border-gray-300 pt-8 text-center text-gray-600 text-sm">
+            <div class="mt-8 border-t border-gray-700 pt-8 text-center text-gray-400 text-sm">
                 &copy; 2025 Zefanya Williams. All rights reserved.
             </div>
         </div>
@@ -1324,22 +1308,38 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Handle loading screen with video
+            // Simple loading screen with 12-second autoplay
             const loadingScreen = document.getElementById('loading-screen');
             const loadingVideo = document.getElementById('loading-video');
 
             // Function to hide loading screen
             const hideLoadingScreen = () => {
                 loadingScreen.classList.add('hidden');
+                // Remove loading screen from DOM after animation
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                    // Trigger hero section highlight
+                    triggerHeroHighlight();
+                }, 1000);
             };
 
-            // Hide loading screen when video ends
-            loadingVideo.addEventListener('ended', hideLoadingScreen);
+            // Function to trigger hero section highlight
+            const triggerHeroHighlight = () => {
+                const heroSection = document.getElementById('home');
+                if (heroSection) {
+                    // Add a temporary highlight class that triggers the animation
+                    heroSection.classList.add('highlight-active');
+                    // Remove after animation completes
+                    setTimeout(() => {
+                        heroSection.classList.remove('highlight-active');
+                    }, 3500); // Match animation duration
+                }
+            };
 
             // Handle video load errors
             loadingVideo.addEventListener('error', () => {
                 console.warn('Video failed to load, hiding loading screen');
-                setTimeout(hideLoadingScreen, 2000);
+                setTimeout(hideLoadingScreen, 3000);
             });
 
             // Ensure video plays (fallback for autoplay restrictions)
@@ -1351,6 +1351,7 @@
                     // Add click to play functionality
                     loadingScreen.addEventListener('click', () => {
                         loadingVideo.play();
+                        setTimeout(hideLoadingScreen, 12000);
                     }, { once: true });
                 }
             };
@@ -1358,38 +1359,13 @@
             // Start playing video
             playVideo();
 
-            // Fallback: hide after 15 seconds if video doesn't end
+            // Auto-hide after exactly 12 seconds
             setTimeout(() => {
                 if (!loadingScreen.classList.contains('hidden')) {
                     hideLoadingScreen();
                 }
-            }, 15000);
+            }, 12000);
 
-            // Create floating particles
-            const particleBg = document.getElementById('particle-bg');
-            
-            for (let i = 0; i < 100; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                
-                // Random size between 5px and 20px
-                const size = Math.random() * 15 + 5;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                
-                // Random position
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100}%`;
-                
-                // Random animation duration between 15s and 30s
-                const duration = Math.random() * 15 + 15;
-                particle.style.animationDuration = `${duration}s`;
-                
-                // Random delay
-                particle.style.animationDelay = `${Math.random() * 10}s`;
-                
-                particleBg.appendChild(particle);
-            }
             
             // Toggle Sidebar
             const menuToggle = document.getElementById('menuToggle');
@@ -1425,24 +1401,49 @@
             // Create profile image particles
             const profileParticles = document.getElementById('profile-particles');
             const particleCount = 12; // Number of particles around the profile
-            
+
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.classList.add('profile-particle');
-                
+
                 // Random size between 4px and 10px
                 const size = Math.random() * 6 + 4;
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
-                
+
                 // Position around the circle with different angles
                 const angle = (i / particleCount) * 360;
                 particle.style.animationDelay = `${i * (8 / particleCount)}s`;
-                
+
                 // Random opacity
                 particle.style.opacity = (Math.random() * 0.5 + 0.3).toString();
-                
+
                 profileParticles.appendChild(particle);
+            }
+
+            // Create profile particles for about section (rectangular)
+            const aboutProfileParticles = document.getElementById('profile-particles-about');
+            if (aboutProfileParticles) {
+                const aboutParticleCount = 20;
+
+                for (let i = 0; i < aboutParticleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('profile-particle-rect');
+
+                    // Random size between 4px and 8px
+                    const size = Math.random() * 4 + 4;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+
+                    // Position around the rectangle with different angles
+                    const angle = (i / aboutParticleCount) * 360;
+                    particle.style.animationDelay = `${i * (12 / aboutParticleCount)}s`;
+
+                    // Random opacity
+                    particle.style.opacity = (Math.random() * 0.5 + 0.3).toString();
+
+                    aboutProfileParticles.appendChild(particle);
+                }
             }
             
             // Add pulse effect to profile image on hover
@@ -1505,54 +1506,6 @@
             setInterval(updateClock, 1000);
             updateClock();
 
-            // Explore More Button Functionality
-            const exploreBtn = document.getElementById('exploreBtn');
-            const expandableSections = document.getElementById('expandableSections');
-            let sectionsVisible = false;
-
-            exploreBtn.addEventListener('click', () => {
-                sectionsVisible = !sectionsVisible;
-
-                if (sectionsVisible) {
-                    expandableSections.classList.remove('hidden');
-                    // Add show class with delay for animation
-                    setTimeout(() => {
-                        expandableSections.classList.add('show');
-                    }, 50);
-
-                    // Change button text and icon
-                    exploreBtn.innerHTML = `
-                        <span class="text-sm font-medium mb-1">Show Less</span>
-                        <i class="fas fa-chevron-up text-lg"></i>
-                    `;
-
-                    // Smooth scroll to sections
-                    setTimeout(() => {
-                        expandableSections.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }, 300);
-                } else {
-                    expandableSections.classList.remove('show');
-                    // Hide after animation
-                    setTimeout(() => {
-                        expandableSections.classList.add('hidden');
-                    }, 600);
-
-                    // Change button text and icon back
-                    exploreBtn.innerHTML = `
-                        <span class="text-sm font-medium mb-1">Explore More</span>
-                        <i class="fas fa-chevron-down text-lg"></i>
-                    `;
-
-                    // Scroll back to top
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                }
-            });
         });
     </script>
 
