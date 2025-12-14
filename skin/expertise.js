@@ -17,6 +17,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Create a single particle element (optimized) - defined first
+    const createParticleElement = (x, y) => {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        
+        const size = 2 + Math.random() * 4;
+        const lightness = 50 + Math.random() * 20;
+        const duration = 1 + Math.random() * 2;
+        
+        particle.style.cssText = `
+            width: ${size}px;
+            height: ${size}px;
+            background-color: hsla(0, 100%, ${lightness}%, 0.8);
+            left: ${x}px;
+            top: ${y}px;
+            animation-duration: ${duration}s;
+            will-change: transform, opacity;
+        `;
+        
+        return particle;
+    };
+    
     // Create floating particles
     const particleBg = document.getElementById('particle-bg');
     const particleCount = 30;
@@ -125,30 +147,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // Create a single particle element (optimized)
-    function createParticleElement(x, y) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        
-        const size = 2 + Math.random() * 4;
-        const lightness = 50 + Math.random() * 20;
-        const duration = 1 + Math.random() * 2;
-        
-        particle.style.cssText = `
-            width: ${size}px;
-            height: ${size}px;
-            background-color: hsla(0, 100%, ${lightness}%, 0.8);
-            left: ${x}px;
-            top: ${y}px;
-            animation-duration: ${duration}s;
-            will-change: transform, opacity;
-        `;
-        
-        return particle;
-    }
-    
     // Create and append particle with automatic cleanup
-    function createParticle(x, y) {
+    const createParticle = (x, y) => {
         const particle = createParticleElement(x, y);
         if (!particle) return;
         

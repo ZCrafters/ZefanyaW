@@ -50,15 +50,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Check if EmailJS is available
             if (typeof emailjs !== 'undefined') {
-                // Initialize EmailJS
+                // Initialize EmailJS with your public key
                 emailjs.init('DEf6ZsN_jL2oWBxoc');
                 
                 // Send email using EmailJS
                 formProps.to_email = 'zefanyawilliamszero@gmail.com';
                 
+                // TODO: Replace 'YOUR_TEMPLATE_ID' with your actual EmailJS template ID
+                // Get it from your EmailJS dashboard at https://dashboard.emailjs.com/
+                const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID'; // Configure this!
+                
                 emailjs.send(
                     'service_8kutmfq',
-                    'YOUR_TEMPLATE_ID',
+                    EMAILJS_TEMPLATE_ID,
                     formProps
                 )
                 .then(function(response) {

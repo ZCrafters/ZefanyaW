@@ -14,6 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
         dots: []
     };
 
+    const CURSOR_TRAIL_DOTS = 8;
+    const CURSOR_BASE_OPACITY = 0.8;
+    const CURSOR_OPACITY_STEP = 0.1;
+    
     const createCursorTrail = () => {
         const trailContainer = document.createElement('div');
         trailContainer.id = 'cursor-trail';
@@ -28,15 +32,15 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         document.body.appendChild(trailContainer);
 
-        for (let i = 0; i < 8; i++) {
+        for (let i = 0; i < CURSOR_TRAIL_DOTS; i++) {
             const dot = document.createElement('div');
             dot.className = 'cursor-dot';
             dot.style.cssText = `
                 position: absolute;
-                width: ${8 - i}px;
-                height: ${8 - i}px;
+                width: ${CURSOR_TRAIL_DOTS - i}px;
+                height: ${CURSOR_TRAIL_DOTS - i}px;
                 border-radius: 50%;
-                background: rgba(229, 0, 0, ${0.8 - i * 0.1});
+                background: rgba(229, 0, 0, ${CURSOR_BASE_OPACITY - i * CURSOR_OPACITY_STEP});
                 transform: translate(-50%, -50%);
                 transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
                 pointer-events: none;

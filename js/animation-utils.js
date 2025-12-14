@@ -1,13 +1,13 @@
 // Animation Utilities - Reusable animation functions
 const AnimationUtils = (() => {
-    // Throttle function for performance
+    // Throttle function for performance (timestamp-based)
     const throttle = (func, limit) => {
-        let inThrottle;
+        let lastRan = 0;
         return function(...args) {
-            if (!inThrottle) {
+            const now = Date.now();
+            if (now - lastRan >= limit) {
                 func.apply(this, args);
-                inThrottle = true;
-                setTimeout(() => inThrottle = false, limit);
+                lastRan = now;
             }
         };
     };
