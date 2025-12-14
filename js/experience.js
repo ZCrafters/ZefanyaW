@@ -1,88 +1,66 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Inisialisasi mobile menu
-    const menuToggle = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const closeMenu = document.getElementById('close-menu');
-
-    if (menuToggle && mobileMenu) {
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.remove('translate-x-full');
-            mobileMenu.classList.add('translate-x-0');
-        });
-    }
-
-
-    if (closeMenu && mobileMenu) {
-        closeMenu.addEventListener('click', () => {
-            mobileMenu.classList.remove('translate-x-0');
-            mobileMenu.classList.add('translate-x-full');
-        });
-    }
-
-
-    // Inisialisasi particles background
+    // Optimized particles background with reduced count
     function initParticles() {
         const container = document.getElementById('particle-bg');
         if (!container) return;
 
-        const particleCount = 30;
+        const particleCount = 20; // Reduced from 30
+        const fragment = document.createDocumentFragment();
         
         for (let i = 0; i < particleCount; i++) {
             const particle = document.createElement('div');
             particle.className = 'absolute rounded-full bg-primary opacity-20';
             
-            // Random size between 2px and 6px
             const size = Math.random() * 4 + 2;
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
+            const duration = Math.random() * 20 + 10;
+            const delay = Math.random() * -20;
             
-            // Random position
-            particle.style.left = `${Math.random() * 100}%`;
-            particle.style.top = `${Math.random() * 100}%`;
+            particle.style.cssText = `
+                width: ${size}px;
+                height: ${size}px;
+                left: ${Math.random() * 100}%;
+                top: ${Math.random() * 100}%;
+                animation: float ${duration}s ease-in-out ${delay}s infinite;
+                will-change: transform;
+            `;
             
-            // Random animation
-            const duration = Math.random() * 20 + 10; // 10-30 seconds
-            const delay = Math.random() * -20; // Start at random time
-            
-            particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
-            
-            container.appendChild(particle);
+            fragment.appendChild(particle);
         }
+        
+        container.appendChild(fragment);
     }
 
-
-    // Animate elements on scroll
-    function animateOnScroll() {
-        const elements = document.querySelectorAll('.timeline-item, .skill-card, .project-card');
-        
-        elements.forEach(element => {
-            const elementTop = element.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
-            
-            if (elementTop < windowHeight - 100) {
-                element.style.opacity = '1';
-                element.style.transform = 'translateY(0)';
+    // Optimized scroll animation with IntersectionObserver
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    };
+    
+    const animateObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                animateObserver.unobserve(entry.target); // Unobserve after animation
             }
         });
-    }
+    }, observerOptions);
 
-
-    // Initialize animations
+    // Initialize animations with IntersectionObserver
     function initAnimations() {
-        // Add initial styles for animation
         const animatedElements = document.querySelectorAll('.timeline-item, .skill-card, .project-card');
         animatedElements.forEach((el, index) => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = `opacity 0.5s ease ${index * 0.1}s, transform 0.5s ease ${index * 0.1}s`;
+            el.style.cssText = `
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.1}s, 
+                           transform 0.6s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.1}s;
+            `;
+            animateObserver.observe(el);
         });
-        
-        // Trigger initial animation
-        setTimeout(animateOnScroll, 100);
     }
 
-
-    // Initialize tooltips
+    // Optimized tooltips with event delegation
     function initTooltips() {
         const tooltipElements = document.querySelectorAll('[data-tooltip]');
         
@@ -90,29 +68,25 @@ document.addEventListener('DOMContentLoaded', function() {
             const tooltip = document.createElement('div');
             tooltip.className = 'tooltip hidden absolute bg-dark text-white text-xs py-1 px-2 rounded whitespace-nowrap z-50';
             tooltip.textContent = element.getAttribute('data-tooltip');
+            element.style.position = 'relative';
             element.appendChild(tooltip);
             
             element.addEventListener('mouseenter', () => {
                 tooltip.classList.remove('hidden');
-            });
+            }, { passive: true });
             
             element.addEventListener('mouseleave', () => {
                 tooltip.classList.add('hidden');
-            });
+            }, { passive: true });
         });
     }
-
 
     // Initialize all functions
     function init() {
         initParticles();
         initAnimations();
         initTooltips();
-        
-        // Add scroll event listener for animations
-        window.addEventListener('scroll', animateOnScroll);
     }
-
 
     // Start the initialization
     init();

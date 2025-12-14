@@ -124,16 +124,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Rest of your existing code...
                 });
                 // Reset button state
-                if (sendButton && sendText) {
-                    sendButton.disabled = false;
-                    sendText.textContent = 'Send Message';
-                    spinner.classList.add('hidden');
-                    sendButton.style.transform = 'scale(1)';
+                        if (sendButton && sendText) {
+                            sendButton.disabled = false;
+                            sendText.textContent = 'Send Message';
+                            spinner.classList.add('hidden');
+                            sendButton.style.transform = 'scale(1)';
+                        }
+                        contactForm.style.animation = 'none';
+                    }, 1500);
                 }
-
-                // Remove pulse animation
-                contactForm.style.animation = 'none';
-            }, 1500); // Simulate network delay
         });
     }
 

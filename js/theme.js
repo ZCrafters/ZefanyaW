@@ -210,21 +210,31 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     document.head.appendChild(animationStyles);
 
-    // Create floating particles
+    // Create floating particles with document fragment for better performance
     function createFloatingParticles(container) {
         if (!container) return;
 
-        for (let i = 0; i < 20; i++) {
+        const fragment = document.createDocumentFragment();
+        const particleCount = 15; // Reduced from 20 for better performance
+
+        for (let i = 0; i < particleCount; i++) {
             const particle = document.createElement('div');
             particle.className = 'particle-float';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.width = Math.random() * 8 + 4 + 'px';
-            particle.style.height = particle.style.width;
-            particle.style.animationDelay = Math.random() * 15 + 's';
-            particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+            const size = Math.random() * 8 + 4;
+            
+            particle.style.cssText = `
+                left: ${Math.random() * 100}%;
+                width: ${size}px;
+                height: ${size}px;
+                animation-delay: ${Math.random() * 15}s;
+                animation-duration: ${Math.random() * 10 + 15}s;
+                will-change: transform;
+            `;
 
-            container.appendChild(particle);
+            fragment.appendChild(particle);
         }
+        
+        container.appendChild(fragment);
     }
 
     // Add floating particles to sections
@@ -250,7 +260,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Magnetic effect for buttons
+    // Optimized magnetic effect for buttons with transform3d
     const buttons = document.querySelectorAll('button, .glowing-button');
     buttons.forEach(button => {
         button.addEventListener('mousemove', function(e) {
@@ -258,24 +268,25 @@ document.addEventListener('DOMContentLoaded', function() {
             const x = e.clientX - rect.left - rect.width / 2;
             const y = e.clientY - rect.top - rect.height / 2;
 
-            this.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
-        });
+            this.style.transform = `translate3d(${x * 0.1}px, ${y * 0.1}px, 0)`;
+        }, { passive: true });
 
         button.addEventListener('mouseleave', function() {
-            this.style.transform = 'translate(0, 0)';
-        });
+            this.style.transform = 'translate3d(0, 0, 0)';
+        }, { passive: true });
     });
 
-    // Smooth scroll with parallax
+    // Optimized smooth scroll with parallax using passive listeners
     let ticking = false;
+    const parallaxElements = document.querySelectorAll('.parallax-element');
+    
     function updateParallax() {
         const scrolled = window.pageYOffset;
-        const parallaxElements = document.querySelectorAll('.parallax-element');
 
         parallaxElements.forEach(element => {
-            const speed = element.dataset.speed || 0.5;
+            const speed = parseFloat(element.dataset.speed) || 0.5;
             const yPos = -(scrolled * speed);
-            element.style.transform = `translateY(${yPos}px)`;
+            element.style.transform = `translate3d(0, ${yPos}px, 0)`;
         });
 
         ticking = false;
@@ -288,7 +299,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    window.addEventListener('scroll', requestTick);
+    window.addEventListener('scroll', requestTick, { passive: true });
 
     // Add loading animation
     window.addEventListener('load', function() {
