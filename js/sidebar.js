@@ -80,25 +80,68 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // Add smooth scroll to anchor links
+    // Optimized smooth scroll with offset calculation
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
             const targetId = this.getAttribute('href');
             if (targetId === '#') return;
             
+            e.preventDefault();
             const targetElement = document.querySelector(targetId);
+            
             if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+                // Calculate offset for fixed headers
+                const headerOffset = 80;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
                 });
+                
+                // Update URL without jumping
+                if (window.history && window.history.pushState) {
+                    window.history.pushState(null, '', targetId);
+                }
                 
                 // Close sidebar on mobile after clicking a link
                 if (window.innerWidth <= 768) {
-                    closeSidebar();
+                    setTimeout(closeSidebar, 300);
                 }
             }
         });
     });
+    
+    // Add active state based on scroll position
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.sidebar-menu a[href^="#"]');
+    
+    const highlightNav = () => {
+        let current = '';
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            
+            if (window.pageYOffset >= sectionTop - 100) {
+                current = section.getAttribute('id');
+            }
+        });
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+    };
+    
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+        if (scrollTimeout) {
+            window.cancelAnimationFrame(scrollTimeout);
+        }
+        scrollTimeout = window.requestAnimationFrame(highlightNav);
+    }, { passive: true });
 });

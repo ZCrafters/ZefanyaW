@@ -6,13 +6,15 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
     
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { willReadFrequently: false, alpha: false });
     let isDrawing = false;
     let currentTool = 'pencil';
     let currentColor = '#FF003C';
     let brushSize = 8;
     let lastX = 0;
     let lastY = 0;
+    let drawQueue = [];
+    let animationFrameId = null;
 
     // Initialize canvas
     function initCanvas() {
@@ -199,8 +201,18 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!isDrawing) return;
         
         const pos = getMousePos(canvas, e);
-        const x = pos.x;
-        const y = pos.y;
+        drawQueue.push({ x: pos.x, y: pos.y });
+        
+        if (!animationFrameId) {
+            animationFrameId = requestAnimationFrame(processDraw);
+        }
+    }
+    
+    function processDraw() {
+        if (drawQueue.length === 0) {
+            animationFrameId = null;
+            return;
+        }
         
         ctx.lineWidth = brushSize;
         ctx.lineCap = 'round';
@@ -216,10 +228,21 @@ document.addEventListener('DOMContentLoaded', function() {
         
         ctx.beginPath();
         ctx.moveTo(lastX, lastY);
-        ctx.lineTo(x, y);
-        ctx.stroke();
         
-        [lastX, lastY] = [x, y];
+        // Process all queued points for smoother drawing
+        drawQueue.forEach(point => {
+            ctx.lineTo(point.x, point.y);
+            [lastX, lastY] = [point.x, point.y];
+        });
+        
+        ctx.stroke();
+        drawQueue = [];
+        
+        if (isDrawing) {
+            animationFrameId = requestAnimationFrame(processDraw);
+        } else {
+            animationFrameId = null;
+        }
     }
 
     function handleTouchStart(e) {

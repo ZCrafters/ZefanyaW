@@ -1,33 +1,44 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile menu toggle
     const menuToggle = document.getElementById('menuToggle');
     const mobileMenu = document.getElementById('mobileMenu');
     const overlay = document.getElementById('overlay');
     const mobileMenuButton = document.querySelector('.md-hide button');
 
-    // Toggle mobile menu
-    function toggleMobileMenu() {
+    if (!mobileMenu) return;
+
+    // Optimized toggle with smooth transitions
+    const toggleMobileMenu = () => {
+        const isHidden = mobileMenu.classList.contains('hidden');
         mobileMenu.classList.toggle('hidden');
-        overlay.classList.toggle('hidden');
+        overlay?.classList.toggle('hidden');
         document.body.classList.toggle('overflow-hidden');
-    }
+        
+        // Add smooth fade-in animation
+        if (isHidden) {
+            mobileMenu.style.opacity = '0';
+            requestAnimationFrame(() => {
+                mobileMenu.style.transition = 'opacity 0.3s ease-in-out';
+                mobileMenu.style.opacity = '1';
+            });
+        }
+    };
 
-    // Event listeners
-    if (menuToggle) {
-        menuToggle.addEventListener('click', toggleMobileMenu);
-    }
+    // Use event delegation for better performance
+    [menuToggle, mobileMenuButton, overlay].forEach(element => {
+        element?.addEventListener('click', toggleMobileMenu, { passive: true });
+    });
 
-    if (mobileMenuButton) {
-        mobileMenuButton.addEventListener('click', toggleMobileMenu);
-    }
-
-    if (overlay) {
-        overlay.addEventListener('click', toggleMobileMenu);
-    }
-
-    // Close mobile menu when clicking on a link
-    const mobileLinks = mobileMenu.querySelectorAll('a');
-    mobileLinks.forEach(link => {
-        link.addEventListener('click', toggleMobileMenu);
+    // Event delegation for menu links
+    mobileMenu.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') {
+            setTimeout(toggleMobileMenu, 250);
+        }
+    });
+    
+    // Close on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+            toggleMobileMenu();
+        }
     });
 });

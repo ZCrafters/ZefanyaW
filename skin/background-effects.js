@@ -51,161 +51,136 @@ function createBackgroundContainers() {
     }
 }
 
-// Create floating lines
+// Create floating lines - optimized with document fragment
 function createFloatingLines() {
     const floatingLines = document.getElementById('floating-lines');
-    const lineCount = 15;
+    const lineCount = 10; // Reduced from 15 for better performance
+    const fragment = document.createDocumentFragment();
     
     for (let i = 0; i < lineCount; i++) {
         // Horizontal lines
         const line = document.createElement('div');
-        line.classList.add('line');
-        
-        // Random position
-        line.style.top = `${Math.random() * 100}%`;
-        
-        // Random animation duration
+        line.className = 'line';
         const duration = Math.random() * 10 + 10;
-        line.style.animationDuration = `${duration}s`;
-        
-        // Random delay
-        line.style.animationDelay = `${Math.random() * 15}s`;
-        
-        floatingLines.appendChild(line);
+        line.style.cssText = `
+            top: ${Math.random() * 100}%;
+            animation-duration: ${duration}s;
+            animation-delay: ${Math.random() * 15}s;
+            will-change: transform;
+        `;
+        fragment.appendChild(line);
         
         // Vertical lines
         const vLine = document.createElement('div');
-        vLine.classList.add('line', 'vertical');
-        
-        // Random position
-        vLine.style.left = `${Math.random() * 100}%`;
-        
-        // Random animation duration
+        vLine.className = 'line vertical';
         const vDuration = Math.random() * 10 + 10;
-        vLine.style.animationDuration = `${vDuration}s`;
-        
-        // Random delay
-        vLine.style.animationDelay = `${Math.random() * 15}s`;
-        
-        floatingLines.appendChild(vLine);
+        vLine.style.cssText = `
+            left: ${Math.random() * 100}%;
+            animation-duration: ${vDuration}s;
+            animation-delay: ${Math.random() * 15}s;
+            will-change: transform;
+        `;
+        fragment.appendChild(vLine);
         
         // Diagonal lines
         const dLine = document.createElement('div');
-        dLine.classList.add('line', 'diagonal');
-        
-        // Random position
-        dLine.style.left = `${Math.random() * 100}%`;
-        dLine.style.top = `${Math.random() * 100}%`;
-        
-        // Random rotation
+        dLine.className = 'line diagonal';
         const rotation = Math.random() * 90;
-        dLine.style.transform = `rotate(${rotation}deg)`;
-        
-        // Random animation duration
         const dDuration = Math.random() * 15 + 15;
-        dLine.style.animationDuration = `${dDuration}s`;
-        
-        // Random delay
-        dLine.style.animationDelay = `${Math.random() * 20}s`;
-        
-        floatingLines.appendChild(dLine);
+        dLine.style.cssText = `
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            transform: rotate(${rotation}deg);
+            animation-duration: ${dDuration}s;
+            animation-delay: ${Math.random() * 20}s;
+            will-change: transform;
+        `;
+        fragment.appendChild(dLine);
     }
+    
+    floatingLines.appendChild(fragment);
 }
 
-// Create floating dots
+// Create floating dots - optimized
 function createFloatingDots() {
     const floatingDots = document.getElementById('floating-dots');
-    const dotCount = 20;
+    const dotCount = 15; // Reduced from 20
+    const fragment = document.createDocumentFragment();
     
     for (let i = 0; i < dotCount; i++) {
         const dot = document.createElement('div');
-        dot.classList.add('dot');
-        
-        // Random size
+        dot.className = 'dot';
         const size = Math.random() * 50 + 20;
-        dot.style.width = `${size}px`;
-        dot.style.height = `${size}px`;
-        
-        // Random position
-        dot.style.left = `${Math.random() * 100}%`;
-        dot.style.top = `${Math.random() * 100}%`;
-        
-        // Random animation duration
         const duration = Math.random() * 20 + 10;
-        dot.style.animationDuration = `${duration}s`;
         
-        // Random delay
-        dot.style.animationDelay = `${Math.random() * 10}s`;
+        dot.style.cssText = `
+            width: ${size}px;
+            height: ${size}px;
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            animation-duration: ${duration}s;
+            animation-delay: ${Math.random() * 10}s;
+            opacity: ${Math.random() * 0.2 + 0.1};
+            will-change: transform, opacity;
+        `;
         
-        // Random opacity
-        dot.style.opacity = Math.random() * 0.2 + 0.1;
-        
-        floatingDots.appendChild(dot);
+        fragment.appendChild(dot);
     }
+    
+    floatingDots.appendChild(fragment);
 }
 
-// Create circuit lines
+// Create circuit lines - optimized
 function createCircuitLines() {
     const circuitLines = document.getElementById('circuit-lines');
-    const circuitCount = 30;
+    const circuitCount = 20; // Reduced from 30
+    const fragment = document.createDocumentFragment();
     
     for (let i = 0; i < circuitCount; i++) {
         // Horizontal circuits
         const hCircuit = document.createElement('div');
-        hCircuit.classList.add('circuit', 'horizontal');
-        
-        // Random position
-        hCircuit.style.left = `${Math.random() * 100}%`;
-        hCircuit.style.top = `${Math.random() * 100}%`;
-        
-        // Random width
+        hCircuit.className = 'circuit horizontal';
         const width = Math.random() * 150 + 50;
-        hCircuit.style.width = `${width}px`;
-        
-        // Random animation delay
-        hCircuit.style.animationDelay = `${Math.random() * 4}s`;
-        
-        circuitLines.appendChild(hCircuit);
+        hCircuit.style.cssText = `
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            width: ${width}px;
+            animation-delay: ${Math.random() * 4}s;
+            will-change: opacity;
+        `;
+        fragment.appendChild(hCircuit);
         
         // Vertical circuits
         const vCircuit = document.createElement('div');
-        vCircuit.classList.add('circuit', 'vertical');
-        
-        // Random position
-        vCircuit.style.left = `${Math.random() * 100}%`;
-        vCircuit.style.top = `${Math.random() * 100}%`;
-        
-        // Random height
+        vCircuit.className = 'circuit vertical';
         const height = Math.random() * 150 + 50;
-        vCircuit.style.height = `${height}px`;
-        
-        // Random animation delay
-        vCircuit.style.animationDelay = `${Math.random() * 4}s`;
-        
-        circuitLines.appendChild(vCircuit);
+        vCircuit.style.cssText = `
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            height: ${height}px;
+            animation-delay: ${Math.random() * 4}s;
+            will-change: opacity;
+        `;
+        fragment.appendChild(vCircuit);
         
         // Corner circuits
         const corner = document.createElement('div');
-        corner.classList.add('circuit', 'corner');
-        
-        // Random position
-        corner.style.left = `${Math.random() * 100}%`;
-        corner.style.top = `${Math.random() * 100}%`;
-        
-        // Random size
+        corner.className = 'circuit corner';
         const size = Math.random() * 30 + 10;
-        corner.style.width = `${size}px`;
-        corner.style.height = `${size}px`;
-        
-        // Random rotation
         const rotation = Math.floor(Math.random() * 4) * 90;
-        corner.style.transform = `rotate(${rotation}deg)`;
-        
-        // Random animation delay
-        corner.style.animationDelay = `${Math.random() * 4}s`;
-        
-        circuitLines.appendChild(corner);
+        corner.style.cssText = `
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            width: ${size}px;
+            height: ${size}px;
+            transform: rotate(${rotation}deg);
+            animation-delay: ${Math.random() * 4}s;
+            will-change: opacity;
+        `;
+        fragment.appendChild(corner);
     }
+    
+    circuitLines.appendChild(fragment);
 }
 
 // Create floating hexagons
@@ -239,39 +214,37 @@ function createFloatingHexagons() {
     }
 }
 
-// Create matrix rain effect
+// Create matrix rain effect - optimized
 function createMatrixRain() {
     const matrixRain = document.getElementById('matrix-rain');
-    const columnCount = 30;
+    const columnCount = 20; // Reduced from 30
     const characters = "01";
+    const fragment = document.createDocumentFragment();
     
     for (let i = 0; i < columnCount; i++) {
         const column = document.createElement('div');
-        column.classList.add('matrix-column');
+        column.className = 'matrix-column';
         
         // Create random characters
-        let columnContent = '';
         const charCount = Math.floor(Math.random() * 20) + 10;
-        
-        for (let j = 0; j < charCount; j++) {
-            columnContent += characters.charAt(Math.floor(Math.random() * characters.length));
-            columnContent += '<br>';
-        }
+        const columnContent = Array.from({ length: charCount }, () => 
+            characters.charAt(Math.floor(Math.random() * characters.length))
+        ).join('<br>');
         
         column.innerHTML = columnContent;
         
-        // Random position
-        column.style.left = `${Math.random() * 100}%`;
-        
-        // Random animation duration
         const duration = Math.random() * 10 + 10;
-        column.style.animationDuration = `${duration}s`;
+        column.style.cssText = `
+            left: ${Math.random() * 100}%;
+            animation-duration: ${duration}s;
+            animation-delay: ${Math.random() * 15}s;
+            will-change: transform;
+        `;
         
-        // Random delay
-        column.style.animationDelay = `${Math.random() * 15}s`;
-        
-        matrixRain.appendChild(column);
+        fragment.appendChild(column);
     }
+    
+    matrixRain.appendChild(fragment);
 }
 
 // Create neon grid
@@ -418,39 +391,37 @@ function createPulseWaves() {
     }
 }
 
-// Create digital particles
+// Create digital particles - optimized
 function createDigitalParticles() {
     const digitalParticles = document.getElementById('digital-particles');
-    const particleCount = 40;
+    const particleCount = 30; // Reduced from 40
+    const fragment = document.createDocumentFragment();
     
     for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
-        particle.classList.add('digital-particle');
+        particle.className = 'digital-particle';
         
-        // Random size
         const size = Math.random() * 4 + 1;
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        
-        // Random position
-        particle.style.left = `${Math.random() * 100}%`;
-        particle.style.top = `${Math.random() * 100}%`;
-        
-        // Random animation duration
         const duration = Math.random() * 15 + 10;
-        particle.style.animationDuration = `${duration}s`;
-        
-        // Random delay
-        particle.style.animationDelay = `${Math.random() * 10}s`;
-        
-        // Random direction
         const directionX = Math.random() * 100 - 50;
         const directionY = Math.random() * 100 - 50;
-        particle.style.setProperty('--move-x', `${directionX}px`);
-        particle.style.setProperty('--move-y', `${directionY}px`);
         
-        digitalParticles.appendChild(particle);
+        particle.style.cssText = `
+            width: ${size}px;
+            height: ${size}px;
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            animation-duration: ${duration}s;
+            animation-delay: ${Math.random() * 10}s;
+            --move-x: ${directionX}px;
+            --move-y: ${directionY}px;
+            will-change: transform, opacity;
+        `;
+        
+        fragment.appendChild(particle);
     }
+    
+    digitalParticles.appendChild(fragment);
 }
 
 // Update Jakarta time

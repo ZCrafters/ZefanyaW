@@ -17,17 +17,42 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Create a single particle element (optimized) - defined first
+    const createParticleElement = (x, y) => {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        
+        const size = 2 + Math.random() * 4;
+        const lightness = 50 + Math.random() * 20;
+        const duration = 1 + Math.random() * 2;
+        
+        particle.style.cssText = `
+            width: ${size}px;
+            height: ${size}px;
+            background-color: hsla(0, 100%, ${lightness}%, 0.8);
+            left: ${x}px;
+            top: ${y}px;
+            animation-duration: ${duration}s;
+            will-change: transform, opacity;
+        `;
+        
+        return particle;
+    };
+    
     // Create floating particles
     const particleBg = document.getElementById('particle-bg');
     const particleCount = 30;
     
-    // Create initial particles
+    // Create initial particles with document fragment
+    const fragment = document.createDocumentFragment();
     for (let i = 0; i < particleCount; i++) {
-        createParticle(
+        const particle = createParticleElement(
             Math.random() * window.innerWidth,
             Math.random() * window.innerHeight
         );
+        if (particle) fragment.appendChild(particle);
     }
+    if (particleBg) particleBg.appendChild(fragment);
     
     // Add hover effect for skill items
     const skillItems = document.querySelectorAll('.skill-item');
@@ -38,8 +63,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    // Add hover effect for cards
+    // Add hover effect for cards with throttled particle creation
     const cards = document.querySelectorAll('.card-glass');
+    let lastParticleTime = 0;
+    const particleThrottle = 100; // ms
+    
     cards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
@@ -49,11 +77,13 @@ document.addEventListener('DOMContentLoaded', () => {
             card.style.setProperty('--x', `${x}px`);
             card.style.setProperty('--y', `${y}px`);
             
-            // Create occasional particles on card hover
-            if (Math.random() > 0.9) {
+            // Throttled particle creation
+            const now = Date.now();
+            if (now - lastParticleTime > particleThrottle && Math.random() > 0.9) {
                 createParticle(e.clientX, e.clientY);
+                lastParticleTime = now;
             }
-        });
+        }, { passive: true });
     });
     
     // Add click effect for buttons
@@ -83,13 +113,22 @@ document.addEventListener('DOMContentLoaded', () => {
     
     skillBars.forEach(bar => observer.observe(bar));
     
-    // Add parallax effect to background elements
-    window.addEventListener('mousemove', (e) => {
-        const x = e.clientX / window.innerWidth;
-        const y = e.clientY / window.innerHeight;
-        
-        document.querySelector('.grid-bg').style.transform = `translate(${x * 20}px, ${y * 20}px)`;
-    });
+    // Add parallax effect to background elements with throttling
+    const gridBg = document.querySelector('.grid-bg');
+    let parallaxFrame = null;
+    
+    if (gridBg) {
+        window.addEventListener('mousemove', (e) => {
+            if (parallaxFrame) return;
+            
+            parallaxFrame = requestAnimationFrame(() => {
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                gridBg.style.transform = `translate3d(${x * 20}px, ${y * 20}px, 0)`;
+                parallaxFrame = null;
+            });
+        }, { passive: true });
+    }
     
     // Create a burst of particles from an element
     function createParticleBurst(element) {
@@ -108,35 +147,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // Create a single particle
-    function createParticle(x, y) {
-        const particle = document.createElement('div');
-        particle.classList.add('particle');
-        
-        // Random size between 2px and 6px
-        const size = 2 + Math.random() * 4;
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        
-        // Random color variation
-        const hue = 0; // Red
-        const saturation = 100; // Full saturation
-        const lightness = 50 + Math.random() * 20; // 50-70% lightness
-        particle.style.backgroundColor = `hsla(${hue}, ${saturation}%, ${lightness}%, 0.8)`;
-        
-        // Random position near the cursor
-        particle.style.left = `${x}px`;
-        particle.style.top = `${y}px`;
-        
-        // Random animation
-        const duration = 1 + Math.random() * 2; // 1-3 seconds
-        particle.style.animationDuration = `${duration}s`;
+    // Create and append particle with automatic cleanup
+    const createParticle = (x, y) => {
+        const particle = createParticleElement(x, y);
+        if (!particle) return;
         
         document.body.appendChild(particle);
         
-        // Remove particle after animation
-        setTimeout(() => {
-            particle.remove();
-        }, duration * 1000);
+        const duration = parseFloat(particle.style.animationDuration) * 1000;
+        setTimeout(() => particle.remove(), duration);
     }
 });
