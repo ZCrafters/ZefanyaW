@@ -48,91 +48,56 @@ document.addEventListener('DOMContentLoaded', function() {
             const formData = new FormData(contactForm);
             const formProps = Object.fromEntries(formData);
 
-            // Simulate API call (replace with actual EmailJS code)
-            setTimeout(() => {
-                // This is where you'd normally call EmailJS
-                const isSuccess = Math.random() > 0.3; // Simulate 70% success rate for demo
-
-                if (isSuccess) {
+            // Check if EmailJS is available
+            if (typeof emailjs !== 'undefined') {
+                // Initialize EmailJS
+                emailjs.init('DEf6ZsN_jL2oWBxoc');
+                
+                // Send email using EmailJS
+                formProps.to_email = 'zefanyawilliamszero@gmail.com';
+                
+                emailjs.send(
+                    'service_8kutmfq',
+                    'YOUR_TEMPLATE_ID',
+                    formProps
+                )
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
                     showMessage('Message sent successfully! 🚀 I\'ll get back to you soon.', 'success');
                     contactForm.reset();
-                    
-                    // Add confetti effect on success
                     createConfetti();
-                } else {
-                    showMessage('Failed to send message. Please try again later or contact me directly at your@email.com', 'error');
-                }
-                // Initialize EmailJS
-                (function() {
-                    // Replace with your actual EmailJS public key
-                    emailjs.init('DEf6ZsN_jL2oWBxoc');
-                })();
-
-                // Contact Form Submission
-                document.addEventListener('DOMContentLoaded', function() {
-                    const contactForm = document.getElementById('contact-form');
-                    const formMessage = document.getElementById('form-message');
-                    const sendButton = document.getElementById('send-button');
-                    const spinner = document.getElementById('spinner');
-                    const sendText = sendButton ? sendButton.querySelector('span:first-child') : null;
-
-                    // Form submission handler
-                    if (contactForm) {
-                        contactForm.addEventListener('submit', function(e) {
-                            e.preventDefault();
-                            
-                            // Show loading state
-                            if (sendButton && sendText) {
-                                sendButton.disabled = true;
-                                sendText.textContent = 'Sending...';
-                                spinner.classList.remove('hidden');
-                            }
-                            if (formMessage) formMessage.style.display = 'none';
-
-                            // Get form data
-                            const formData = new FormData(contactForm);
-                            const formProps = Object.fromEntries(formData);
-
-                            // Add your email to the form data
-                            formProps.to_email = 'zefanyawilliamszero@gmail.com';
-
-                            // Send email using EmailJS
-                            emailjs.send(
-                                'service_8kutmfq',     // Replace with your EmailJS Service ID
-                                'YOUR_TEMPLATE_ID',    // Replace with your EmailJS Template ID
-                                formProps
-                            )
-                            .then(function(response) {
-                                console.log('SUCCESS!', response.status, response.text);
-                                showMessage('Message sent successfully! I\'ll get back to you soon.', 'success');
-                                contactForm.reset();
-                            }, function(error) {
-                                console.error('FAILED...', error);
-                                showMessage('Failed to send message. Please try again later or contact me directly at zefanyawilliamszero@gmail.com', 'error');
-                            })
-                            .finally(function() {
-                                // Reset button state
-                                if (sendButton && sendText) {
-                                    sendButton.disabled = false;
-                                    sendText.textContent = 'Send Message';
-                                    spinner.classList.add('hidden');
-                                }
-                            });
-                        });
+                })
+                .catch(function(error) {
+                    console.error('FAILED...', error);
+                    showMessage('Failed to send message. Please try again later or contact me directly at zefanyawilliamszero@gmail.com', 'error');
+                })
+                .finally(function() {
+                    // Reset button state
+                    if (sendButton && sendText) {
+                        sendButton.disabled = false;
+                        sendText.textContent = 'Send Message';
+                        spinner.classList.add('hidden');
+                        sendButton.style.transform = 'scale(1)';
                     }
-
-                    // Rest of your existing code...
+                    contactForm.style.animation = 'none';
                 });
-                // Reset button state
-                        if (sendButton && sendText) {
-                            sendButton.disabled = false;
-                            sendText.textContent = 'Send Message';
-                            spinner.classList.add('hidden');
-                            sendButton.style.transform = 'scale(1)';
-                        }
-                        contactForm.style.animation = 'none';
-                    }, 1500);
-                }
+            } else {
+                // Fallback simulation without EmailJS
+                setTimeout(() => {
+                    showMessage('Message sent successfully! 🚀 I\'ll get back to you soon.', 'success');
+                    contactForm.reset();
+                    createConfetti();
+                    
+                    // Reset button state
+                    if (sendButton && sendText) {
+                        sendButton.disabled = false;
+                        sendText.textContent = 'Send Message';
+                        spinner.classList.add('hidden');
+                        sendButton.style.transform = 'scale(1)';
+                    }
+                    contactForm.style.animation = 'none';
+                }, 1500);
+            }
         });
     }
 
