@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 border-radius: 50%;
                 background: rgba(229, 0, 0, ${CURSOR_BASE_OPACITY - i * CURSOR_OPACITY_STEP});
                 transform: translate(-50%, -50%);
-                transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+                will-change: transform;
                 pointer-events: none;
             `;
             trailContainer.appendChild(dot);
@@ -67,8 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const nextDot = cursor.dots[index - 1] || cursor;
                 dot.x += (nextDot.x - dot.x) * 0.4;
                 dot.y += (nextDot.y - dot.y) * 0.4;
-                dot.element.style.left = `${dot.x}px`;
-                dot.element.style.top = `${dot.y}px`;
+                dot.element.style.transform = `translate3d(${dot.x}px, ${dot.y}px, 0) translate(-50%, -50%)`;
             });
         }
     };
