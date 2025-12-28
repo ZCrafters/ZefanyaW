@@ -145,9 +145,25 @@ document.addEventListener('DOMContentLoaded', function() {
         scrollObserver.observe(element);
     });
 
-    // Add CSS for scroll animations
+    // Add CSS for scroll animations and ripple effects
     const animationStyles = document.createElement('style');
     animationStyles.textContent = `
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(229, 0, 0, 0.3);
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
         .animate-in {
             opacity: 1 !important;
             transform: translateY(0) !important;
