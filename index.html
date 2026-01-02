@@ -200,6 +200,17 @@
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #e50000;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            box-shadow: 0 0 10px rgba(229, 0, 0, 0.8);
+        }
+
         .profile-particles {
             position: absolute;
             top: -20px;
@@ -1103,6 +1114,7 @@
                     <div class="profile-rectangle inline-block">
                         <img src="assets/DSC08129.JPG"
                              alt="Zefanya Williams"
+                             loading="lazy"
                              class="profile-image-rect">
                         <div class="profile-particles-rect" id="profile-particles-about"></div>
                         <div class="glow-ring-rect"></div>
