@@ -1101,9 +1101,12 @@
                 <!-- Profile Image -->
                 <div class="text-center lg:text-left animate-slide-left">
                     <div class="profile-rectangle inline-block">
+                        <!-- Bolt: Lazy load large (4.1MB) image to improve initial page load -->
                         <img src="assets/DSC08129.JPG"
                              alt="Zefanya Williams"
-                             class="profile-image-rect">
+                             class="profile-image-rect"
+                             loading="lazy"
+                             decoding="async">
                         <div class="profile-particles-rect" id="profile-particles-about"></div>
                         <div class="glow-ring-rect"></div>
                     </div>
