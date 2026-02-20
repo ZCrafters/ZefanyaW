@@ -94,7 +94,7 @@
             opacity: 0.08;
             pointer-events: none;
         }
-        
+
         .animated-gradient {
             background: linear-gradient(270deg, #e50000, #ffffff, #e50000);
             background-size: 300% 300%;
@@ -103,23 +103,23 @@
             color: transparent;
             animation: gradient-animation 4s ease infinite;
         }
-        
+
         @keyframes gradient-animation {
             0% { background-position: 0% 50% }
             50% { background-position: 100% 50% }
             100% { background-position: 0% 50% }
         }
-        
+
         .floating {
             animation: floating 6s ease-in-out infinite;
         }
-        
+
         @keyframes floating {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-20px); }
             100% { transform: translateY(0px); }
         }
-        
+
         .glowing-button {
             position: relative;
             overflow: hidden;
@@ -153,12 +153,12 @@
         .glowing-button:active {
             transform: translateY(-1px) scale(0.98);
         }
-        
+
         .red-glow {
             box-shadow: 0 0 15px rgba(229, 0, 0, 0.5);
             transition: box-shadow 0.3s ease;
         }
-        
+
         .red-glow:hover {
             box-shadow: 0 0 25px rgba(229, 0, 0, 0.8);
         }
@@ -254,8 +254,8 @@
                 opacity: 0.8;
             }
         }
-        
-        
+
+
         /* Sidebar Menu */
         .sidebar {
             position: fixed;
@@ -272,28 +272,28 @@
             overflow-y: auto;
             padding-top: 90px;
         }
-        
+
         .sidebar.open {
             left: 0;
         }
-        
+
         .sidebar-header {
             padding: 20px;
             border-bottom: 1px solid rgba(229, 0, 0, 0.3);
             margin-bottom: 20px;
         }
-        
+
         .sidebar-menu {
             list-style: none;
             padding: 0;
             margin: 0;
         }
-        
+
         .sidebar-menu li {
             padding: 0;
             margin: 0;
         }
-        
+
         .sidebar-menu a {
             display: flex;
             align-items: center;
@@ -303,20 +303,20 @@
             transition: all 0.3s ease;
             font-size: 16px;
         }
-        
+
         .sidebar-menu a i {
             margin-right: 15px;
             width: 24px;
             text-align: center;
             color: #e50000;
         }
-        
+
         .sidebar-menu a:hover {
             background: rgba(229, 0, 0, 0.3);
             color: #ffffff;
             padding-left: 30px;
         }
-        
+
         .sidebar-menu a::before {
             content: '';
             position: absolute;
@@ -328,21 +328,21 @@
             transform: scaleY(0);
             transition: transform 0.3s ease;
         }
-        
+
         .sidebar-menu a:hover::before {
             transform: scaleY(1);
         }
-        
+
         .sidebar-menu a.active {
             background: rgba(229, 0, 0, 0.5);
             color: #ffffff;
             border-left: 4px solid #e50000;
         }
-        
+
         .sidebar-menu a.active i {
             color: #ffffff;
         }
-        
+
         .menu-toggle {
             position: fixed;
             top: 30px;
@@ -360,12 +360,12 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        
+
         .menu-toggle:hover {
             background: #e50000;
             transform: scale(1.1);
         }
-        
+
         .overlay {
             position: fixed;
             top: 0;
@@ -378,13 +378,13 @@
             visibility: hidden;
             transition: all 0.3s ease;
         }
-        
+
         .overlay.open {
             opacity: 1;
             visibility: visible;
         }
-        
-        
+
+
         /* Social Media Icons */
         .social-links {
             display: flex;
@@ -394,7 +394,7 @@
             margin-top: 10px;
             border-top: 1px solid rgba(229, 0, 0, 0.2);
         }
-        
+
         .social-icon {
             color: #000000;
             font-size: 20px;
@@ -407,28 +407,28 @@
             justify-content: center;
             background: rgba(229, 0, 0, 0.1);
         }
-        
+
         .social-icon:hover {
             background: #e50000;
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(229, 0, 0, 0.3);
         }
-        
+
         .social-icon i {
             margin: 0;
         }
-        
+
         /* Floating Animation */
         @keyframes floating {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-20px); }
             100% { transform: translateY(0px); }
         }
-        
+
         .floating {
             animation: floating 6s ease-in-out infinite;
         }
-        
+
         /* Floating Icons */
         .floating-icon {
             position: absolute;
@@ -970,8 +970,8 @@
             color: white;
             transform: scale(1.05);
         }
-        
-        
+
+
         .digital-clock {
             position: fixed;
             top: 30px;
@@ -988,11 +988,11 @@
             z-index: 1000;
             font-family: 'Source Code Pro', monospace;
         }
-        
+
         .digital-clock .time {
             letter-spacing: 2px;
         }
-        
+
         .digital-clock .timezone {
             font-size: 0.8em;
             opacity: 0.8;
@@ -1010,7 +1010,7 @@
     <!-- Texture overlay -->
     <div class="texture-overlay"></div>
 
-    
+
     <!-- Menu Toggle Button -->
     <button class="menu-toggle" id="menuToggle">
         <i class="fas fa-bars text-xl"></i>
@@ -1021,7 +1021,7 @@
 
     <!-- Overlay -->
     <div class="overlay" id="overlay"></div>
-    
+
     <!-- Sidebar Menu -->
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
@@ -1053,8 +1053,8 @@
         <div class="floating-icon text-2xl sm:text-3xl md:text-4xl" style="bottom: 35%; right: 10%; animation-delay: -15s;"><i class="fas fa-code"></i></div>
         <div class="floating-icon text-2xl sm:text-3xl md:text-4xl" style="top: 15%; right: 25%; animation-delay: -20s;"><i class="fas fa-laptop-code"></i></div>
         <div class="floating-icon text-2xl sm:text-3xl md:text-4xl" style="bottom: 20%; right: 30%; animation-delay: -25s;"><i class="fas fa-envelope"></i></div>
-        
-        
+
+
         <div class="container mx-auto px-4 sm:px-6 py-20 z-10">
             <div class="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12">
                 <div class="w-full lg:w-1/2 text-center lg:text-left mb-8 lg:mb-0">
@@ -1236,19 +1236,19 @@
             const menuToggle = document.getElementById('menuToggle');
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('overlay');
-            
+
             menuToggle.addEventListener('click', () => {
                 sidebar.classList.toggle('open');
                 overlay.classList.toggle('open');
                 document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : '';
             });
-            
+
             overlay.addEventListener('click', () => {
                 sidebar.classList.remove('open');
                 overlay.classList.remove('open');
                 document.body.style.overflow = '';
             });
-            
+
             // Close sidebar when clicking on a menu item (for mobile)
             const menuItems = document.querySelectorAll('.sidebar-menu a');
             menuItems.forEach(item => {
@@ -1256,40 +1256,45 @@
                     sidebar.classList.remove('open');
                     overlay.classList.remove('open');
                     document.body.style.overflow = '';
-                    
+
                     // Update active state
                     menuItems.forEach(i => i.classList.remove('active'));
                     item.classList.add('active');
                 });
             });
-            
+
             // Create profile image particles
             const profileParticles = document.getElementById('profile-particles');
-            const particleCount = 12; // Number of particles around the profile
+            if (profileParticles) {
+                const particleCount = 12; // Number of particles around the profile
+                const fragment = document.createDocumentFragment();
 
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('profile-particle');
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('profile-particle');
 
-                // Random size between 4px and 10px
-                const size = Math.random() * 6 + 4;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
+                    // Random size between 4px and 10px
+                    const size = Math.random() * 6 + 4;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
 
-                // Position around the circle with different angles
-                const angle = (i / particleCount) * 360;
-                particle.style.animationDelay = `${i * (8 / particleCount)}s`;
+                    // Position around the circle with different angles
+                    const angle = (i / particleCount) * 360;
+                    particle.style.animationDelay = `${i * (8 / particleCount)}s`;
 
-                // Random opacity
-                particle.style.opacity = (Math.random() * 0.5 + 0.3).toString();
+                    // Random opacity
+                    particle.style.opacity = (Math.random() * 0.5 + 0.3).toString();
 
-                profileParticles.appendChild(particle);
+                    fragment.appendChild(particle);
+                }
+                profileParticles.appendChild(fragment);
             }
 
             // Create profile particles for about section (rectangular)
             const aboutProfileParticles = document.getElementById('profile-particles-about');
             if (aboutProfileParticles) {
                 const aboutParticleCount = 20;
+                const fragment = document.createDocumentFragment();
 
                 for (let i = 0; i < aboutParticleCount; i++) {
                     const particle = document.createElement('div');
@@ -1307,10 +1312,12 @@
                     // Random opacity
                     particle.style.opacity = (Math.random() * 0.5 + 0.3).toString();
 
-                    aboutProfileParticles.appendChild(particle);
+                    fragment.appendChild(particle);
                 }
+                aboutProfileParticles.appendChild(fragment);
             }
-            
+
+
             // Add pulse effect to profile image on hover
             const profileImage = document.querySelector('.profile-image');
             profileImage.addEventListener('mouseenter', () => {
@@ -1319,7 +1326,7 @@
                 const rect = profileCircle.getBoundingClientRect();
                 const centerX = rect.left + rect.width / 2;
                 const centerY = rect.top + rect.height / 2;
-                
+
                 for (let i = 0; i < 15; i++) {
                     setTimeout(() => {
                         const angle = (i / 15) * 360;
@@ -1330,7 +1337,7 @@
                     }, i * 50);
                 }
             });
-            
+
             // Interactive particles on hover for interactive elements
             const interactiveElements = document.querySelectorAll('a, button');
             interactiveElements.forEach(el => {
@@ -1338,7 +1345,7 @@
                     const rect = el.getBoundingClientRect();
                     const centerX = rect.left + rect.width / 2;
                     const centerY = rect.top + rect.height / 2;
-                    
+
                     // Create particles around the element
                     for (let i = 0; i < 5; i++) {
                         const offsetX = (Math.random() - 0.5) * rect.width;
@@ -1347,7 +1354,7 @@
                     }
                 });
             });
-            
+
             function createParticle(x, y) {
                 const particle = document.createElement('div');
                 particle.classList.add('particle');
@@ -1362,14 +1369,20 @@
             }
 
             // Digital Clock
-            function updateClock() {
-                const now = new Date();
-                const time = now.toLocaleTimeString('en-US', { hour12: false });
-                const timezone = 'WIB';
-                document.getElementById('digitalClock').innerHTML = `<span class="time">${time}</span><span class="timezone">${timezone}</span>`;
+            const clockEl = document.getElementById('digitalClock');
+            if (clockEl) {
+                // Initialize structure once
+                clockEl.innerHTML = '<span class="time"></span><span class="timezone">WIB</span>';
+                const timeEl = clockEl.querySelector('.time');
+
+                function updateClock() {
+                    const now = new Date();
+                    const time = now.toLocaleTimeString('en-US', { hour12: false });
+                    if (timeEl) timeEl.textContent = time;
+                }
+                setInterval(updateClock, 1000);
+                updateClock();
             }
-            setInterval(updateClock, 1000);
-            updateClock();
 
         });
     </script>
