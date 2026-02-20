@@ -1,5 +1,3 @@
-# Bolt's Journal
+# Performance Learnings
 
-## 2024-05-22 - Layout Thrashing in Animation
-**Learning:** Animated elements using `left`/`top` properties trigger layout calculations on every frame. CSS Transitions on these properties compound the issue by forcing layout throughout the transition duration.
-**Action:** Always prefer `transform: translate3d(...)` for moving elements. It triggers Composite (and sometimes Paint) but skips Layout. Remove CSS transitions when JavaScript is handling the interpolation/physics to avoid conflicts and double-work.
+- **Batching DOM Updates:** When generating multiple DOM elements (e.g., for particle systems or list rendering), always append them to a detached container (or `DocumentFragment`) first, then append the container to the live document. This reduces the number of layout calculations (reflows) from $N$ to 1, significantly improving performance, especially on lower-end devices.
