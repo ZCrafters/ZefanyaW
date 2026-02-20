@@ -27,7 +27,7 @@ Successfully optimized all JavaScript files and added cool, modern animations to
 2. `js/mobile-menu.js` - Event delegation, smooth animations
 3. `js/expertise.js` - Reduced particles, optimized events
 4. `js/experience.js` - IntersectionObserver animations
-5. `js/theme.js` - Passive listeners, transform3d, reduced particles
+5. `js/theme.js` - Passive listeners, transform3d, reduced particles, optimized ripple effect
 6. `js/contact.js` - Cleaned up code, better EmailJS integration
 7. `js/sidebar.js` - Scroll progress, active nav tracking
 8. `skin/background-effects.js` - 30-40% fewer elements, batch DOM updates
