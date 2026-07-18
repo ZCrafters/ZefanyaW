@@ -1,0 +1,1204 @@
+/* ==========================================================================
+   EXPERIENCE PAGE - ENHANCED STYLES
+   Comprehensive animations and visual effects
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   TIMELINE ENHANCEMENTS
+   -------------------------------------------------------------------------- */
+
+.experience-timeline {
+  position: relative;
+}
+
+.experience-timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(229, 0, 0, 0.5) 10%,
+    rgba(229, 0, 0, 0.5) 90%,
+    transparent 100%
+  );
+  transform: translateX(-50%);
+}
+
+.timeline-node {
+  position: relative;
+}
+
+.timeline-node::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border: 4px solid #e50000;
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.timeline-node:hover::after {
+  background: #e50000;
+  box-shadow: 0 0 0 8px rgba(229, 0, 0, 0.2);
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+/* --------------------------------------------------------------------------
+   CARD HOVER EFFECTS
+   -------------------------------------------------------------------------- */
+
+.experience-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 24px;
+  overflow: visible;
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.experience-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(229, 0, 0, 0) 0%,
+    rgba(229, 0, 0, 0.03) 50%,
+    rgba(229, 0, 0, 0) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.experience-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(229, 0, 0, 0.1);
+}
+
+.experience-card:hover::before {
+  opacity: 1;
+}
+
+.experience-card .card-glow {
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(135deg, #e50000, #ff3333, #e50000);
+  border-radius: 26px;
+  opacity: 0;
+  filter: blur(20px);
+  z-index: -1;
+  transition: opacity 0.5s ease;
+}
+
+.experience-card:hover .card-glow {
+  opacity: 0.3;
+}
+
+/* --------------------------------------------------------------------------
+   SKILL BAR ANIMATIONS
+   -------------------------------------------------------------------------- */
+
+.skill-bar-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-bar-fill {
+  position: relative;
+  height: 100%;
+  background: linear-gradient(90deg, #e50000, #ff3333);
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+.skill-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: skill-shimmer 2s infinite;
+}
+
+@keyframes skill-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   FLOATING ELEMENTS
+   -------------------------------------------------------------------------- */
+
+.float-element {
+  animation: float-gentle 6s ease-in-out infinite;
+}
+
+.float-element-delayed {
+  animation: float-gentle 6s ease-in-out infinite;
+  animation-delay: -3s;
+}
+
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-20px) rotate(2deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(-1deg);
+  }
+  75% {
+    transform: translateY(-30px) rotate(1deg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   PULSE RING ANIMATION
+   -------------------------------------------------------------------------- */
+
+.pulse-ring {
+  position: relative;
+}
+
+.pulse-ring::before,
+.pulse-ring::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: 2px solid #e50000;
+  border-radius: 50%;
+  opacity: 0;
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+.pulse-ring::after {
+  animation-delay: 1s;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   TEXT REVEAL ANIMATION
+   -------------------------------------------------------------------------- */
+
+.text-reveal {
+  overflow: hidden;
+}
+
+.text-reveal span {
+  display: inline-block;
+  transform: translateY(100%);
+  animation: text-reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes text-reveal {
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   GRADIENT TEXT
+   -------------------------------------------------------------------------- */
+
+.gradient-text-animated {
+  background: linear-gradient(
+    90deg,
+    #e50000,
+    #ff3333,
+    #ff6666,
+    #e50000
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-shift 3s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   MORPHING BACKGROUND
+   -------------------------------------------------------------------------- */
+
+.morph-bg {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(229, 0, 0, 0.1) 0%, transparent 70%);
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  animation: morph 8s ease-in-out infinite;
+}
+
+@keyframes morph {
+  0%, 100% {
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    transform: rotate(0deg);
+  }
+  25% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transform: rotate(90deg);
+  }
+  50% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    transform: rotate(180deg);
+  }
+  75% {
+    border-radius: 60% 40% 60% 40% / 70% 30% 50% 50%;
+    transform: rotate(270deg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   STAGGER ANIMATION DELAYS
+   -------------------------------------------------------------------------- */
+
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+.stagger-6 { animation-delay: 0.6s; }
+.stagger-7 { animation-delay: 0.7s; }
+.stagger-8 { animation-delay: 0.8s; }
+
+/* --------------------------------------------------------------------------
+   BADGE STYLES
+   -------------------------------------------------------------------------- */
+
+.experience-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-radius: 100px;
+  background: rgba(229, 0, 0, 0.1);
+  color: #e50000;
+  border: 1px solid rgba(229, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.experience-badge:hover {
+  background: #e50000;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.experience-badge.featured {
+  background: linear-gradient(135deg, #e50000, #ff3333);
+  color: white;
+  animation: badge-glow 2s ease-in-out infinite;
+}
+
+@keyframes badge-glow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(229, 0, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(229, 0, 0, 0.5);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   CONNECTION LINES
+   -------------------------------------------------------------------------- */
+
+.connection-line {
+  position: absolute;
+  background: linear-gradient(90deg, transparent, rgba(229, 0, 0, 0.3), transparent);
+  height: 1px;
+}
+
+.connection-line-vertical {
+  background: linear-gradient(180deg, transparent, rgba(229, 0, 0, 0.3), transparent);
+  width: 1px;
+}
+
+/* --------------------------------------------------------------------------
+   SCROLL INDICATOR
+   -------------------------------------------------------------------------- */
+
+.scroll-indicator {
+  position: relative;
+  width: 30px;
+  height: 50px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+}
+
+.scroll-indicator::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: #e50000;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  animation: scroll-dot 1.5s ease-in-out infinite;
+}
+
+@keyframes scroll-dot {
+  0% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   ICON CONTAINER
+   -------------------------------------------------------------------------- */
+
+.icon-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(229, 0, 0, 0.1), rgba(229, 0, 0, 0.05));
+  border: 1px solid rgba(229, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.icon-container:hover {
+  background: linear-gradient(135deg, #e50000, #ff3333);
+  color: white;
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 10px 30px rgba(229, 0, 0, 0.3);
+}
+
+/* --------------------------------------------------------------------------
+   SECTION DIVIDERS
+   -------------------------------------------------------------------------- */
+
+.section-divider {
+  position: relative;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(229, 0, 0, 0.3), transparent);
+}
+
+.section-divider::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  background: white;
+  border: 2px solid rgba(229, 0, 0, 0.3);
+  border-radius: 50%;
+}
+
+.section-divider::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  background: #e50000;
+  border-radius: 50%;
+}
+
+/* --------------------------------------------------------------------------
+   HOVER LIFT EFFECT
+   -------------------------------------------------------------------------- */
+
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* --------------------------------------------------------------------------
+   GLASS EFFECT
+   -------------------------------------------------------------------------- */
+
+.glass-dark {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-light {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* --------------------------------------------------------------------------
+   TILT EFFECT
+   -------------------------------------------------------------------------- */
+
+.tilt-card {
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+}
+
+.tilt-card-content {
+  transform: translateZ(20px);
+}
+
+/* --------------------------------------------------------------------------
+   RIPPLE EFFECT
+   -------------------------------------------------------------------------- */
+
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.3) 10%, transparent 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10, 10);
+  opacity: 0;
+  transition: transform 0.5s, opacity 1s;
+}
+
+.ripple:active::after {
+  transform: scale(0, 0);
+  opacity: 0.3;
+  transition: 0s;
+}
+
+/* --------------------------------------------------------------------------
+   NUMBER COUNTER ANIMATION
+   -------------------------------------------------------------------------- */
+
+.counter-number {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --------------------------------------------------------------------------
+   PARALLAX LAYERS
+   -------------------------------------------------------------------------- */
+
+.parallax-slow {
+  will-change: transform;
+}
+
+.parallax-fast {
+  will-change: transform;
+}
+
+/* --------------------------------------------------------------------------
+   LOADING SKELETON
+   -------------------------------------------------------------------------- */
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.05) 25%,
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(0, 0, 0, 0.05) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 8px;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   NEON GLOW
+   -------------------------------------------------------------------------- */
+
+.neon-glow {
+  text-shadow: 
+    0 0 5px rgba(229, 0, 0, 0.5),
+    0 0 10px rgba(229, 0, 0, 0.3),
+    0 0 20px rgba(229, 0, 0, 0.2);
+}
+
+.neon-border {
+  box-shadow: 
+    0 0 5px rgba(229, 0, 0, 0.3),
+    0 0 10px rgba(229, 0, 0, 0.2),
+    inset 0 0 5px rgba(229, 0, 0, 0.1);
+}
+
+/* --------------------------------------------------------------------------
+   BREATHING ANIMATION
+   -------------------------------------------------------------------------- */
+
+.breathing {
+  animation: breathing 4s ease-in-out infinite;
+}
+
+@keyframes breathing {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   ROTATING BORDER
+   -------------------------------------------------------------------------- */
+
+.rotate-border {
+  position: relative;
+}
+
+.rotate-border::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  background: conic-gradient(from 0deg, #e50000, #ff3333, #e50000);
+  border-radius: inherit;
+  animation: rotate-border 3s linear infinite;
+  z-index: -1;
+}
+
+@keyframes rotate-border {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   UNDERLINE ANIMATION
+   -------------------------------------------------------------------------- */
+
+.animated-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.animated-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #e50000, #ff3333);
+  transition: width 0.3s ease;
+}
+
+.animated-underline:hover::after {
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   MAGNETIC BUTTON EFFECT
+   -------------------------------------------------------------------------- */
+
+.magnetic-btn {
+  transition: transform 0.2s ease;
+}
+
+/* --------------------------------------------------------------------------
+   SCROLLBAR STYLING FOR CARDS
+   -------------------------------------------------------------------------- */
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(229, 0, 0, 0.3);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(229, 0, 0, 0.5);
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE ADJUSTMENTS
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 768px) {
+  .experience-timeline::before {
+    left: 20px;
+    transform: none;
+  }
+  
+  .timeline-node::after {
+    left: 20px;
+    transform: translateY(-50%);
+  }
+  
+  .timeline-node:hover::after {
+    transform: translateY(-50%) scale(1.2);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   DARK MODE ADJUSTMENTS
+   -------------------------------------------------------------------------- */
+
+@media (prefers-color-scheme: dark) {
+  .experience-card {
+    background: rgba(20, 20, 20, 0.9);
+  }
+  
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.05) 25%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0.05) 75%
+    );
+  }
+}
+
+/* --------------------------------------------------------------------------
+   REDUCED MOTION
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   PRINT STYLES
+   -------------------------------------------------------------------------- */
+
+@media print {
+  .experience-card {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+  
+  .morph-bg,
+  .pulse-ring::before,
+  .pulse-ring::after {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   PROFESSIONAL EXPERIENCE - EDITORIAL TIMELINE
+   -------------------------------------------------------------------------- */
+
+.experience-career-section {
+  color: #0b1725;
+  background:
+    linear-gradient(rgba(17, 24, 39, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(17, 24, 39, 0.025) 1px, transparent 1px),
+    #f8fafc;
+  background-size: 72px 72px;
+}
+
+.experience-career-container {
+  position: relative;
+}
+
+.experience-career-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(18rem, 0.75fr);
+  align-items: end;
+  column-gap: clamp(3rem, 8vw, 8rem);
+  row-gap: 1.5rem;
+  max-width: 72rem;
+  margin: 0 auto clamp(5rem, 9vw, 8rem);
+}
+
+.experience-career-kicker {
+  grid-column: 1 / -1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #c71f35;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.experience-career-kicker::before {
+  content: '';
+  width: 2.75rem;
+  height: 1px;
+  background: #c71f35;
+}
+
+.experience-career-header h2 {
+  margin: 0;
+  max-width: 12ch;
+  color: #0b1725;
+  font-size: clamp(2.8rem, 5.6vw, 5.4rem);
+  font-weight: 650;
+  line-height: 0.95;
+  letter-spacing: 0;
+}
+
+.experience-career-header h2 span {
+  color: #c71f35;
+  font-weight: 450;
+}
+
+.experience-career-header > p {
+  margin: 0 0 0.4rem;
+  max-width: 33rem;
+  color: #5d6d7f;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.experience-career-list {
+  position: relative;
+  display: grid;
+  gap: clamp(5rem, 8vw, 7.5rem);
+  max-width: 74rem;
+  margin: 0 auto;
+  padding: 1rem 0 2rem;
+}
+
+.experience-career-list::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(199, 31, 53, 0.42) 5%, rgba(199, 31, 53, 0.22) 95%, transparent);
+  transform: translateX(-50%);
+}
+
+.experience-entry {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 6rem minmax(0, 1fr);
+  align-items: start;
+  min-width: 0;
+}
+
+.experience-entry-card {
+  position: relative;
+  grid-row: 1;
+  min-width: 0;
+  overflow: visible;
+  padding: clamp(1.6rem, 3vw, 2.5rem);
+  border: 1px solid rgba(11, 23, 37, 0.09);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 22px 55px rgba(25, 46, 71, 0.09), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  will-change: transform, opacity;
+}
+
+.experience-entry.is-left .experience-entry-card {
+  grid-column: 1;
+}
+
+.experience-entry.is-right .experience-entry-card {
+  grid-column: 3;
+}
+
+.experience-entry-accent {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 3px;
+  border-radius: 8px 8px 0 0;
+  opacity: 0.82;
+}
+
+.experience-entry-featured {
+  position: absolute;
+  z-index: 2;
+  top: -0.85rem;
+  right: 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.75rem;
+  color: #fff;
+  border-radius: 5px;
+  background: #c71f35;
+  box-shadow: 0 8px 20px rgba(199, 31, 53, 0.2);
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.experience-entry-head {
+  display: grid;
+  grid-template-columns: 3.75rem minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+  margin-bottom: 1.6rem;
+}
+
+.experience-entry-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.75rem;
+  height: 3.75rem;
+  color: white;
+  border-radius: 7px;
+  box-shadow: 0 10px 22px rgba(11, 23, 37, 0.12);
+}
+
+.experience-entry-period {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.7rem;
+  color: #c71f35;
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.experience-entry-title h3 {
+  margin: 0 0 0.35rem;
+  color: #0b1725;
+  font-size: clamp(1.25rem, 2vw, 1.55rem);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.experience-entry-title > p {
+  margin: 0;
+  color: #52677f;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.experience-entry-description {
+  margin: 0 0 1.5rem;
+  color: #52677f;
+  font-size: 0.93rem;
+  line-height: 1.72;
+}
+
+.experience-entry-achievements {
+  display: grid;
+  gap: 0.8rem;
+  padding: 1.2rem 0 1.25rem;
+  border-top: 1px solid rgba(11, 23, 37, 0.08);
+  border-bottom: 1px solid rgba(11, 23, 37, 0.08);
+}
+
+.experience-entry-achievements > div {
+  display: grid;
+  grid-template-columns: 1.1rem minmax(0, 1fr);
+  gap: 0.65rem;
+  color: #566a80;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.experience-entry-achievements svg {
+  margin-top: 0.1rem;
+  color: #c71f35;
+}
+
+.experience-entry-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  padding-top: 1.25rem;
+}
+
+.experience-entry-skills span {
+  padding: 0.42rem 0.68rem;
+  color: #475b70;
+  border: 1px solid rgba(11, 23, 37, 0.08);
+  border-radius: 4px;
+  background: #f4f6f8;
+  font-size: 0.69rem;
+  font-weight: 600;
+  transition: color 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.experience-entry-skills span:hover {
+  color: #c71f35;
+  border-color: rgba(199, 31, 53, 0.24);
+  transform: translateY(-2px);
+}
+
+.experience-entry-node {
+  position: absolute;
+  z-index: 2;
+  top: 3.1rem;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid #c71f35;
+  border-radius: 50%;
+  background: #f8fafc;
+  box-shadow: 0 0 0 7px rgba(199, 31, 53, 0.09);
+  transform: translateX(-50%);
+}
+
+.experience-entry-node span {
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 50%;
+  background: #c71f35;
+  animation: experience-node-pulse 2.6s ease-in-out infinite;
+}
+
+@keyframes experience-node-pulse {
+  0%, 100% { transform: scale(0.75); opacity: 0.55; }
+  50% { transform: scale(1.2); opacity: 1; }
+}
+
+.experience-entry-connector {
+  position: absolute;
+  top: 3.7rem;
+  width: 3rem;
+  height: 1px;
+  background: rgba(199, 31, 53, 0.38);
+}
+
+.experience-entry.is-left .experience-entry-connector {
+  left: calc(50% - 3rem);
+}
+
+.experience-entry.is-right .experience-entry-connector {
+  left: 50%;
+}
+
+.experience-entry-aside {
+  display: flex;
+  grid-row: 1;
+  gap: 1.15rem;
+  align-items: flex-start;
+  padding-top: 2.55rem;
+}
+
+.experience-entry.is-left .experience-entry-aside {
+  grid-column: 3;
+  padding-left: 1.25rem;
+}
+
+.experience-entry.is-right .experience-entry-aside {
+  grid-column: 1;
+  justify-self: end;
+  padding-right: 1.25rem;
+  text-align: right;
+}
+
+.experience-entry-aside > span {
+  color: rgba(199, 31, 53, 0.2);
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 750;
+  line-height: 0.8;
+}
+
+.experience-entry-aside div {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.experience-entry-aside strong {
+  color: #34495f;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.experience-entry-aside small {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: #8390a0;
+  font-size: 0.7rem;
+}
+
+.experience-entry.is-right .experience-entry-aside small {
+  justify-content: flex-end;
+}
+
+@media (max-width: 900px) {
+  .experience-career-header {
+    grid-template-columns: 1fr;
+    max-width: 42rem;
+  }
+
+  .experience-career-header h2 {
+    max-width: 14ch;
+  }
+
+  .experience-career-header > p {
+    margin: 0;
+  }
+
+  .experience-career-list::before {
+    left: 1rem;
+    transform: none;
+  }
+
+  .experience-entry {
+    display: block;
+    padding-left: 3.25rem;
+  }
+
+  .experience-entry-node {
+    left: 1rem;
+  }
+
+  .experience-entry-connector,
+  .experience-entry.is-left .experience-entry-connector,
+  .experience-entry.is-right .experience-entry-connector {
+    left: 1rem;
+    width: 2.25rem;
+  }
+
+  .experience-entry-aside {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .experience-career-header {
+    margin-bottom: 4rem;
+  }
+
+  .experience-career-header h2 {
+    font-size: 2.75rem;
+  }
+
+  .experience-career-list {
+    gap: 4.5rem;
+  }
+
+  .experience-entry {
+    padding-left: 2.5rem;
+  }
+
+  .experience-career-list::before,
+  .experience-entry-node,
+  .experience-entry-connector,
+  .experience-entry.is-left .experience-entry-connector,
+  .experience-entry.is-right .experience-entry-connector {
+    left: 0.45rem;
+  }
+
+  .experience-entry-connector,
+  .experience-entry.is-left .experience-entry-connector,
+  .experience-entry.is-right .experience-entry-connector {
+    width: 2rem;
+  }
+
+  .experience-entry-card {
+    padding: 1.4rem;
+  }
+
+  .experience-entry-head {
+    grid-template-columns: 3rem minmax(0, 1fr);
+    gap: 0.8rem;
+  }
+
+  .experience-entry-icon {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .experience-entry-featured {
+    right: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .experience-entry-node span {
+    animation: none;
+  }
+}
